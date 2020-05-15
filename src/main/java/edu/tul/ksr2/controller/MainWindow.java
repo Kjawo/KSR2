@@ -2,6 +2,7 @@ package edu.tul.ksr2.controller;
 
 import edu.tul.ksr2.Database.DatabaseHandler;
 import edu.tul.ksr2.GameEntity;
+import edu.tul.ksr2.LinguisticVariable.LinguisticVariable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -17,9 +18,13 @@ import java.util.ArrayList;
 public class MainWindow {
 
     private final FxControllerAndView<SomeDialog, VBox> someDialog;
+    public ArrayList<GameEntity> gameEntities;
 
     @FXML
     public Button openDialogButton;
+    public Button generateComparison;
+
+
 
     public MainWindow(FxControllerAndView<SomeDialog, VBox> someDialog) {
         this.someDialog = someDialog;
@@ -29,15 +34,23 @@ public class MainWindow {
     public void initialize() {
         try {
             DatabaseHandler.initialize();
-            ArrayList<GameEntity> gameEntities = DatabaseHandler.loadAllFromDB();
+            gameEntities = DatabaseHandler.loadAllFromDB();
             System.out.println("LoL - Leauge of Legends");
             System.out.println(gameEntities.get(0).toString());
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+
         openDialogButton.setOnAction(
                 actionEvent -> someDialog.getController().show()
         );
     }
+
+    public void generateComparison(){
+        System.out.println("ASAFASFas");
+        LinguisticVariable linguisticVariable = new LinguisticVariable("gameDuraton");
+        linguisticVariable.loadData(gameEntities);
+    }
+
 }

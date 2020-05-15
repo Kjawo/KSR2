@@ -1,10 +1,30 @@
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER"
-      fx:controller="edu.tul.ksr2.controller.MainWindow">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-    <Button fx:id="openDialogButton" text="Open Simple Dialog"/>
+<VBox alignment="CENTER" prefHeight="670.0" prefWidth="825.0" spacing="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.tul.ksr2.controller.MainWindow">
+    <TabPane prefHeight="463.0" prefWidth="825.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Untitled Tab 1">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="567.0">
+                        <children>
+                            <ComboBox fx:id="spinnerFirstVar" layoutX="37.0" layoutY="50.0" prefWidth="150.0" />
+                            <ComboBox fx:id="spinnerSecondVar" layoutX="299.0" layoutY="50.0" prefWidth="150.0" />
+                            <Button fx:id="buttonGenerateComparison" layoutX="517.0" layoutY="50.0" mnemonicParsing="false" onAction="#generateComparison" text="Button" />
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+            <Tab text="Untitled Tab 2">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                </content>
+            </Tab>
+        </tabs>
+    </TabPane>
+
+    <Button fx:id="openDialogButton" alignment="CENTER" prefHeight="35.0" prefWidth="237.0" text="Open Simple Dialog" />
 
 </VBox>

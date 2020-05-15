@@ -30,7 +30,8 @@ public class MainWindow {
         try {
             DatabaseHandler.initialize();
             ArrayList<GameEntity> gameEntities = DatabaseHandler.loadAllFromDB();
-            System.out.println("lol");
+            System.out.println("LoL - Leauge of Legends");
+            System.out.println(gameEntities.get(0).toString());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,5 +40,4 @@ public class MainWindow {
                 actionEvent -> someDialog.getController().show()
         );
     }
-
 }

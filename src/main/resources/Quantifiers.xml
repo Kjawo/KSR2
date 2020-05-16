@@ -43,32 +43,26 @@
         <Quantifier>
             <Name>About 1000</Name>
             <Membership>Triangular</Membership>
-            <IsSelected>true</IsSelected>
             <A>700</A>
             <B>1000</B>
             <C>1300</C>
             <D>0</D>
-            <IsRelative>false</IsRelative>
         </Quantifier>
         <Quantifier>
             <Name>About 3000</Name>
             <Membership>Triangular</Membership>
-            <IsSelected>true</IsSelected>
             <A>2500</A>
             <B>3000</B>
             <C>3500</C>
             <D>0</D>
-            <IsRelative>false</IsRelative>
         </Quantifier>
         <Quantifier>
             <Name>About 7000</Name>
             <Membership>Triangular</Membership>
-            <IsSelected>true</IsSelected>
             <A>6000</A>
             <B>7000</B>
             <C>8000</C>
             <D>0</D>
-            <IsRelative>false</IsRelative>
         </Quantifier>
     </Quantifiers>
 </Root>

@@ -6,7 +6,7 @@ import org.simpleframework.xml.Root;
 import java.util.List;
 
 @Root(name="Root")
-public class QuantifiersSerialized implements QuantifiersSerializedInterface {
+public class QuantifiersSerialized {
 
     @ElementList(name = "Quantifiers", entry = "Quantifier")
     private List<QuantifierSerialized> quantifiers;

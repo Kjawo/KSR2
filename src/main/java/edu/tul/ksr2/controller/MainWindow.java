@@ -40,11 +40,16 @@ public class MainWindow {
             System.out.println("LoL - Leauge of Legends");
             System.out.println(gameEntities.get(0).toString());
 
-            ArrayList<Quantifier> quantifiers = XMLReader.read("Quantifiers.xml", false);
+            ArrayList<Quantifier> quantifiers = XMLReader.readQuantifier();
             System.out.println(quantifiers.get(0).toString());
 
-            ArrayList<Quantifier> gameQuantifiers = XMLReader.read("MembershipParameters.xml", true);
-            System.out.println(gameQuantifiers.get(0).toString());
+            ArrayList<LinguisticVariable> linguisticVariables = XMLReader.readLinguisicVariables();
+            try {
+                System.out.println(linguisticVariables.get(0).toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,8 +63,8 @@ public class MainWindow {
 
     public void generateComparison(){
         System.out.println("ASAFASFas");
-        LinguisticVariable linguisticVariable = new LinguisticVariable("gameDuraton");
-        linguisticVariable.loadData(gameEntities);
+//        LinguisticVariable linguisticVariable = new LinguisticVariable("gameDuraton");
+//        linguisticVariable.loadData(gameEntities);
     }
 
 }

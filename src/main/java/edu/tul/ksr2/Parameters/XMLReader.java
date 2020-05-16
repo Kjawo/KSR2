@@ -1,5 +1,6 @@
 package edu.tul.ksr2.Parameters;
 
+import edu.tul.ksr2.LinguisticVariable.LinguisticVariable;
 import edu.tul.ksr2.MembershipFunctions.MembershipFunction;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -11,32 +12,58 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class XMLReader {
-    public static ArrayList<Quantifier> read(String filename, boolean gameProperties) {
+    public static ArrayList<Quantifier> readQuantifier() {
         ArrayList<Quantifier> quantifiers = new ArrayList<>();
 
         Serializer serializer = new Persister();
         File source = new File(
-                Objects.requireNonNull(XMLReader.class.getClassLoader().getResource(filename)).getFile()
+                Objects.requireNonNull(XMLReader.class.getClassLoader().getResource("Quantifiers.xml")).getFile()
         );
-        QuantifiersSerializedInterface quantifiersSerialized = null;
 
+        QuantifiersSerialized quantifiersSerialized = new QuantifiersSerialized();
         try {
-            if(gameProperties) {
-                quantifiersSerialized = new GameQuantifiersSerialized();
-                quantifiersSerialized = serializer.read(GameQuantifiersSerialized.class, source);
-            } else {
-                quantifiersSerialized = new QuantifiersSerialized();
-                quantifiersSerialized = serializer.read(QuantifiersSerialized.class, source);
-            }
+            quantifiersSerialized = serializer.read(QuantifiersSerialized.class, source);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         for (var q: quantifiersSerialized.getQuantifiers()
-             ) {
+        ) {
             quantifiers.add(new Quantifier(q.getName(), q.getMembershipFunction()));
         }
 
         return quantifiers;
+    }
+
+    public static ArrayList<LinguisticVariable> readLinguisicVariables() {
+        ArrayList<LinguisticVariable> linguisticVariables = new ArrayList<>();
+
+        Serializer serializer = new Persister();
+        File source = new File(
+                Objects.requireNonNull(XMLReader.class.getClassLoader().getResource("MembershipParameters.xml")).getFile()
+        );
+
+        LinguisticVariablesSerialized linguisticVariablesSerialized = new LinguisticVariablesSerialized();
+        try {
+            linguisticVariablesSerialized = serializer.read(LinguisticVariablesSerialized.class, source);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (var l: linguisticVariablesSerialized.getLinguisticVariables()
+        ) {
+            ArrayList<String> labels = new ArrayList<>();
+            ArrayList<MembershipFunction> membershipFunctions = new ArrayList<>();
+
+            for (var inside: l.getLinguisticVarLabelsSerialized()
+                 ) {
+                labels.add(inside.getLabel());
+                membershipFunctions.add(inside.getMembershipFunction());
+            }
+
+            linguisticVariables.add(new LinguisticVariable(l.getName(), labels, membershipFunctions));
+        }
+
+        return linguisticVariables;
     }
 }

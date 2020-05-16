@@ -1,0 +1,44 @@
+<Root>
+    <Quantifiers>
+        <Quantifier>
+            <Name>Almost none</Name>
+            <Membership>Trapezoidal</Membership>
+            <A>0.0</A>
+            <B>0.0</B>
+            <C>0.04</C>
+            <D>0.2</D>
+        </Quantifier>
+        <Quantifier>
+            <Name>Some</Name>
+            <Membership>Trapezoidal</Membership>
+            <A>0.16</A>
+            <B>0.2</B>
+            <C>0.32</C>
+            <D>0.4</D>
+        </Quantifier>
+        <Quantifier>
+            <Name>About half</Name>
+            <Membership>Trapezoidal</Membership>
+            <A>0.32</A>
+            <B>0.44</B>
+            <C>0.56</C>
+            <D>0.68</D>
+        </Quantifier>
+        <Quantifier>
+            <Name>Many</Name>
+            <Membership>Trapezoidal</Membership>
+            <A>0.6</A>
+            <B>0.68</B>
+            <C>0.84</C>
+            <D>0.88</D>
+        </Quantifier>
+        <Quantifier>
+            <Name>Almost all</Name>
+            <Membership>Trapezoidal</Membership>
+            <A>0.84</A>
+            <B>0.96</B>
+            <C>1.0</C>
+            <D>1.0</D>
+        </Quantifier>
+    </Quantifiers>
+</Root>

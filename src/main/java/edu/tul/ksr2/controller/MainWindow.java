@@ -3,6 +3,7 @@ package edu.tul.ksr2.controller;
 import edu.tul.ksr2.Database.DatabaseHandler;
 import edu.tul.ksr2.GameEntity;
 import edu.tul.ksr2.LinguisticVariable.LinguisticVariable;
+import edu.tul.ksr2.Parameters.XMLReader;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -33,6 +34,9 @@ public class MainWindow {
     @FXML
     public void initialize() {
         try {
+            XMLReader.read();
+
+
             DatabaseHandler.initialize();
             gameEntities = DatabaseHandler.loadAllFromDB();
             System.out.println("LoL - Leauge of Legends");

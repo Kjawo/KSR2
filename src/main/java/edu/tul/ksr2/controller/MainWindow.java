@@ -40,8 +40,11 @@ public class MainWindow {
             System.out.println("LoL - Leauge of Legends");
             System.out.println(gameEntities.get(0).toString());
 
-            ArrayList<Quantifier> quantifiers = XMLReader.read();
+            ArrayList<Quantifier> quantifiers = XMLReader.read("Quantifiers.xml", false);
             System.out.println(quantifiers.get(0).toString());
+
+            ArrayList<Quantifier> gameQuantifiers = XMLReader.read("MembershipParameters.xml", true);
+            System.out.println(gameQuantifiers.get(0).toString());
 
         } catch (SQLException e) {
             e.printStackTrace();

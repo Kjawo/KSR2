@@ -6,10 +6,12 @@ import java.util.ArrayList;
 
 public class LinguisticVariable {
 
-    ArrayList<String> labels;
-    ArrayList<MembershipFunction> membershipFunctions;
+    private String name;
+    private ArrayList<String> labels;
+    private ArrayList<MembershipFunction> membershipFunctions;
 
-    public LinguisticVariable(ArrayList<String> labels, ArrayList<MembershipFunction> membershipFunctions) {
+    public LinguisticVariable(String name, ArrayList<String> labels, ArrayList<MembershipFunction> membershipFunctions) {
+        this.name = name;
         this.labels = labels;
         this.membershipFunctions = membershipFunctions;
     }
@@ -17,9 +19,9 @@ public class LinguisticVariable {
     @Override
     public String toString() {
         return "LinguisticVariable{" +
-                "labels=" + labels +
+                "name='" + name + '\'' +
+                ", labels=" + labels +
                 ", membershipFunctions=" + membershipFunctions +
                 '}';
     }
-
 }

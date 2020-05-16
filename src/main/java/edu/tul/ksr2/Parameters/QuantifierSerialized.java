@@ -1,5 +1,8 @@
 package edu.tul.ksr2.Parameters;
 
+import edu.tul.ksr2.MembershipFunctions.MembershipFunction;
+import edu.tul.ksr2.MembershipFunctions.trapmf;
+import edu.tul.ksr2.MembershipFunctions.trimf;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -16,7 +19,7 @@ class QuantifierSerialized {
     private double b;
     @Element(name="C")
     private double c;
-    @Element(name="D")
+    @Element(name="D", required=false)
     private double d;
 
     public String getName() {
@@ -41,5 +44,16 @@ class QuantifierSerialized {
 
     public double getD() {
         return d;
+    }
+
+    public MembershipFunction getMembershipFunction(){
+        switch (this.membership) {
+            case "Trapezoidal":
+                return new trapmf(this.a, this.b, this.c, this.d);
+            case "Triangular":
+                return new trimf(this.a, this.b, this.c);
+            default:
+                return null;
+        }
     }
 }

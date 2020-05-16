@@ -25,4 +25,14 @@ public class trapmf implements MembershipFunction {
             return 0.0;
         }
     }
+
+    @Override
+    public String toString() {
+        return "trapmf{" +
+                "a=" + a +
+                ", b=" + b +
+                ", c=" + c +
+                ", d=" + d +
+                '}';
+    }
 }

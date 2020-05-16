@@ -20,4 +20,13 @@ public class trimf implements MembershipFunction {
         } else
             return 0;
     }
+
+    @Override
+    public String toString() {
+        return "trimf{" +
+                "a=" + a +
+                ", b=" + b +
+                ", c=" + c +
+                '}';
+    }
 }

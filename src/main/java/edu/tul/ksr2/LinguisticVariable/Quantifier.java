@@ -14,4 +14,12 @@ public class Quantifier {
     public double compute(double x) {
         return membershipFunction.compute(x);
     }
+
+    @Override
+    public String toString() {
+        return "Quantifier{" +
+                "name='" + name + '\'' +
+                ", membershipFunction=" + membershipFunction +
+                '}';
+    }
 }

@@ -21,6 +21,7 @@ public class SummaryGenerator {
         double highestComputedMembership = 0;
         String labelName = "";
         for(String key : membership.keySet()){
+            highestComputedMembership = -1;
             ammount = membership.get(key);
             for(Quantifier quant : quantifiers) {
                 computedMembership = quant.compute(ammount);

@@ -2,6 +2,15 @@ package edu.tul.ksr2.MembershipFunctions;
 
 public class trapmf implements MembershipFunction {
     private double a, b, c, d;
+    private boolean isRelative = false;
+
+    public trapmf(double a, double b, double c, double d, boolean isRelative) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+        this.isRelative = isRelative;
+    }
 
     public trapmf(double a, double b, double c, double d) {
         this.a = a;
@@ -57,6 +66,7 @@ public class trapmf implements MembershipFunction {
                 ", b=" + b +
                 ", c=" + c +
                 ", d=" + d +
+                ", isRelative=" + isRelative +
                 '}';
     }
 }

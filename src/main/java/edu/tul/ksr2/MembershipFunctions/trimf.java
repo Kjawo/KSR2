@@ -2,6 +2,14 @@ package edu.tul.ksr2.MembershipFunctions;
 
 public class trimf implements MembershipFunction {
     private double a, b, c;
+    private boolean isRelative = false;
+
+    public trimf(double a, double b, double c, boolean isRelative) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.isRelative = isRelative;
+    }
 
     public trimf(double a, double b, double c) {
         this.a = a;
@@ -49,6 +57,7 @@ public class trimf implements MembershipFunction {
                 "a=" + a +
                 ", b=" + b +
                 ", c=" + c +
+                ", isRelative=" + isRelative +
                 '}';
     }
 }

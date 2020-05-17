@@ -13,6 +13,9 @@ class QuantifierSerialized {
     @Element(name="Membership")
     private String membership;
 
+    @Element(name="isRelative")
+    private boolean isRelative;
+
     @Element(name="A")
     private double a;
     @Element(name="B")
@@ -46,12 +49,16 @@ class QuantifierSerialized {
         return d;
     }
 
+    public boolean isRelative() {
+        return isRelative;
+    }
+
     public MembershipFunction getMembershipFunction(){
         switch (this.membership) {
             case "Trapezoidal":
-                return new trapmf(this.a, this.b, this.c, this.d);
+                return new trapmf(this.a, this.b, this.c, this.d, this.isRelative);
             case "Triangular":
-                return new trimf(this.a, this.b, this.c);
+                return new trimf(this.a, this.b, this.c, this.isRelative);
             default:
                 return null;
         }

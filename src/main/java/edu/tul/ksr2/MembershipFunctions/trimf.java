@@ -53,8 +53,10 @@ public class trimf implements MembershipFunction {
 
         String result = "\\begin{equation}\n";
         result += "\\mu_" + name + "(x) = \\begin{cases}\n";
-        result += "\t" + "TRIANGULAR (x - " + String.valueOf(this.a) + ") / (" + String.valueOf(this.b) + " - " + String.valueOf(this.a) + ") & \\mbox{dla  } x \\in [" + String.valueOf(this.a) + ",\\, " + String.valueOf(this.b) + "], \\\\\n";
-        result += "\t" + " 1                 & \\mbox{dla  } x \\in [" + String.valueOf(this.b) + ",\\, " + String.valueOf(this.c) + "], \\\\\n";
+        result += "\t" + "(x - " + String.valueOf(this.a) + ") / (" + String.valueOf(this.b) + " - " + String.valueOf(this.a) + ") & \\mbox{dla } x \\in (" + String.valueOf(this.a) + ",\\, " + String.valueOf(this.b) + "), \\\\";
+        result += "\t" + "1                 & \\mbox{dla } x = " + String.valueOf(this.b) + ", \\\\";
+        result += "\t" + "(" + String.valueOf(this.c) + " - x) / (" + String.valueOf(this.c) + " - " + String.valueOf(this.b) + ") & \\mbox{dla } x \\in (" + String.valueOf(this.b) + ",\\, " + String.valueOf(this.c) + "), \\\\";
+        result += "\t" + "0                 & \\mbox{dla } x \\in (-\\infty, " + String.valueOf(this.a) + "] \\cup  [" + String.valueOf(this.c) + ",\\, +\\infty)";
         result += "\\end{cases}\n";
         result += "\\end{equation}\n";
         return result;

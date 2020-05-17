@@ -266,6 +266,8 @@ public class GameEntity {
                 return blueKillingSpree;
             case "blueTotalHeal":
                 return blueTotalHeal;
+            case "blueObjectDamageDealt":
+                return blueObjectDamageDealt;
             case "redWins":
                 return redWins;
             case "redFirstBlood":
@@ -312,6 +314,8 @@ public class GameEntity {
                 return redKillingSpree;
             case "redTotalHeal":
                 return redTotalHeal;
+            case "redObjectDamageDealt":
+                return redObjectDamageDealt;
         }
         return null;
     }

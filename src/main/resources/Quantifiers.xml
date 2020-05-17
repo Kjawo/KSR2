@@ -3,6 +3,7 @@
         <Quantifier>
             <Name>Almost none</Name>
             <Membership>Trapezoidal</Membership>
+            <isRelative>true</isRelative>
             <A>0.0</A>
             <B>0.0</B>
             <C>0.04</C>
@@ -11,6 +12,7 @@
         <Quantifier>
             <Name>Some</Name>
             <Membership>Trapezoidal</Membership>
+            <isRelative>true</isRelative>
             <A>0.06</A>
             <B>0.12</B>
             <C>0.32</C>
@@ -19,6 +21,7 @@
         <Quantifier>
             <Name>About half</Name>
             <Membership>Trapezoidal</Membership>
+            <isRelative>true</isRelative>
             <A>0.32</A>
             <B>0.44</B>
             <C>0.56</C>
@@ -27,6 +30,7 @@
         <Quantifier>
             <Name>Many</Name>
             <Membership>Trapezoidal</Membership>
+            <isRelative>true</isRelative>
             <A>0.6</A>
             <B>0.68</B>
             <C>0.84</C>
@@ -35,6 +39,7 @@
         <Quantifier>
             <Name>Almost all</Name>
             <Membership>Trapezoidal</Membership>
+            <isRelative>true</isRelative>
             <A>0.84</A>
             <B>0.96</B>
             <C>1.0</C>
@@ -43,6 +48,7 @@
         <Quantifier>
             <Name>About 1000</Name>
             <Membership>Triangular</Membership>
+            <isRelative>false</isRelative>
             <A>700</A>
             <B>1000</B>
             <C>1300</C>
@@ -51,6 +57,7 @@
         <Quantifier>
             <Name>About 3000</Name>
             <Membership>Triangular</Membership>
+            <isRelative>false</isRelative>
             <A>2500</A>
             <B>3000</B>
             <C>3500</C>
@@ -59,6 +66,7 @@
         <Quantifier>
             <Name>About 7000</Name>
             <Membership>Triangular</Membership>
+            <isRelative>false</isRelative>
             <A>6000</A>
             <B>7000</B>
             <C>8000</C>

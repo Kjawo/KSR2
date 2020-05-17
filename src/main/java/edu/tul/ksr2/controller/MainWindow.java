@@ -52,11 +52,10 @@ public class MainWindow {
             System.out.println(quantifiers.get(0).toString());
 
             ArrayList<LinguisticVariable> linguisticVariables = XMLReader.readLinguisicVariables();
-            try {
-                System.out.println(linguisticVariables.get(0).toString());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            for (LinguisticVariable l: linguisticVariables
+//                 ) {
+//                System.out.println(l.generateLatexSubsection());
+//            }
 
 
         } catch (SQLException e) {

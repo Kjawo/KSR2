@@ -38,4 +38,17 @@ public class LinguisticVariable {
     public ArrayList<MembershipFunction> getMembershipFunctions() {
         return membershipFunctions;
     }
+
+    public String generateLatexSubsection () {
+
+
+        StringBuilder result = new StringBuilder();
+        result.append("\\subsubsection{").append(this.name).append("}");
+        for(int i = 0; i < labels.size(); i++) {
+            result.append(membershipFunctions.get(i).generateLatexEq(labels.get(i)));
+        }
+
+
+        return result.toString();
+    }
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class ParametersMapping {
     public static Map<String, String> ParametersMapper = new HashMap<>() {{
-        put("gameId", "gameId");
+//        put("gameId", "gameId");
         put("gameDuraton", "Duration");
         put("blueDragonKills", "DragonKills");
         put("redDragonKills", "DragonKills");
@@ -32,8 +32,8 @@ public class ParametersMapping {
         put("redTotalMinionKills", "TotalMinionKills");
         put("blueTotalLevel", "TotalLevel");
         put("redTotalLevel", "TotalLevel");
-        put("blueAvgLevel", "AvgLevel");
-        put("redAvgLevel", "AvgLevel");
+//        put("blueAvgLevel", "AvgLevel");
+//        put("redAvgLevel", "AvgLevel");
         put("blueJungleMinionKills", "JungleMinionKills");
         put("redJungleMinionKills", "JungleMinionKills");
         put("blueKillingSpree", "KillingSpree");

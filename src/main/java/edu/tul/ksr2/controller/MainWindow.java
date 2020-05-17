@@ -64,6 +64,9 @@ public class MainWindow {
 //            }
 
 
+            generateSummarizationForAll();
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -79,6 +82,14 @@ public class MainWindow {
         qualifier.loadData(gameEntities);
     }
 
+    private void generateSummarizationForAll() {
+
+        for(String p : ParametersMapper.keySet()) {
+            Qualifier qualifier = new Qualifier(p);
+            qualifier.loadData(gameEntities);
+        }
+
+    }
 
     private void prepareSpinner() {
         spinnerFirstVar.getItems().addAll(ParametersMapper.keySet());

@@ -52,7 +52,7 @@ public class Qualifier {
             highestFoundMembership = 0;
             indx = 0;
         }
-        System.out.println(membership);
+        System.out.println(tag + " " + membership);
         SummaryGenerator.summarizeAmmounts(membership);
     }
 }

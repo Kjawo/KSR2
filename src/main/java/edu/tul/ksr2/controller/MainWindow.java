@@ -46,6 +46,9 @@ public class MainWindow {
         try {
             DatabaseHandler.initialize();
             gameEntities = DatabaseHandler.loadAllFromDB();
+
+            prepareSpinner();
+
             System.out.println("LoL - Leauge of Legends");
             System.out.println(gameEntities.get(0).toString());
             ArrayList<Quantifier> quantifiers = XMLReader.readQuantifier();
@@ -69,8 +72,13 @@ public class MainWindow {
     }
 
     public void generateComparison(){
-        Qualifier qualifier = new Qualifier("blueDragonKills");
+        Qualifier qualifier = new Qualifier(spinnerFirstVar.getSelectionModel().getSelectedItem().toString());
         qualifier.loadData(gameEntities);
     }
 
+
+    private void prepareSpinner() {
+        spinnerFirstVar.getItems().addAll(ParametersMapper.keySet());
+        spinnerFirstVar.getSelectionModel().select(ParametersMapper.keySet().toArray()[0]);
+    }
 }

@@ -11,8 +11,7 @@
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="567.0">
                         <children>
                             <ComboBox fx:id="spinnerFirstVar" layoutX="37.0" layoutY="50.0" prefWidth="150.0" />
-                            <ComboBox fx:id="spinnerSecondVar" layoutX="299.0" layoutY="50.0" prefWidth="150.0" />
-                            <Button fx:id="buttonGenerateComparison" layoutX="517.0" layoutY="50.0" mnemonicParsing="false" onAction="#generateComparison" text="Button" />
+                            <Button fx:id="buttonGenerateComparison" layoutX="259.0" layoutY="50.0" mnemonicParsing="false" onAction="#generateComparison" text="Button" />
                         </children>
                     </AnchorPane>
                 </content>

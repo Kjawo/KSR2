@@ -3,6 +3,7 @@ package edu.tul.ksr2.LinguisticVariable;
 import edu.tul.ksr2.MembershipFunctions.MembershipFunction;
 
 public class Quantifier {
+
     private String name;
     private MembershipFunction membershipFunction;
 
@@ -13,6 +14,10 @@ public class Quantifier {
 
     public double compute(double x) {
         return membershipFunction.compute(x);
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

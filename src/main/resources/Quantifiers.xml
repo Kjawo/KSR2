@@ -6,13 +6,13 @@
             <A>0.0</A>
             <B>0.0</B>
             <C>0.04</C>
-            <D>0.2</D>
+            <D>0.1</D>
         </Quantifier>
         <Quantifier>
             <Name>Some</Name>
             <Membership>Trapezoidal</Membership>
-            <A>0.16</A>
-            <B>0.2</B>
+            <A>0.06</A>
+            <B>0.12</B>
             <C>0.32</C>
             <D>0.4</D>
         </Quantifier>

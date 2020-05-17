@@ -53,6 +53,6 @@ public class Qualifier {
             indx = 0;
         }
         System.out.println(tag + " " + membership);
-        SummaryGenerator.summarizeAmmounts(membership);
+        SummaryGenerator.summarizeAmmounts(membership, tag);
     }
 }

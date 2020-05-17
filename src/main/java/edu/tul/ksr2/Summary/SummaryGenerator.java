@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class SummaryGenerator {
 
-    public static void summarizeAmmounts(Map<String, Double> membership){
+    public static void summarizeAmmounts(Map<String, Double> membership, String qualifierTag){
         ArrayList<Quantifier> quantifiers = XMLReader.readQuantifier();
         double ammount = 0;
         for(String key : membership.keySet()){
@@ -29,7 +29,7 @@ public class SummaryGenerator {
                     labelName = quant.getName();
                 }
             }
-            System.out.println(labelName + " games are " + key);
+            System.out.println(labelName + " games are/have " + key + " " + qualifierTag);
         }
     }
 }

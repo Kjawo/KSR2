@@ -3,6 +3,7 @@ package edu.tul.ksr2.LinguisticVariable;
 import edu.tul.ksr2.GameEntity;
 import edu.tul.ksr2.MembershipFunctions.MembershipFunction;
 import edu.tul.ksr2.Parameters.XMLReader;
+import edu.tul.ksr2.Summary.SummaryGenerator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,6 +53,6 @@ public class Qualifier {
             indx = 0;
         }
         System.out.println(membership);
-        Summarizer.summarizeAmmounts(membership);
+        SummaryGenerator.summarizeAmmounts(membership);
     }
 }

@@ -72,5 +72,14 @@
             <C>8000</C>
             <D>0</D>
         </Quantifier>
+        <Quantifier>
+            <Name>Over 100 000</Name>
+            <Membership>Trapezoidal</Membership>
+            <isRelative>false</isRelative>
+            <A>100000</A>
+            <B>100000</B>
+            <C>9999999</C>
+            <D>9999999</D>
+        </Quantifier>
     </Quantifiers>
 </Root>

@@ -29,8 +29,12 @@ public class SummaryGenerator {
                     highestComputedMembership = computedMembership;
                     labelName = quant.getName();
                 }
+
+                if(computedMembership > 0.0) {
+                    System.out.println("[Membership: " + String.format("%.2f", computedMembership) + "] " + quant.getName() + " games are/have " + key + " " + qualifierTag);
+                }
             }
-            System.out.println(labelName + " games are/have " + key + " " + qualifierTag);
+//            System.out.println(labelName + " games are/have " + key + " " + qualifierTag);
         }
     }
 }

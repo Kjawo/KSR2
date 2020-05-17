@@ -48,11 +48,11 @@ public class trimf implements MembershipFunction {
 //        0                 & \mbox{dla  } x \in (-\infty, a] \cup  [d,\, +\infty)
 //    \end{cases}
 //  \end{equation}
-        name.trim();
-        name.replaceAll("\\\\s+", "\\_");
+        String trimmedName = name.trim();
+        trimmedName = trimmedName.replace(" ", "\\_");
 
         String result = "\\begin{equation}\n";
-        result += "\\mu_" + name + "(x) = \\begin{cases}\n";
+        result += "\\mu_{" + trimmedName + "}(x) = \\begin{cases}\n";
         result += "\t" + "(x - " + String.valueOf(this.a) + ") / (" + String.valueOf(this.b) + " - " + String.valueOf(this.a) + ") & \\mbox{dla } x \\in (" + String.valueOf(this.a) + ",\\, " + String.valueOf(this.b) + "), \\\\";
         result += "\t" + "1                 & \\mbox{dla } x = " + String.valueOf(this.b) + ", \\\\";
         result += "\t" + "(" + String.valueOf(this.c) + " - x) / (" + String.valueOf(this.c) + " - " + String.valueOf(this.b) + ") & \\mbox{dla } x \\in (" + String.valueOf(this.b) + ",\\, " + String.valueOf(this.c) + "), \\\\";

@@ -30,4 +30,14 @@ public class Quantifier {
                 ", membershipFunction=" + membershipFunction +
                 '}';
     }
+
+    public String generateLatexSubsection () {
+        StringBuilder result = new StringBuilder();
+        result.append("\\subsubsection{").append(this.name).append("}");
+
+        result.append(membershipFunction.generateLatexEq(name));
+
+
+        return result.toString();
+    }
 }

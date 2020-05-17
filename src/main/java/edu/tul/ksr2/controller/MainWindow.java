@@ -52,6 +52,9 @@ public class MainWindow {
             System.out.println("LoL - Leauge of Legends");
             System.out.println(gameEntities.get(0).toString());
             ArrayList<Quantifier> quantifiers = XMLReader.readQuantifier();
+//            for (Quantifier q : quantifiers) {
+//                System.out.println(q.generateLatexSubsection());
+//            }
             System.out.println(quantifiers.get(0).toString());
 
             ArrayList<LinguisticVariable> linguisticVariables = XMLReader.readLinguisicVariables();

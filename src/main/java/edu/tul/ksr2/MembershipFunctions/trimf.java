@@ -30,6 +30,15 @@ public class trimf implements MembershipFunction {
     }
 
     @Override
+    public double compute(double x, double totalAmount) {
+        if(isRelative){
+            return compute(x/totalAmount);
+        } else {
+            return compute(x);
+        }
+    }
+
+    @Override
     public String generateLatexEq(String name) {
 //   \begin{equation}
 //    \mu_A(x) = \begin{cases}

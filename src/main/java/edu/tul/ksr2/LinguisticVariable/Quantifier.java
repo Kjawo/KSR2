@@ -16,6 +16,9 @@ public class Quantifier {
         return membershipFunction.compute(x);
     }
 
+    public double compute(double x, double totalAmount) {
+        return membershipFunction.compute(x, totalAmount);
+    }
     public String getName() {
         return name;
     }

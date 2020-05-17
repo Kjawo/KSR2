@@ -10,21 +10,21 @@ public class SummaryGenerator {
 
     public static void summarizeAmmounts(Map<String, Double> membership, String qualifierTag){
         ArrayList<Quantifier> quantifiers = XMLReader.readQuantifier();
-        double ammount = 0;
-        for(String key : membership.keySet()){
-            ammount += membership.get(key);
-        }
-        for(String key : membership.keySet()){
-            membership.put(key, membership.get(key)/ammount);
-        }
-        double computedMembership;
-        double highestComputedMembership = 0;
+        double ammount = 0,
+                totalAmount = 0,
+                computedMembership,
+                highestComputedMembership = 0;
         String labelName = "";
+
+        for(String key : membership.keySet()){
+            totalAmount += membership.get(key);
+        }
+
         for(String key : membership.keySet()){
             highestComputedMembership = -1;
             ammount = membership.get(key);
             for(Quantifier quant : quantifiers) {
-                computedMembership = quant.compute(ammount);
+                computedMembership = quant.compute(ammount, totalAmount);
                 if(computedMembership > highestComputedMembership){
                     highestComputedMembership = computedMembership;
                     labelName = quant.getName();

@@ -10,11 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Qualifier {
+public class Summarizer {
 
     public String tag;
 
-    public Qualifier(String tag) {
+    public Summarizer(String tag) {
         this.tag = tag;
     }
 
@@ -52,7 +52,8 @@ public class Qualifier {
             highestFoundMembership = 0;
             indx = 0;
         }
-        System.out.println(tag + " " + membership);
+//        System.out.println(tag + " " + membership);
+        System.out.println("\\subsection{" + tag + "}");
         SummaryGenerator.summarizeAmmounts(membership, tag);
     }
 }

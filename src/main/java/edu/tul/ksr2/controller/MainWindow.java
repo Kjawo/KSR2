@@ -3,23 +3,19 @@ package edu.tul.ksr2.controller;
 import edu.tul.ksr2.Database.DatabaseHandler;
 import edu.tul.ksr2.GameEntity;
 import edu.tul.ksr2.LinguisticVariable.LinguisticVariable;
-import edu.tul.ksr2.LinguisticVariable.ParametersMapping;
-import edu.tul.ksr2.LinguisticVariable.Qualifier;
+import edu.tul.ksr2.LinguisticVariable.Summarizer;
 import edu.tul.ksr2.LinguisticVariable.Quantifier;
 import edu.tul.ksr2.Parameters.XMLReader;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import net.rgielen.fxweaver.core.FxControllerAndView;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.springframework.boot.context.properties.PropertyMapper;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 import static edu.tul.ksr2.LinguisticVariable.ParametersMapping.ParametersMapper;
 
@@ -78,15 +74,15 @@ public class MainWindow {
     }
 
     public void generateComparison(){
-        Qualifier qualifier = new Qualifier(spinnerFirstVar.getSelectionModel().getSelectedItem().toString());
-        qualifier.loadData(gameEntities);
+        Summarizer summarizer = new Summarizer(spinnerFirstVar.getSelectionModel().getSelectedItem().toString());
+        summarizer.loadData(gameEntities);
     }
 
     private void generateSummarizationForAll() {
 
         for(String p : ParametersMapper.keySet()) {
-            Qualifier qualifier = new Qualifier(p);
-            qualifier.loadData(gameEntities);
+            Summarizer summarizer = new Summarizer(p);
+            summarizer.loadData(gameEntities);
         }
 
     }

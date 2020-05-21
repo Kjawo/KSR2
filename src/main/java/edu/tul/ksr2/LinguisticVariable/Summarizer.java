@@ -3,6 +3,7 @@ package edu.tul.ksr2.LinguisticVariable;
 import edu.tul.ksr2.GameEntity;
 import edu.tul.ksr2.MembershipFunctions.MembershipFunction;
 import edu.tul.ksr2.Parameters.XMLReader;
+import edu.tul.ksr2.Summary.SummarizationObject;
 import edu.tul.ksr2.Summary.SummaryGenerator;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class Summarizer {
         this.tag = tag;
     }
 
-    public void loadData(ArrayList<GameEntity> gameEntities) {
+    public ArrayList<SummarizationObject> loadData(ArrayList<GameEntity> gameEntities) {
         ArrayList<Object> gameData = (ArrayList<Object>) gameEntities.stream()
                 .map(gameEntity -> gameEntity.get(tag))
                 .collect(Collectors.toList());
@@ -54,6 +55,6 @@ public class Summarizer {
         }
 //        System.out.println(tag + " " + membership);
         System.out.println("\\subsection{" + tag + "}");
-        SummaryGenerator.summarizeAmmounts(membership, tag);
+        return SummaryGenerator.summarizeAmmounts(membership, tag);
     }
 }

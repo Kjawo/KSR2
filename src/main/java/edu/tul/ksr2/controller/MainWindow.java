@@ -6,9 +6,12 @@ import edu.tul.ksr2.LinguisticVariable.LinguisticVariable;
 import edu.tul.ksr2.LinguisticVariable.Summarizer;
 import edu.tul.ksr2.LinguisticVariable.Quantifier;
 import edu.tul.ksr2.Parameters.XMLReader;
+import edu.tul.ksr2.Summary.SummarizationObject;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import net.rgielen.fxweaver.core.FxControllerAndView;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -30,6 +33,11 @@ public class MainWindow {
     public Button openDialogButton;
     public Button generateComparison;
     public ComboBox spinnerFirstVar;
+    public TableView<SummarizationObject> tableView;
+    public TableColumn<SummarizationObject, String> tableColumnText
+            = new TableColumn<>("Summarization");
+    public TableColumn<SummarizationObject, Double> tableColumnT1 = new TableColumn<>("T1");
+    private ObservableList<SummarizationObject> summarizationsObservableList = FXCollections.observableArrayList();
 
 
 
@@ -40,6 +48,7 @@ public class MainWindow {
     @FXML
     public void initialize() {
         try {
+
             DatabaseHandler.initialize();
             gameEntities = DatabaseHandler.loadAllFromDB();
 
@@ -59,8 +68,9 @@ public class MainWindow {
 //                System.out.println(l.generateLatexSubsection());
 //            }
 
+            prepareTable();
 
-            generateSummarizationForAll();
+//            generateSummarizationForAll();
 
 
         } catch (SQLException e) {
@@ -73,9 +83,21 @@ public class MainWindow {
         );
     }
 
+    private void prepareTable() {
+        tableView.setPlaceholder(new Label("No rows to display"));
+        tableColumnText.setCellValueFactory(new PropertyValueFactory<>("Text"));
+        tableColumnT1.setCellValueFactory(new PropertyValueFactory<>("T1"));
+
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        tableView.setItems(summarizationsObservableList);
+        tableView.getColumns().addAll(tableColumnText, tableColumnT1);
+    }
+
     public void generateComparison(){
         Summarizer summarizer = new Summarizer(spinnerFirstVar.getSelectionModel().getSelectedItem().toString());
-        summarizer.loadData(gameEntities);
+        summarizationsObservableList.clear();
+        summarizationsObservableList.addAll(summarizer.loadData(gameEntities));
     }
 
     private void generateSummarizationForAll() {
@@ -83,6 +105,7 @@ public class MainWindow {
         for(String p : ParametersMapper.keySet()) {
             Summarizer summarizer = new Summarizer(p);
             summarizer.loadData(gameEntities);
+
         }
 
     }

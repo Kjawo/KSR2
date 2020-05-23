@@ -35,6 +35,17 @@ public class XMLReader {
         return quantifiers;
     }
 
+    public static void saveQuantifiers(QuantifiersSerialized quantifiersSerialized) {
+        Serializer serializer = new Persister();
+        File result = new File(Objects.requireNonNull(XMLReader.class.getClassLoader().getResource("Quantifiers.xml")).getFile());
+
+        try {
+            serializer.write(quantifiersSerialized, result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList<LinguisticVariable> readLinguisicVariables() {
         ArrayList<LinguisticVariable> linguisticVariables = new ArrayList<>();
 

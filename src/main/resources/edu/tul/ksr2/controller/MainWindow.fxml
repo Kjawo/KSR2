@@ -48,10 +48,8 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab text="Edit Quantifiers/Summarizers ">
-                <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                </content>
+            <Tab text="Edit Quantifiers">
+                <fx:include source="QuantifierEditor.fxml" />
             </Tab>
         </tabs>
     </TabPane>

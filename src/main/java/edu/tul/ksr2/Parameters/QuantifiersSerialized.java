@@ -21,4 +21,11 @@ public class QuantifiersSerialized {
                 "quantifier='" + quantifiers + '\'' +
                 '}';
     }
+
+    public QuantifiersSerialized(List<QuantifierSerialized> quantifiers) {
+        this.quantifiers = quantifiers;
+    }
+
+    public QuantifiersSerialized() {
+    }
 }

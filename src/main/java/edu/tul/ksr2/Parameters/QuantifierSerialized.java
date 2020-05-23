@@ -3,10 +3,11 @@ package edu.tul.ksr2.Parameters;
 import edu.tul.ksr2.MembershipFunctions.MembershipFunction;
 import edu.tul.ksr2.MembershipFunctions.trapmf;
 import edu.tul.ksr2.MembershipFunctions.trimf;
+import edu.tul.ksr2.Parameters.TableView.QuantifierTableRow;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-class QuantifierSerialized {
+public class QuantifierSerialized {
     @Element(name="Name")
     private String name;
 
@@ -62,5 +63,37 @@ class QuantifierSerialized {
             default:
                 return null;
         }
+    }
+
+    public QuantifierSerialized(QuantifierTableRow q) {
+        this.name = q.getName();
+        this.membership = q.getMembership();
+        this.isRelative = q.getIsRelative();
+        this.a = q.getA();
+        this.b = q.getB();
+        this.c = q.getC();
+        this.d = q.getD();
+    }
+
+    public QuantifierSerialized(String name, String membership, boolean isRelative, double a, double b, double c, double d) {
+        this.name = name;
+        this.membership = membership;
+        this.isRelative = isRelative;
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+    }
+
+    public QuantifierSerialized(String name, String membership, boolean isRelative, double a, double b, double c) {
+        this.name = name;
+        this.membership = membership;
+        this.isRelative = isRelative;
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    public QuantifierSerialized() {
     }
 }

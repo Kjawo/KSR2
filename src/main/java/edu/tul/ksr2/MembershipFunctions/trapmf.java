@@ -78,4 +78,29 @@ public class trapmf implements MembershipFunction {
                 ", isRelative=" + isRelative +
                 '}';
     }
+
+    public double getA() {
+        return a;
+    }
+
+    public double getB() {
+        return b;
+    }
+
+    public double getC() {
+        return c;
+    }
+
+    public double getD() {
+        return d;
+    }
+
+    public boolean isRelative() {
+        return isRelative;
+    }
+
+    @Override
+    public String getName() {
+        return "Trapezoidal";
+    }
 }

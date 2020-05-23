@@ -40,4 +40,8 @@ public class Quantifier {
 
         return result.toString();
     }
+
+    public MembershipFunction getMembershipFunction() {
+        return membershipFunction;
+    }
 }

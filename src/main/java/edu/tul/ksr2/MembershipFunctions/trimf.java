@@ -71,4 +71,36 @@ public class trimf implements MembershipFunction {
                 ", isRelative=" + isRelative +
                 '}';
     }
+
+    @Override
+    public double getA() {
+        return a;
+    }
+
+    @Override
+    public double getB() {
+        return b;
+    }
+
+    @Override
+    public double getC() {
+        return c;
+    }
+
+    @Override
+    public double getD() {
+        return 0;
+    }
+
+    @Override
+    public boolean isRelative() {
+        return isRelative;
+    }
+
+    @Override
+    public String getName() {
+        return "Triangular";
+    }
+
+
 }

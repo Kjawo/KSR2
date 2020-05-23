@@ -28,6 +28,7 @@ public class MainWindow {
 
     private final FxControllerAndView<SomeDialog, VBox> someDialog;
     public ArrayList<GameEntity> gameEntities;
+    private static ArrayList<Quantifier> quantifiers;
 
     @FXML
     public Button openDialogButton;
@@ -45,6 +46,15 @@ public class MainWindow {
         this.someDialog = someDialog;
     }
 
+    public static ArrayList<Quantifier> getQuantifiers() {
+        setQuantifiers(XMLReader.readQuantifier());
+        return quantifiers;
+    }
+
+    public static void setQuantifiers(ArrayList<Quantifier> quantifiers) {
+        MainWindow.quantifiers = quantifiers;
+    }
+
     @FXML
     public void initialize() {
         try {
@@ -56,11 +66,11 @@ public class MainWindow {
 
             System.out.println("LoL - Leauge of Legends");
             System.out.println(gameEntities.get(0).toString());
-            ArrayList<Quantifier> quantifiers = XMLReader.readQuantifier();
+            setQuantifiers(XMLReader.readQuantifier());
 //            for (Quantifier q : quantifiers) {
 //                System.out.println(q.generateLatexSubsection());
 //            }
-            System.out.println(quantifiers.get(0).toString());
+            System.out.println(getQuantifiers().get(0).toString());
 
             ArrayList<LinguisticVariable> linguisticVariables = XMLReader.readLinguisicVariables();
 //            for (LinguisticVariable l: linguisticVariables

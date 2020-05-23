@@ -7,8 +7,7 @@ import edu.tul.ksr2.MembershipFunctions.trimf;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
+import javafx.beans.property.StringProperty;
 
 public class QuantifierTableRow {
 
@@ -59,8 +58,8 @@ public class QuantifierTableRow {
             return name.get();
         }
 
-        public String getMembership() {
-            return membership.get();
+        public StringProperty getMembership() {
+            return membership;
         }
 
         public double getA() {
@@ -120,6 +119,23 @@ public class QuantifierTableRow {
 
     public void setD(double d) {
         this.d.set(d);
+    }
+
+    private final StringProperty option = new SimpleStringProperty();
+
+    public String getOption() {
+        return option.get();
+    }
+
+    public void setOption(String value) {
+        option.set(value);
+    }
+    public StringProperty optionProperty() {
+        return option;
+    }
+
+    public void setMembership(StringProperty newValue) {
+        this.membership.set(newValue.get());
     }
 }
 

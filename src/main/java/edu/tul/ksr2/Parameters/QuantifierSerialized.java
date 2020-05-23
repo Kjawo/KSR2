@@ -67,7 +67,7 @@ public class QuantifierSerialized {
 
     public QuantifierSerialized(QuantifierTableRow q) {
         this.name = q.getName();
-        this.membership = q.getMembership();
+        this.membership = q.getMembership().get();
         this.isRelative = q.getIsRelative();
         this.a = q.getA();
         this.b = q.getB();

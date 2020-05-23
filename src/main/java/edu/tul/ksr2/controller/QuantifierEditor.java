@@ -6,9 +6,12 @@ import edu.tul.ksr2.Parameters.QuantifierSerialized;
 import edu.tul.ksr2.Parameters.QuantifiersSerialized;
 import edu.tul.ksr2.Parameters.TableView.QuantifierTableRow;
 import edu.tul.ksr2.Parameters.XMLReader;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
@@ -29,7 +32,12 @@ public class QuantifierEditor {
     public TableView<QuantifierTableRow> tableView;
     public TableColumn<QuantifierTableRow, String> tableColumnName
             = new TableColumn<>("Name");
-    public TableColumn<QuantifierTableRow, String> tableColumnMembership = new TableColumn<>("Membership function");
+    public TableColumn<QuantifierTableRow, StringProperty> tableColumnMembership = new TableColumn<>("Membership function");
+    ObservableList<String> membershipOptions = FXCollections.observableArrayList(
+            "Trapezoidal",
+            "Triangular"
+    );
+
     public TableColumn<QuantifierTableRow, Boolean> tableColumnIsRelative = new TableColumn<>("is relative");
     public TableColumn<QuantifierTableRow, Double> tableColumnA = new TableColumn<>("a");
     public TableColumn<QuantifierTableRow, Double> tableColumnB = new TableColumn<>("b");
@@ -148,15 +156,39 @@ public class QuantifierEditor {
     private void initializeTable() {
         tableView.setPlaceholder(new Label("No rows to display"));
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tableColumnMembership.setCellValueFactory(new PropertyValueFactory<>("membership"));
+//        tableColumnMembership.setCellValueFactory(new PropertyValueFactory<>("membership"));
         tableColumnIsRelative.setCellValueFactory(new PropertyValueFactory<>("isRelative"));
         tableColumnA.setCellValueFactory(new PropertyValueFactory<>("a"));
         tableColumnB.setCellValueFactory(new PropertyValueFactory<>("b"));
         tableColumnC.setCellValueFactory(new PropertyValueFactory<>("c"));
         tableColumnD.setCellValueFactory(new PropertyValueFactory<>("d"));
 
+
+        tableColumnMembership.setCellValueFactory(i -> {
+            final StringProperty value = i.getValue().getMembership();
+            // binding to constant value
+            return Bindings.createObjectBinding(() -> value);
+        });
+
+        tableColumnMembership.setCellFactory(col -> {
+            TableCell<QuantifierTableRow, StringProperty> c = new TableCell<>();
+
+
+            final ComboBox<String> comboBox = new ComboBox<>(membershipOptions);
+            c.itemProperty().addListener((observable, oldValue, newValue) -> {
+                if (oldValue != null) {
+                    comboBox.valueProperty().unbindBidirectional(oldValue);
+                }
+                if (newValue != null) {
+                    comboBox.valueProperty().bindBidirectional(newValue);
+                }
+            });
+            c.graphicProperty().bind(Bindings.when(c.emptyProperty()).then((Node) null).otherwise(comboBox));
+            return c;
+        });
+
         tableColumnName.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableColumnMembership.setCellFactory(TextFieldTableCell.forTableColumn());
+//        tableColumnMembership.setCellFactory(TextFieldTableCell.forTableColumn());
         tableColumnIsRelative.setCellFactory(TextFieldTableCell.forTableColumn(new BooleanStringConverter()));
         tableColumnA.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         tableColumnB.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
@@ -178,7 +210,7 @@ public class QuantifierEditor {
                         ).setName(t.getNewValue())
         );
         tableColumnMembership.setOnEditCommit(
-                (TableColumn.CellEditEvent<QuantifierTableRow, String> t) ->
+                (TableColumn.CellEditEvent<QuantifierTableRow, StringProperty> t) ->
                         (t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
                         ).setMembership(t.getNewValue())

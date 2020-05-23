@@ -50,9 +50,12 @@ public class QuantifierTableRow {
         this.d = new SimpleDoubleProperty(q.getMembershipFunction().getD());
     }
 
+    public QuantifierTableRow() {
+
+    }
 
 
-        public String getName() {
+    public String getName() {
             return name.get();
         }
 

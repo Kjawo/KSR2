@@ -1,6 +1,7 @@
 package edu.tul.ksr2.controller;
 
 import edu.tul.ksr2.LinguisticVariable.Quantifier;
+import edu.tul.ksr2.MembershipFunctions.MembershipFunction;
 import edu.tul.ksr2.Parameters.QuantifierSerialized;
 import edu.tul.ksr2.Parameters.QuantifiersSerialized;
 import edu.tul.ksr2.Parameters.TableView.QuantifierTableRow;
@@ -8,24 +9,23 @@ import edu.tul.ksr2.Parameters.XMLReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.Callback;
 import javafx.util.converter.BooleanStringConverter;
 import javafx.util.converter.DoubleStringConverter;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Component
 @FxmlView("QuantifierEditor.fxml")
 public class QuantifierEditor {
+    final XYChart.Series<Double, Double> series = new XYChart.Series<>();
     public TableView<QuantifierTableRow> tableView;
     public TableColumn<QuantifierTableRow, String> tableColumnName
             = new TableColumn<>("Name");
@@ -37,8 +37,11 @@ public class QuantifierEditor {
     public TableColumn<QuantifierTableRow, Double> tableColumnD = new TableColumn<>("d");
     public Button readSaved;
     public Button save;
+    public LineChart lineChart;
+    public Button addRow;
+    public Button removeRow;
+    public Button plotFunction;
     private ObservableList<QuantifierTableRow> quantifiersTableRowObservableList = FXCollections.observableArrayList();
-
     @FXML
     private TextField firstNameTextField;
 
@@ -49,6 +52,11 @@ public class QuantifierEditor {
             initializeTable();
             setTableEditable();
 
+            series.setName("Membership function");
+            lineChart.getData().add(series);
+            lineChart.setCreateSymbols(false);
+
+            populateTable();
 
             readSaved.setOnAction(
                     actionEvent -> {
@@ -60,16 +68,66 @@ public class QuantifierEditor {
                         saveQuantifiers();
                     }
             );
+            addRow.setOnAction(
+                    actionEvent -> {
+                        quantifiersTableRowObservableList.add(new QuantifierTableRow("New quantifier name", "Trapezoidal", true, 0, 0, 0, 0));
+                    }
+            );
+            removeRow.setOnAction(
+                    actionEvent -> {
+                        QuantifierTableRow selectedItem = tableView.getSelectionModel().getSelectedItem();
+                        quantifiersTableRowObservableList.remove(selectedItem);
+                    }
+            );
+            plotFunction.setOnAction(
+                    actionEvent -> {
+                        plotSelected();
+                    }
+            );
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
+    private void plotSelected() {
+
+        QuantifierTableRow selectedItem = tableView.getSelectionModel().getSelectedItem();
+        MembershipFunction membershipFunction = selectedItem.getMembershipFunction();
+
+        ArrayList<Double> parameters = new ArrayList<>();
+        parameters.add(membershipFunction.getA());
+        parameters.add(membershipFunction.getB());
+        parameters.add(membershipFunction.getC());
+        parameters.add(membershipFunction.getD());
+
+        double min = Collections.min(parameters);
+        double max = Collections.max(parameters);
+
+        plotLine(membershipFunction, max - min, min, max);
+
+
+    }
+
+    public void plotLine(final MembershipFunction function, double range, double min, double max) {
+        series.getData().clear();
+        for (double x = min - 0.1 * range; x <= max + 0.1 * range; x = x + range / 100) {
+            plotPoint(x, function.compute(x), series);
+        }
+    }
+
+    private void plotPoint(final double x, final double y,
+                           final XYChart.Series<Double, Double> series) {
+        series.getData().add(new XYChart.Data<Double, Double>(x, y));
+    }
+
+    public void clear() {
+        lineChart.getData().clear();
+    }
+
     private void saveQuantifiers() {
         ArrayList<QuantifierSerialized> quantifiersSerialized = new ArrayList<>();
-        for(QuantifierTableRow quantifierTableRow : quantifiersTableRowObservableList)
-        {
+        for (QuantifierTableRow quantifierTableRow : quantifiersTableRowObservableList) {
             quantifiersSerialized.add(new QuantifierSerialized(quantifierTableRow));
         }
         XMLReader.saveQuantifiers(new QuantifiersSerialized(quantifiersSerialized));
@@ -110,7 +168,7 @@ public class QuantifierEditor {
 
         tableView.setItems(quantifiersTableRowObservableList);
         tableView.getColumns().addAll(tableColumnName, tableColumnMembership, tableColumnIsRelative,
-                                            tableColumnA, tableColumnB, tableColumnC, tableColumnD);
+                tableColumnA, tableColumnB, tableColumnC, tableColumnD);
 
 
         tableColumnName.setOnEditCommit(
@@ -133,27 +191,39 @@ public class QuantifierEditor {
         );
         tableColumnA.setOnEditCommit(
                 (TableColumn.CellEditEvent<QuantifierTableRow, Double> t) ->
-                        (t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setA(t.getNewValue())
+                {
+                    (t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())
+                    ).setA(t.getNewValue());
+                    plotSelected();
+                }
         );
         tableColumnB.setOnEditCommit(
                 (TableColumn.CellEditEvent<QuantifierTableRow, Double> t) ->
-                        (t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setB(t.getNewValue())
+                {
+                    (t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())
+                    ).setB(t.getNewValue());
+                    plotSelected();
+                }
         );
         tableColumnC.setOnEditCommit(
                 (TableColumn.CellEditEvent<QuantifierTableRow, Double> t) ->
-                        (t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setC(t.getNewValue())
+                {
+                    (t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())
+                    ).setC(t.getNewValue());
+                    plotSelected();
+                }
         );
         tableColumnD.setOnEditCommit(
                 (TableColumn.CellEditEvent<QuantifierTableRow, Double> t) ->
-                        (t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setD(t.getNewValue())
+                {
+                    (t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())
+                    ).setD(t.getNewValue());
+                    plotSelected();
+                }
         );
     }
 

@@ -51,7 +51,7 @@ public class XMLReader {
 
         Serializer serializer = new Persister();
         File source = new File(
-                Objects.requireNonNull(XMLReader.class.getClassLoader().getResource("MembershipParameters.xml")).getFile()
+                Objects.requireNonNull(XMLReader.class.getClassLoader().getResource("LinguisticVariables.xml")).getFile()
         );
 
         LinguisticVariablesSerialized linguisticVariablesSerialized = new LinguisticVariablesSerialized();
@@ -76,5 +76,16 @@ public class XMLReader {
         }
 
         return linguisticVariables;
+    }
+
+    public static void saveLinguisticVariables(LinguisticVariablesSerialized linguisticVariablesSerialized) {
+        Serializer serializer = new Persister();
+        File result = new File(Objects.requireNonNull(XMLReader.class.getClassLoader().getResource("LinguisticVariables.xml")).getFile());
+
+        try {
+            serializer.write(linguisticVariablesSerialized, result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

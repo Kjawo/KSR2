@@ -5,7 +5,7 @@ import org.simpleframework.xml.ElementList;
 
 import java.util.List;
 
-class LinguisticVariableSerialized {
+public class LinguisticVariableSerialized {
     @Element(name="Name")
     private String name;
 
@@ -18,5 +18,13 @@ class LinguisticVariableSerialized {
 
     public List<LinguisticVarLabelSerialized> getLinguisticVarLabelsSerialized() {
         return linguisticVarLabelsSerialized;
+    }
+
+    public LinguisticVariableSerialized(String name, List<LinguisticVarLabelSerialized> linguisticVarLabelsSerialized) {
+        this.name = name;
+        this.linguisticVarLabelsSerialized = linguisticVarLabelsSerialized;
+    }
+
+    public LinguisticVariableSerialized() {
     }
 }

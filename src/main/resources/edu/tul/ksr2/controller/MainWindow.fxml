@@ -51,6 +51,9 @@
             <Tab text="Edit Quantifiers">
                 <fx:include source="QuantifierEditor.fxml" />
             </Tab>
+            <Tab text="Edit Linguistic Variables">
+                <fx:include source="LVEditor.fxml" />
+            </Tab>
         </tabs>
     </TabPane>
 

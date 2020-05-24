@@ -16,5 +16,12 @@ public class LinguisticVariablesSerialized {
     public List<LinguisticVariableSerialized> getLinguisticVariables() {
         return linguisticVariablesSerialized;
     }
+
+    public LinguisticVariablesSerialized(List<LinguisticVariableSerialized> linguisticVariablesSerialized) {
+        this.linguisticVariablesSerialized = linguisticVariablesSerialized;
+    }
+
+    public LinguisticVariablesSerialized() {
+    }
 }
 

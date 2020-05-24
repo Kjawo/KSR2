@@ -3,9 +3,10 @@ package edu.tul.ksr2.Parameters;
 import edu.tul.ksr2.MembershipFunctions.MembershipFunction;
 import edu.tul.ksr2.MembershipFunctions.trapmf;
 import edu.tul.ksr2.MembershipFunctions.trimf;
+import edu.tul.ksr2.Parameters.TableView.LVTableRow;
 import org.simpleframework.xml.Element;
 
-class LinguisticVarLabelSerialized {
+public class LinguisticVarLabelSerialized {
     @Element(name="Name")
     private String label;
 
@@ -54,5 +55,17 @@ class LinguisticVarLabelSerialized {
             default:
                 return null;
         }
+    }
+
+    public LinguisticVarLabelSerialized(LVTableRow lv) {
+        this.label = lv.getLabel();
+        this.membership = lv.getMembership().get();
+        this.a = lv.getA();
+        this.b = lv.getB();
+        this.c = lv.getC();
+        this.d = lv.getD();
+    }
+
+    public LinguisticVarLabelSerialized() {
     }
 }

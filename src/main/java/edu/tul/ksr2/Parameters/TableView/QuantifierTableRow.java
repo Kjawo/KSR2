@@ -78,8 +78,8 @@ public class QuantifierTableRow {
             return d.get();
         }
 
-        public boolean getIsRelative() {
-            return isRelative.get();
+        public SimpleBooleanProperty getIsRelative() {
+            return isRelative;
         }
 
         public MembershipFunction getMembershipFunction(){
@@ -101,8 +101,8 @@ public class QuantifierTableRow {
         this.membership.set(membership);
     }
 
-    public void setIsRelative(boolean isRelative) {
-        this.isRelative.set(isRelative);
+    public void setIsRelative(SimpleBooleanProperty isRelative) {
+        this.isRelative = isRelative;
     }
 
     public void setA(double a) {

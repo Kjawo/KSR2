@@ -7,7 +7,11 @@ import edu.tul.ksr2.Parameters.QuantifiersSerialized;
 import edu.tul.ksr2.Parameters.TableView.QuantifierTableRow;
 import edu.tul.ksr2.Parameters.XMLReader;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,7 +21,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.BooleanStringConverter;
+import javafx.util.Callback;
 import javafx.util.converter.DoubleStringConverter;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
@@ -33,12 +37,7 @@ public class QuantifierEditor {
     public TableColumn<QuantifierTableRow, String> tableColumnName
             = new TableColumn<>("Name");
     public TableColumn<QuantifierTableRow, StringProperty> tableColumnMembership = new TableColumn<>("Membership function");
-    ObservableList<String> membershipOptions = FXCollections.observableArrayList(
-            "Trapezoidal",
-            "Triangular"
-    );
-
-    public TableColumn<QuantifierTableRow, Boolean> tableColumnIsRelative = new TableColumn<>("is relative");
+    public TableColumn<QuantifierTableRow, CheckBox> tableColumnIsRelative = new TableColumn<>("is relative");
     public TableColumn<QuantifierTableRow, Double> tableColumnA = new TableColumn<>("a");
     public TableColumn<QuantifierTableRow, Double> tableColumnB = new TableColumn<>("b");
     public TableColumn<QuantifierTableRow, Double> tableColumnC = new TableColumn<>("c");
@@ -49,6 +48,10 @@ public class QuantifierEditor {
     public Button addRow;
     public Button removeRow;
     public Button plotFunction;
+    ObservableList<String> membershipOptions = FXCollections.observableArrayList(
+            "Trapezoidal",
+            "Triangular"
+    );
     private ObservableList<QuantifierTableRow> quantifiersTableRowObservableList = FXCollections.observableArrayList();
     @FXML
     private TextField firstNameTextField;
@@ -156,8 +159,34 @@ public class QuantifierEditor {
     private void initializeTable() {
         tableView.setPlaceholder(new Label("No rows to display"));
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-//        tableColumnMembership.setCellValueFactory(new PropertyValueFactory<>("membership"));
-        tableColumnIsRelative.setCellValueFactory(new PropertyValueFactory<>("isRelative"));
+        tableColumnIsRelative.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<QuantifierTableRow, CheckBox>, ObservableValue<CheckBox>>() {
+
+            @Override
+            public ObservableValue<CheckBox> call(
+                    TableColumn.CellDataFeatures<QuantifierTableRow, CheckBox> arg0) {
+                QuantifierTableRow q = arg0.getValue();
+
+                CheckBox checkBox = new CheckBox();
+
+                checkBox.selectedProperty().setValue(q.getIsRelative().get());
+
+
+                checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                    public void changed(ObservableValue<? extends Boolean> ov,
+                                        Boolean old_val, Boolean new_val) {
+
+                        q.setIsRelative(new SimpleBooleanProperty(new_val));
+
+                    }
+                });
+
+                return new SimpleObjectProperty<CheckBox>(checkBox);
+
+            }
+
+        });
+        tableColumnIsRelative.setStyle("-fx-alignment: CENTER;");
+
         tableColumnA.setCellValueFactory(new PropertyValueFactory<>("a"));
         tableColumnB.setCellValueFactory(new PropertyValueFactory<>("b"));
         tableColumnC.setCellValueFactory(new PropertyValueFactory<>("c"));
@@ -188,8 +217,6 @@ public class QuantifierEditor {
         });
 
         tableColumnName.setCellFactory(TextFieldTableCell.forTableColumn());
-//        tableColumnMembership.setCellFactory(TextFieldTableCell.forTableColumn());
-        tableColumnIsRelative.setCellFactory(TextFieldTableCell.forTableColumn(new BooleanStringConverter()));
         tableColumnA.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         tableColumnB.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         tableColumnC.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
@@ -214,12 +241,6 @@ public class QuantifierEditor {
                         (t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
                         ).setMembership(t.getNewValue())
-        );
-        tableColumnIsRelative.setOnEditCommit(
-                (TableColumn.CellEditEvent<QuantifierTableRow, Boolean> t) ->
-                        (t.getTableView().getItems().get(
-                                t.getTablePosition().getRow())
-                        ).setIsRelative(t.getNewValue())
         );
         tableColumnA.setOnEditCommit(
                 (TableColumn.CellEditEvent<QuantifierTableRow, Double> t) ->

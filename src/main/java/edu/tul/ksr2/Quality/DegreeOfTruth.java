@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class DegreeOfTruth {
     public static Double compute(Quantifier quantifier, Summarizer summarizer, ArrayList<GameEntity> gameEntities) {
-        return null;
+        Double T1 = quantifier.compute(summarizer.getSetSize(), gameEntities.size());
+        return T1;
     }
 }

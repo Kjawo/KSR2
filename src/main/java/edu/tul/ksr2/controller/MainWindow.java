@@ -114,7 +114,7 @@ public class MainWindow {
     private void prepareTable() {
         tableView.setPlaceholder(new Label("No rows to display"));
         tableColumnText.setCellValueFactory(new PropertyValueFactory<>("Text"));
-        tableColumnT1.setCellValueFactory(new PropertyValueFactory<>("T"));
+        tableColumnT1.setCellValueFactory(new PropertyValueFactory<>("T1"));
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 

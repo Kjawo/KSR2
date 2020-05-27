@@ -26,8 +26,10 @@ public class SummaryGenerator {
         for(Summarizer summarizer : summarizers) {
 
             for(Quantifier quantifier : quantifiers) {
-                Double T = quantifier.compute(summarizer.getSetSize(), gameEntities.size());
-                firstTypeSummarizationObjects.add(new FirstTypeSummarizationObject(quantifier, summarizer, T));
+                FirstTypeSummarizationObject firstTypeSummarizationObject = new FirstTypeSummarizationObject(quantifier, summarizer);
+                firstTypeSummarizationObject.calculateQualityMeasures(gameEntities);
+                firstTypeSummarizationObjects.add(firstTypeSummarizationObject);
+
             }
         }
 

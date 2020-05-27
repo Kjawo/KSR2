@@ -5,6 +5,7 @@ import edu.tul.ksr2.LinguisticVariable.Quantifier;
 import edu.tul.ksr2.LinguisticVariable.Summarizer;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class DegreeOfCovering {
     public static Double computeFirstType(Quantifier quantifier, ArrayList<Summarizer> summarizers, ArrayList<GameEntity> gameEntities) {
@@ -22,11 +23,20 @@ public class DegreeOfCovering {
 //                }
 //            }
 //        }
-        for (GameEntity gameEntity : gameEntities) {
-            double summarizerMembership = summarizers.get(0).getMembershipFunction().compute(gameEntity.get(summarizers.get(0).getEntityFieldName()));
 
-                if (summarizerMembership > 0) {
-                    numerator += 1.0;
+
+//        for (GameEntity gameEntity : gameEntities) {
+//            double summarizerMembership = summarizers.get(0).getMembershipFunction().compute(gameEntity.get(summarizers.get(0).getEntityFieldName()));
+//
+//                if (summarizerMembership > 0) {
+//
+//            }
+//        }
+
+        for (Map.Entry<GameEntity, Double> entry : summarizers.get(0).getFuzzySet().getSet().entrySet()) {
+            if(entry.getValue() > 0.0)
+            {
+                numerator += 1.0;
             }
         }
 

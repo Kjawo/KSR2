@@ -26,10 +26,11 @@ public class SummaryGenerator {
         for(Summarizer summarizer : summarizers) {
 
             for(Quantifier quantifier : quantifiers) {
-                FirstTypeSummarizationObject firstTypeSummarizationObject = new FirstTypeSummarizationObject(quantifier, summarizer);
-                firstTypeSummarizationObject.calculateQualityMeasures(gameEntities);
-                firstTypeSummarizationObjects.add(firstTypeSummarizationObject);
-
+                if(quantifier.compute(summarizer.getFuzzySet().support().size(), gameEntities.size()) > 0.0) {
+                    FirstTypeSummarizationObject firstTypeSummarizationObject = new FirstTypeSummarizationObject(quantifier, summarizer);
+                    firstTypeSummarizationObject.calculateQualityMeasures(gameEntities);
+                    firstTypeSummarizationObjects.add(firstTypeSummarizationObject);
+                }
             }
         }
 

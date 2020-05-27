@@ -6,7 +6,8 @@ import edu.tul.ksr2.LinguisticVariable.LinguisticVariable;
 import edu.tul.ksr2.LinguisticVariable.Summarizer;
 import edu.tul.ksr2.LinguisticVariable.Quantifier;
 import edu.tul.ksr2.Parameters.XMLReader;
-import edu.tul.ksr2.Summary.SummarizationObject;
+import edu.tul.ksr2.Summary.FirstTypeSummarizationObject;
+import edu.tul.ksr2.Summary.SummaryGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static edu.tul.ksr2.LinguisticVariable.ParametersMapping.ParametersMapper;
 
@@ -35,11 +37,12 @@ public class MainWindow {
     public Button openDialogButton;
     public Button generateComparison;
     public ComboBox spinnerFirstVar;
-    public TableView<SummarizationObject> tableView;
-    public TableColumn<SummarizationObject, String> tableColumnText
+    public TableView<FirstTypeSummarizationObject> tableView;
+    public TableColumn<FirstTypeSummarizationObject, String> tableColumnText
             = new TableColumn<>("Summarization");
-    public TableColumn<SummarizationObject, Double> tableColumnT1 = new TableColumn<>("T1");
-    private ObservableList<SummarizationObject> summarizationsObservableList = FXCollections.observableArrayList();
+    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT1 = new TableColumn<>("T1");
+    private ObservableList<FirstTypeSummarizationObject> summarizationsObservableList = FXCollections.observableArrayList();
+    private HashMap<String, Summarizer> summarizers = new HashMap<>();
 
 
 
@@ -103,6 +106,8 @@ public class MainWindow {
         );
     }
 
+
+
     private void prepareTable() {
         tableView.setPlaceholder(new Label("No rows to display"));
         tableColumnText.setCellValueFactory(new PropertyValueFactory<>("Text"));
@@ -117,17 +122,29 @@ public class MainWindow {
     public void generateComparison(){
         Summarizer summarizer = new Summarizer(spinnerFirstVar.getSelectionModel().getSelectedItem().toString());
         summarizationsObservableList.clear();
-        summarizationsObservableList.addAll(summarizer.loadData(gameEntities));
+        summarizationsObservableList.addAll(SummaryGenerator.summarizeAmmounts(spinnerFirstVar.getSelectionModel().getSelectedItem().toString(), quantifiers, gameEntities));
+
     }
 
-    private void generateSummarizationForAll() {
+//    private void generateSummarizationForAll() {
+//
+//        for(String p : ParametersMapper.keySet()) {
+//            Summarizer summarizer = new Summarizer(p);
+//            summarizer.loadData(gameEntities);
+//
+//        }
+//
+//    }
 
-        for(String p : ParametersMapper.keySet()) {
-            Summarizer summarizer = new Summarizer(p);
-            summarizer.loadData(gameEntities);
+    private LinguisticVariable getSelectedLinguisticVariable() {
+        String LVname = spinnerFirstVar.getSelectionModel().getSelectedItem().toString();
 
+        for(LinguisticVariable lv : linguisticVariables) {
+            if(lv.getName().equals(LVname)) {
+                return lv;
+            }
         }
-
+        return linguisticVariables.get(0);
     }
 
     private void prepareSpinner() {

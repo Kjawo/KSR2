@@ -3,6 +3,7 @@ package edu.tul.ksr2.Summary;
 import edu.tul.ksr2.GameEntity;
 import edu.tul.ksr2.LinguisticVariable.Quantifier;
 import edu.tul.ksr2.LinguisticVariable.Summarizer;
+import edu.tul.ksr2.Quality.DegreeOfImprecision;
 import edu.tul.ksr2.Quality.DegreeOfTruth;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,6 +15,7 @@ public class FirstTypeSummarizationObject {
     private Summarizer summarizer;
     private SimpleStringProperty text;
     private SimpleDoubleProperty T1;
+    private SimpleDoubleProperty T2;
 
     public FirstTypeSummarizationObject(SimpleStringProperty  text, SimpleDoubleProperty t1) {
         this.text = text;
@@ -47,6 +49,14 @@ public class FirstTypeSummarizationObject {
         return T1.get();
     }
 
+    public double getT2() {
+        return T2.get();
+    }
+
+    public SimpleDoubleProperty t2Property() {
+        return T2;
+    }
+
     @Override
     public String toString() {
         return "SummarizationObject{" +
@@ -56,6 +66,11 @@ public class FirstTypeSummarizationObject {
     }
 
     public void calculateQualityMeasures(ArrayList<GameEntity> gameEntities) {
-        this.T1 = new SimpleDoubleProperty(DegreeOfTruth.compute(this.quantifier, this.summarizer, gameEntities));
+        ArrayList<Summarizer> summarizers = new ArrayList<>();
+        summarizers.add(summarizer);
+
+        this.T1 = new SimpleDoubleProperty(DegreeOfTruth.computeFirstType(this.quantifier, this.summarizer, gameEntities));
+        this.T2 = new SimpleDoubleProperty(DegreeOfImprecision.computeFirstType(this.quantifier, summarizers, gameEntities));
+
     }
 }

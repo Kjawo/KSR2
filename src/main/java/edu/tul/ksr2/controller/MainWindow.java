@@ -43,7 +43,8 @@ public class MainWindow {
     public TableView<FirstTypeSummarizationObject> tableView;
     public TableColumn<FirstTypeSummarizationObject, String> tableColumnText
             = new TableColumn<>("Summarization");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT1 = new TableColumn<>("T");
+    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT1 = new TableColumn<>("T1");
+    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT2 = new TableColumn<>("T2");
     private ObservableList<FirstTypeSummarizationObject> summarizationsObservableList = FXCollections.observableArrayList();
     private HashMap<String, Summarizer> summarizers = new HashMap<>();
 
@@ -115,11 +116,12 @@ public class MainWindow {
         tableView.setPlaceholder(new Label("No rows to display"));
         tableColumnText.setCellValueFactory(new PropertyValueFactory<>("Text"));
         tableColumnT1.setCellValueFactory(new PropertyValueFactory<>("T1"));
+        tableColumnT2.setCellValueFactory(new PropertyValueFactory<>("T2"));
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         tableView.setItems(summarizationsObservableList);
-        tableView.getColumns().addAll(tableColumnText, tableColumnT1);
+        tableView.getColumns().addAll(tableColumnText, tableColumnT1, tableColumnT2);
     }
 
     public void generateComparison(){

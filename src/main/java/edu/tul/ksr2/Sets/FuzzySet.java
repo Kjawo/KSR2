@@ -42,4 +42,8 @@ public class FuzzySet<T> {
         return support;
     }
 
+    public double calculateDegreeOfFuzziness() {
+        return support().size() * 1.0 / set.size();
+    }
+
 }

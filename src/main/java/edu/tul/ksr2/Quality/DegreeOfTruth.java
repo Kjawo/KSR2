@@ -7,7 +7,7 @@ import edu.tul.ksr2.LinguisticVariable.Summarizer;
 import java.util.ArrayList;
 
 public class DegreeOfTruth {
-    public static Double compute(Quantifier quantifier, Summarizer summarizer, ArrayList<GameEntity> gameEntities) {
+    public static Double computeFirstType(Quantifier quantifier, Summarizer summarizer, ArrayList<GameEntity> gameEntities) {
         Double T1 = quantifier.compute(summarizer.getFuzzySet().support().size(), gameEntities.size());
         return T1;
     }

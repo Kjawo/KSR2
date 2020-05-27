@@ -12,6 +12,7 @@ public class LinguisticVariable {
     private ArrayList<String> labels;
     private ArrayList<MembershipFunction> membershipFunctions;
 
+
     public LinguisticVariable(String name, ArrayList<String> labels, ArrayList<MembershipFunction> membershipFunctions) {
         this.name = name;
         this.labels = labels;
@@ -38,6 +39,15 @@ public class LinguisticVariable {
     public ArrayList<MembershipFunction> getMembershipFunctions() {
         return membershipFunctions;
     }
+
+    public ArrayList<Summarizer> getSummarizers(String entityFieldName) {
+        ArrayList<Summarizer> summarizers = new ArrayList<>();
+        for(int i = 0; i < this.labels.size(); i++) {
+            summarizers.add(new Summarizer(this.labels.get(i), entityFieldName, this.membershipFunctions.get(i)));
+        }
+        return summarizers;
+    }
+
 
     public String generateLatexSubsection () {
 

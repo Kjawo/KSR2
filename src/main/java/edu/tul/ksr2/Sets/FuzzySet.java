@@ -5,7 +5,6 @@ import edu.tul.ksr2.MembershipFunctions.MembershipFunction;
 import java.util.HashMap;
 
 public class FuzzySet<T> {
-    public MembershipFunction membershipFunction;
     public HashMap<T, Double> set;
 
     public FuzzySet() {
@@ -16,13 +15,15 @@ public class FuzzySet<T> {
         this.set = set;
     }
 
-    public FuzzySet(MembershipFunction membershipFunction) {
-        set = new HashMap<>();
-        this.membershipFunction = membershipFunction;
+    public HashMap<T, Double> getSet() {
+        return set;
     }
 
-    public FuzzySet(MembershipFunction membershipFunction, HashMap<T, Double> set) {
-        this.membershipFunction = membershipFunction;
+    public void setSet(HashMap<T, Double> set) {
         this.set = set;
+    }
+
+    public void add(T t, Double d) {
+        set.put(t, d);
     }
 }

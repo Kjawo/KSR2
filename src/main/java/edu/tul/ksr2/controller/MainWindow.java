@@ -3,6 +3,7 @@ package edu.tul.ksr2.controller;
 import edu.tul.ksr2.Database.DatabaseHandler;
 import edu.tul.ksr2.GameEntity;
 import edu.tul.ksr2.LinguisticVariable.LinguisticVariable;
+import edu.tul.ksr2.LinguisticVariable.ParametersMapping;
 import edu.tul.ksr2.LinguisticVariable.Summarizer;
 import edu.tul.ksr2.LinguisticVariable.Quantifier;
 import edu.tul.ksr2.Parameters.XMLReader;
@@ -16,6 +17,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import net.rgielen.fxweaver.core.FxControllerAndView;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.controlsfx.control.CheckComboBox;
+import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -40,7 +43,7 @@ public class MainWindow {
     public TableView<FirstTypeSummarizationObject> tableView;
     public TableColumn<FirstTypeSummarizationObject, String> tableColumnText
             = new TableColumn<>("Summarization");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT1 = new TableColumn<>("T1");
+    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT1 = new TableColumn<>("T");
     private ObservableList<FirstTypeSummarizationObject> summarizationsObservableList = FXCollections.observableArrayList();
     private HashMap<String, Summarizer> summarizers = new HashMap<>();
 
@@ -111,7 +114,7 @@ public class MainWindow {
     private void prepareTable() {
         tableView.setPlaceholder(new Label("No rows to display"));
         tableColumnText.setCellValueFactory(new PropertyValueFactory<>("Text"));
-        tableColumnT1.setCellValueFactory(new PropertyValueFactory<>("T1"));
+        tableColumnT1.setCellValueFactory(new PropertyValueFactory<>("T"));
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -120,9 +123,12 @@ public class MainWindow {
     }
 
     public void generateComparison(){
-        Summarizer summarizer = new Summarizer(spinnerFirstVar.getSelectionModel().getSelectedItem().toString());
         summarizationsObservableList.clear();
-        summarizationsObservableList.addAll(SummaryGenerator.summarizeAmmounts(spinnerFirstVar.getSelectionModel().getSelectedItem().toString(), quantifiers, gameEntities));
+//        summarizationsObservableList.addAll(SummaryGenerator.summarizeAmmounts(spinnerFirstVar.getSelectionModel().getSelectedItem().toString(), quantifiers, gameEntities));
+        summarizationsObservableList.addAll(SummaryGenerator.generateFirstTypeSummarization(gameEntities, getQuantifiers(),
+                getSelectedLinguisticVariable().getSummarizers(
+                        spinnerFirstVar.getSelectionModel().getSelectedItem().toString()
+                )));
 
     }
 
@@ -138,13 +144,16 @@ public class MainWindow {
 
     private LinguisticVariable getSelectedLinguisticVariable() {
         String LVname = spinnerFirstVar.getSelectionModel().getSelectedItem().toString();
+        LVname =  ParametersMapper.get(LVname);
+        LinguisticVariable selectedLV = linguisticVariables.get(0);
 
         for(LinguisticVariable lv : linguisticVariables) {
             if(lv.getName().equals(LVname)) {
-                return lv;
+                selectedLV = lv;
+                return selectedLV;
             }
         }
-        return linguisticVariables.get(0);
+        return selectedLV;
     }
 
     private void prepareSpinner() {

@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import org.controlsfx.control.CheckComboBox?>
 <VBox alignment="CENTER" minHeight="900.0" minWidth="800.0" prefHeight="900.0" prefWidth="800.0" spacing="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.tul.ksr2.controller.MainWindow">
     <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="SOMETIMES">
         <tabs>
@@ -42,6 +43,14 @@
                                  <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
                               </GridPane.margin>
                            </TableView>
+                           <Label alignment="CENTER" layoutX="48.0" layoutY="15.0" text="Summarizers" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                           </Label>
+<!--                           <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
+<!--                            <CheckComboBox fx:id="summarizersCheckComboBox" prefHeight="25.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
+
                         </children>
                      </GridPane>
                         </children>

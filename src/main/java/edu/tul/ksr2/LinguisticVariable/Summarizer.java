@@ -39,9 +39,8 @@ public class Summarizer {
         double membership = 0;
         for (GameEntity g : gameEntity) {
             membership = membershipFunction.compute(g.get(this.entityFieldName));
-            if(membership > 0) {
-                newFuzzySet.add(g, membership);
-            }
+
+            newFuzzySet.add(g, membership);
         }
 
         this.fuzzySet = newFuzzySet;

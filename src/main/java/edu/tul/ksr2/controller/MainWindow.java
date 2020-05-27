@@ -124,7 +124,7 @@ public class MainWindow {
 
     public void generateComparison(){
         summarizationsObservableList.clear();
-//        summarizationsObservableList.addAll(SummaryGenerator.summarizeAmmounts(spinnerFirstVar.getSelectionModel().getSelectedItem().toString(), quantifiers, gameEntities));
+//        summarizationsObservableList.addAll(SummaryGenerat\or.summarizeAmmounts(spinnerFirstVar.getSelectionModel().getSelectedItem().toString(), quantifiers, gameEntities));
         summarizationsObservableList.addAll(SummaryGenerator.generateFirstTypeSummarization(gameEntities, getQuantifiers(),
                 getSelectedLinguisticVariable().getSummarizers(
                         spinnerFirstVar.getSelectionModel().getSelectedItem().toString()

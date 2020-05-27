@@ -47,6 +47,13 @@ public class MainWindow {
     public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT2 = new TableColumn<>("T2");
     public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT3 = new TableColumn<>("T3");
     public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT4 = new TableColumn<>("T4");
+    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT5 = new TableColumn<>("T5");
+    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT6 = new TableColumn<>("T6");
+    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT7 = new TableColumn<>("T7");
+    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT8 = new TableColumn<>("T8");
+    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT9 = new TableColumn<>("T9");
+    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT10 = new TableColumn<>("T10");
+    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT11 = new TableColumn<>("T11");
     private ObservableList<FirstTypeSummarizationObject> summarizationsObservableList = FXCollections.observableArrayList();
     private HashMap<String, Summarizer> summarizers = new HashMap<>();
 
@@ -121,11 +128,30 @@ public class MainWindow {
         tableColumnT2.setCellValueFactory(new PropertyValueFactory<>("T2"));
         tableColumnT3.setCellValueFactory(new PropertyValueFactory<>("T3"));
         tableColumnT4.setCellValueFactory(new PropertyValueFactory<>("T4"));
+        tableColumnT5.setCellValueFactory(new PropertyValueFactory<>("T5"));
+        tableColumnT6.setCellValueFactory(new PropertyValueFactory<>("T6"));
+        tableColumnT7.setCellValueFactory(new PropertyValueFactory<>("T7"));
+        tableColumnT8.setCellValueFactory(new PropertyValueFactory<>("T8"));
+        tableColumnT9.setCellValueFactory(new PropertyValueFactory<>("T9"));
+        tableColumnT10.setCellValueFactory(new PropertyValueFactory<>("T10"));
+        tableColumnT11.setCellValueFactory(new PropertyValueFactory<>("T11"));
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         tableView.setItems(summarizationsObservableList);
-        tableView.getColumns().addAll(tableColumnText, tableColumnT1, tableColumnT2, tableColumnT4);
+        tableView.getColumns().addAll(tableColumnText,
+                tableColumnT1,
+                tableColumnT2,
+                tableColumnT3,
+                tableColumnT4,
+                tableColumnT5,
+                tableColumnT6,
+                tableColumnT7,
+                tableColumnT8,
+                tableColumnT9,
+                tableColumnT10,
+                tableColumnT11
+                );
     }
 
     public void generateComparison(){

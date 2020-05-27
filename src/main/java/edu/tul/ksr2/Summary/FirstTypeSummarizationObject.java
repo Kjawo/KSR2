@@ -3,6 +3,7 @@ package edu.tul.ksr2.Summary;
 import edu.tul.ksr2.GameEntity;
 import edu.tul.ksr2.LinguisticVariable.Quantifier;
 import edu.tul.ksr2.LinguisticVariable.Summarizer;
+import edu.tul.ksr2.Quality.DegreeOfAppropriateness;
 import edu.tul.ksr2.Quality.DegreeOfCovering;
 import edu.tul.ksr2.Quality.DegreeOfImprecision;
 import edu.tul.ksr2.Quality.DegreeOfTruth;
@@ -18,6 +19,7 @@ public class FirstTypeSummarizationObject {
     private SimpleDoubleProperty T1;
     private SimpleDoubleProperty T2;
     private SimpleDoubleProperty T3;
+    private SimpleDoubleProperty T4;
 
     public FirstTypeSummarizationObject(SimpleStringProperty  text, SimpleDoubleProperty t1) {
         this.text = text;
@@ -59,6 +61,10 @@ public class FirstTypeSummarizationObject {
         return T3.get();
     }
 
+    public double getT4() {
+        return T4.get();
+    }
+
     public SimpleDoubleProperty t3Property() {
         return T3;
     }
@@ -81,7 +87,8 @@ public class FirstTypeSummarizationObject {
 
         this.T1 = new SimpleDoubleProperty(DegreeOfTruth.computeFirstType(this.quantifier, this.summarizer, gameEntities));
         this.T2 = new SimpleDoubleProperty(DegreeOfImprecision.computeFirstType(this.quantifier, summarizers, gameEntities));
-        this.T3 = new SimpleDoubleProperty(DegreeOfCovering.computeFirstType(this.quantifier, summarizer, gameEntities));
+        this.T3 = new SimpleDoubleProperty(DegreeOfCovering.computeFirstType(this.quantifier, summarizers, gameEntities));
+        this.T4 = new SimpleDoubleProperty(DegreeOfAppropriateness.computeFirstType(this.quantifier, summarizers, gameEntities, this.T3.get()));
 
     }
 }

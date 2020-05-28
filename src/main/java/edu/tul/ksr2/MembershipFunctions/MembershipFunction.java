@@ -19,4 +19,6 @@ public interface MembershipFunction {
     public boolean isRelative();
 
     public String getName();
+
+    public double calculateCardinality();
 }

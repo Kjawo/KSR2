@@ -5,11 +5,9 @@ import java.util.HashSet;
 
 public class CrispSet<T> {
     public HashSet<T> values;
-
     public CrispSet(HashSet<T> values) {
         this.values = values;
     }
-
     public boolean Equals(CrispSet<T> set) {
         return set.values.containsAll(this.values);
     }

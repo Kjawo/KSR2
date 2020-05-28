@@ -104,4 +104,9 @@ public class trapmf implements MembershipFunction {
     public String getName() {
         return "Trapezoidal";
     }
+
+    @Override
+    public double calculateCardinality() {
+        return (Math.abs(d - a) + Math.abs(c- b)) / 2;
+    }
 }

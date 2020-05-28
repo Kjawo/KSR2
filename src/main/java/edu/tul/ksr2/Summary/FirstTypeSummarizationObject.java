@@ -154,8 +154,8 @@ public class FirstTypeSummarizationObject {
         this.T3 = new SimpleDoubleProperty(DegreeOfCovering.computeFirstType(this.quantifier, summarizers, gameEntities));
         this.T4 = new SimpleDoubleProperty(DegreeOfAppropriateness.computeFirstType(this.quantifier, summarizers, gameEntities, this.T3.get()));
         this.T5 = new SimpleDoubleProperty(LengthOfASummary.computeFirstType(this.quantifier, summarizers, gameEntities));
-        this.T6 = new SimpleDoubleProperty(0.0);
-        this.T7 = new SimpleDoubleProperty(0.0);
+        this.T6 = new SimpleDoubleProperty(DegreeOfQuantifierImprecision.computeFirstType(this.quantifier, this.summarizer, gameEntities));
+        this.T7 = new SimpleDoubleProperty(DegreeOfQuantifierImprecision.computeFirstType(this.quantifier, this.summarizer, gameEntities));
         this.T8 = new SimpleDoubleProperty(0.0);
         this.T9 = new SimpleDoubleProperty(0.0);
         this.T10 = new SimpleDoubleProperty(0.0);

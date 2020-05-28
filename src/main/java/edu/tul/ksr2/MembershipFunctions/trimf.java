@@ -102,5 +102,10 @@ public class trimf implements MembershipFunction {
         return "Triangular";
     }
 
+    @Override
+    public double calculateCardinality() {
+        return Math.abs(c - a) * 0.5;
+    }
+
 
 }

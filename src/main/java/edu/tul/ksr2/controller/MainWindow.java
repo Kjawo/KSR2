@@ -109,10 +109,10 @@ public class MainWindow {
 
             linguisticVariables = XMLReader.readLinguisicVariables();
 
-            for (LinguisticVariable l: linguisticVariables
-                 ) {
-                System.out.println(l.generateLatexSubsection());
-            }
+//            for (LinguisticVariable l: linguisticVariables
+//                 ) {
+//                System.out.println(l.generateLatexSubsection());
+//            }
 
             prepareTable();
             prepareSummarizersTable();

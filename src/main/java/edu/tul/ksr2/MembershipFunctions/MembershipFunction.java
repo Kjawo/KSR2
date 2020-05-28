@@ -20,5 +20,5 @@ public interface MembershipFunction {
 
     public String getName();
 
-    public double calculateCardinality();
+    public double calculateCardinality(double total);
 }

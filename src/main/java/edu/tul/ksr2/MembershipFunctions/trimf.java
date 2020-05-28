@@ -31,7 +31,7 @@ public class trimf implements MembershipFunction {
 
     @Override
     public double compute(double x, double totalAmount) {
-        if(isRelative){
+        if(!isRelative){
             return compute(x/totalAmount);
         } else {
             return compute(x);
@@ -103,8 +103,12 @@ public class trimf implements MembershipFunction {
     }
 
     @Override
-    public double calculateCardinality() {
-        return Math.abs(c - a) * 0.5;
+    public double calculateCardinality(double totalAmount) {
+        if(!isRelative){
+            return (Math.abs(c/totalAmount - a/totalAmount) * 0.5);
+        } else {
+            return (Math.abs(c - a) * 0.5);
+        }
     }
 
 

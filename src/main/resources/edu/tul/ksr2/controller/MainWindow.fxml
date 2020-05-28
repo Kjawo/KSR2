@@ -29,7 +29,7 @@
                        </rowConstraints>
                         <children>
                                   <ComboBox fx:id="spinnerFirstVar" onAction="#comboActionLV" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                  <Button fx:id="buttonGenerateComparison" mnemonicParsing="false" onAction="#generateComparison" text="Perform summarization" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                  <Button fx:id="buttonGenerateComparison" mnemonicParsing="false" onAction="#generateComparison" text="Perform summarization first type" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                            <Label alignment="CENTER" text="Linguistic Variable" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                               <font>
                                  <Font size="15.0" />
@@ -51,7 +51,7 @@
                               </font>
                            </Label>
                            <ComboBox fx:id="summarizersComboBox" layoutX="33.0" layoutY="43.0" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                           <ComboBox fx:id="qualifiersComboBox" layoutX="33.0" layoutY="43.0" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="2" GridPane.valignment="CENTER" />
+                           <ComboBox fx:id="qualifiersComboBox" layoutX="33.0" layoutY="43.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                            <GridPane>
                              <columnConstraints>
                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -78,11 +78,12 @@
                                  <Font size="15.0" />
                               </font>
                            </Label>
-                           <TableView fx:id="summarizerTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="4">
+                           <TableView fx:id="summarizerTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3">
                               <GridPane.margin>
                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                               </GridPane.margin>
                            </TableView>
+                           <Button fx:id="removeSummarizer" mnemonicParsing="false" text="Remove summarizer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
 <!--                           <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
 <!--                            <CheckComboBox fx:id="summarizersCheckComboBox" prefHeight="25.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
 

@@ -63,6 +63,7 @@ public class MainWindow {
     public ComboBox summarizersComboBox;
     public ComboBox qualifiersComboBox;
     public Button addSummarizer;
+    public Button removeSummarizer;
     private ObservableList<FirstTypeSummarizationObject> summarizationsObservableList = FXCollections.observableArrayList();
     private HashMap<String, Summarizer> summarizers = new HashMap<>();
     private ObservableList<Summarizer> summarizersObservableList = FXCollections.observableArrayList();;
@@ -132,6 +133,13 @@ public class MainWindow {
         addSummarizer.setOnAction(
                 actionEvent -> {
                     summarizersObservableList.addAll((Summarizer) summarizersComboBox.getSelectionModel().getSelectedItem());
+                }
+        );
+
+        removeSummarizer.setOnAction(
+                actionEvent -> {
+                    Summarizer selectedItem = summarizerTableView.getSelectionModel().getSelectedItem();
+                    summarizersObservableList.remove(selectedItem);
                 }
         );
     }

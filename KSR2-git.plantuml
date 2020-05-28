@@ -3,10 +3,6 @@
 title __KSR2's Class Diagram__\n
 
     namespace edu.tul.ksr2 {
-      namespace Parameters {
-        class edu.tul.ksr2.Parameters.XMLReader {
-      }
-    }
 
       namespace Quality {
         class edu.tul.ksr2.Quality.DegreeOfAppropriateness {
@@ -40,34 +36,18 @@ title __KSR2's Class Diagram__\n
         }
       }
 
-      namespace Sets {
-        class edu.tul.ksr2.Sets.CrispSet {
-        }
 
-        class edu.tul.ksr2.Sets.FuzzySet {
-        }
-      }
-
-      namespace Summary {
-        class edu.tul.ksr2.Summary.FirstTypeSummarizationObject {
-        }
-
-        class edu.tul.ksr2.Summary.SummaryGenerator {
-        }
-
-      }
-
-      namespace application {
-        class edu.tul.ksr2.application.PrimaryStageInitializer {
-        }
-
-        class edu.tul.ksr2.application.SpringbootJavaFxApplication {
-        }
-
-        class edu.tul.ksr2.application.StageReadyEvent {
-        }
-
-      }
+'      namespace application {
+'        class edu.tul.ksr2.application.PrimaryStageInitializer {
+'        }
+'
+'        class edu.tul.ksr2.application.SpringbootJavaFxApplication {
+'        }
+'
+'        class edu.tul.ksr2.application.StageReadyEvent {
+'        }
+'
+'      }
 
       namespace controller {
 
@@ -160,10 +140,6 @@ title __KSR2's Class Diagram__\n
                       {abstract} + isRelative()
                   }
 
-                  enum MembershipFunctionEnum {
-                    Trapezoidal
-                    Triangular
-                  }
 
                   class edu.tul.ksr2.MembershipFunctions.trapmf {
                       - a : double
@@ -215,6 +191,7 @@ title __KSR2's Class Diagram__\n
                        + getQuantifiers()
                        + toString()
                    }
+                }
 
                    namespace Sets {
                            class edu.tul.ksr2.Sets.CrispSet {
@@ -266,18 +243,28 @@ namespace Summary {
 
   }
 
-  
-
+  edu.tul.ksr2.Summary.FirstTypeSummarizationObject -> edu.tul.ksr2.Quality
+  edu.tul.ksr2.controller.MainWindow o-- edu.tul.ksr2.LinguisticVariable.LinguisticVariable
+  edu.tul.ksr2.controller.MainWindow -> edu.tul.ksr2.Summary.SummaryGenerator
+  edu.tul.ksr2.controller.MainWindow -> edu.tul.ksr2.LinguisticVariable.ParametersMapping
+  edu.tul.ksr2.controller.MainWindow -> edu.tul.ksr2.Parameters.XMLReaders
+  edu.tul.ksr2.controller.MainWindow -> edu.tul.ksr2.Database.DatabaseHandler
+  edu.tul.ksr2.LinguisticVariable.Quantifier o-- edu.tul.ksr2.Sets
+  edu.tul.ksr2.LinguisticVariable.Summarizer o-- edu.tul.ksr2.Sets
   edu.tul.ksr2.LinguisticVariable.Quantifier o-- edu.tul.ksr2.MembershipFunctions.MembershipFunction : membershipFunction
   edu.tul.ksr2.LinguisticVariable.Summarizer o-- edu.tul.ksr2.MembershipFunctions.MembershipFunction : membershipFunction
   edu.tul.ksr2.MembershipFunctions.trapmf .up.|> edu.tul.ksr2.MembershipFunctions.MembershipFunction
   edu.tul.ksr2.MembershipFunctions.trimf .up.|> edu.tul.ksr2.MembershipFunctions.MembershipFunction
   edu.tul.ksr2.Summary.FirstTypeSummarizationObject o-- edu.tul.ksr2.LinguisticVariable.Quantifier : quantifier
   edu.tul.ksr2.Summary.FirstTypeSummarizationObject o-- edu.tul.ksr2.LinguisticVariable.Summarizer : summarizer
-  edu.tul.ksr2.application.PrimaryStageInitializer .up.|> org.springframework.context.ApplicationListener
-  edu.tul.ksr2.application.SpringbootJavaFxApplication -up-|> javafx.application.Application
-  edu.tul.ksr2.application.StageReadyEvent -up-|> org.springframework.context.ApplicationEvent
+'  edu.tul.ksr2.application.PrimaryStageInitializer .up.|> org.springframework.context.ApplicationListener
+'  edu.tul.ksr2.application.SpringbootJavaFxApplication -up-|> javafx.application.Application
+'  edu.tul.ksr2.application.StageReadyEvent -up-|> org.springframework.context.ApplicationEvent
 
+'ComponentA -[hidden]-> ComponentC
+edu.tul.ksr2.LinguisticVariable -[hidden]-> edu.tul.ksr2.Quality
+'edu.tul.ksr2.LinguisticVariable -[hidden]-> edu.tul.ksr2.Parameters
+'edu.tul.ksr2.Parameters -[hidden]-> edu.tul.ksr2.controller
 
 right footer
 

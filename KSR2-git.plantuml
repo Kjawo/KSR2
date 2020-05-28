@@ -1,0 +1,289 @@
+@startuml
+
+title __KSR2's Class Diagram__\n
+
+    namespace edu.tul.ksr2 {
+      namespace Parameters {
+        class edu.tul.ksr2.Parameters.XMLReader {
+      }
+    }
+
+      namespace Quality {
+        class edu.tul.ksr2.Quality.DegreeOfAppropriateness {
+        }
+
+        class edu.tul.ksr2.Quality.DegreeOfCovering {
+        }
+
+        class edu.tul.ksr2.Quality.DegreeOfImprecision {
+        }
+
+        class edu.tul.ksr2.Quality.DegreeOfQualifierCardinality {
+        }
+
+        class edu.tul.ksr2.Quality.DegreeOfQualifierImprecision {
+        }
+
+        class edu.tul.ksr2.Quality.DegreeOfQuantifierCardinality {
+        }
+
+        class edu.tul.ksr2.Quality.DegreeOfQuantifierImprecision {
+        }
+
+        class edu.tul.ksr2.Quality.DegreeOfSummarizerCardinality {
+        }
+
+        class edu.tul.ksr2.Quality.DegreeOfTruth {
+        }
+
+        class edu.tul.ksr2.Quality.LengthOfASummary {
+        }
+      }
+
+      namespace Sets {
+        class edu.tul.ksr2.Sets.CrispSet {
+        }
+
+        class edu.tul.ksr2.Sets.FuzzySet {
+        }
+      }
+
+      namespace Summary {
+        class edu.tul.ksr2.Summary.FirstTypeSummarizationObject {
+        }
+
+        class edu.tul.ksr2.Summary.SummaryGenerator {
+        }
+
+      }
+
+      namespace application {
+        class edu.tul.ksr2.application.PrimaryStageInitializer {
+        }
+
+        class edu.tul.ksr2.application.SpringbootJavaFxApplication {
+        }
+
+        class edu.tul.ksr2.application.StageReadyEvent {
+        }
+
+      }
+
+      namespace controller {
+
+        class edu.tul.ksr2.controller.LVEditor {
+        }
+
+        class edu.tul.ksr2.controller.MainWindow {
+        }
+
+        class edu.tul.ksr2.controller.QuantifierEditor {
+        }
+
+        class edu.tul.ksr2.controller.SomeDialog {
+        }
+      }
+
+    namespace Database {
+      class edu.tul.ksr2.Database.DatabaseHandler {
+          {static} + initialize()
+          {static} + loadAllFromDB()
+      }
+    }
+
+          namespace LinguisticVariable {
+            class edu.tul.ksr2.LinguisticVariable.LinguisticVariable {
+                - labels : ArrayList<String>
+                - membershipFunctions : ArrayList<MembershipFunction>
+                - name : String
+                + LinguisticVariable()
+                + generateLatexSubsection()
+                + getLabels()
+                + getMembershipFunctions()
+                + getName()
+                + getSummarizers()
+                + toString()
+            }
+
+            class edu.tul.ksr2.LinguisticVariable.ParametersMapping {
+                {static} + ParametersMapper : Map<String, String>
+            }
+
+            class edu.tul.ksr2.LinguisticVariable.Quantifier {
+                - name : String
+                + Quantifier()
+                + compute()
+                + compute()
+                + generateLatexSubsection()
+                + getMembershipFunction()
+                + getName()
+                + toString()
+            }
+
+            class edu.tul.ksr2.LinguisticVariable.Summarizer {
+                + name : String
+                - entityFieldName : String
+                - fuzzySet : FuzzySet<GameEntity>
+                - tableValue : SimpleStringProperty
+                + Summarizer()
+                + Summarizer()
+                + Summarizer()
+                + Summarizer()
+                + getEntityFieldName()
+                + getFuzzySet()
+                + getMembershipFunction()
+                + getName()
+                + getSetSize()
+                + getTableValue()
+                + populateFuzzySet()
+                + tableValueProperty()
+                + toString()
+            }
+          }
+
+                namespace MembershipFunctions {
+                  interface edu.tul.ksr2.MembershipFunctions.MembershipFunction {
+                      {static} + a : double
+                      {static} + b : double
+                      {static} + c : double
+                      {static} + d : double
+                      {static} + isRelative : boolean
+                      {abstract} + calculateCardinality()
+                      {abstract} + compute()
+                      {abstract} + compute()
+                      {abstract} + generateLatexEq()
+                      {abstract} + getA()
+                      {abstract} + getB()
+                      {abstract} + getC()
+                      {abstract} + getD()
+                      {abstract} + getName()
+                      {abstract} + isRelative()
+                  }
+
+                  enum MembershipFunctionEnum {
+                    Trapezoidal
+                    Triangular
+                  }
+
+                  class edu.tul.ksr2.MembershipFunctions.trapmf {
+                      - a : double
+                      - b : double
+                      - c : double
+                      - d : double
+                      - isRelative : boolean
+                      + calculateCardinality()
+                      + compute()
+                      + compute()
+                      + generateLatexEq()
+                      + getA()
+                      + getB()
+                      + getC()
+                      + getD()
+                      + getName()
+                      + isRelative()
+                      + toString()
+                      + trapmf()
+                      + trapmf()
+                  }
+
+                  class edu.tul.ksr2.MembershipFunctions.trimf {
+                      - a : double
+                      - b : double
+                      - c : double
+                      - isRelative : boolean
+                      + calculateCardinality()
+                      + compute()
+                      + compute()
+                      + generateLatexEq()
+                      + getA()
+                      + getB()
+                      + getC()
+                      + getD()
+                      + getName()
+                      + isRelative()
+                      + toString()
+                      + trimf()
+                      + trimf()
+                  }
+                }
+
+                namespace Parameters {
+                   class edu.tul.ksr2.Parameters.XMLReaders {
+                       - quantifiers : List<QuantifierSerialized>
+                       + QuantifiersSerialized()
+                       + QuantifiersSerialized()
+                       + getQuantifiers()
+                       + toString()
+                   }
+
+                   namespace Sets {
+                           class edu.tul.ksr2.Sets.CrispSet {
+                               + values : HashSet<T>
+                               + Complement()
+                               + CrispSet()
+                               + Equals()
+                               + Intersection()
+                               + Union()
+                           }
+
+                           class edu.tul.ksr2.Sets.FuzzySet {
+                               + set : HashMap<T, Double>
+                               + FuzzySet()
+                               + FuzzySet()
+                               + add()
+                               + calculateDegreeOfFuzziness()
+                               + getSet()
+                               + setSet()
+                               + support()
+                           }
+                         }
+
+namespace Summary {
+        class edu.tul.ksr2.Summary.FirstTypeSummarizationObject {
+            - T1 : SimpleDoubleProperty
+            - T10 : SimpleDoubleProperty
+            - T11 : SimpleDoubleProperty
+            - T2 : SimpleDoubleProperty
+            - T3 : SimpleDoubleProperty
+            - T4 : SimpleDoubleProperty
+            - T5 : SimpleDoubleProperty
+            - T6 : SimpleDoubleProperty
+            - T7 : SimpleDoubleProperty
+            - T8 : SimpleDoubleProperty
+            - T9 : SimpleDoubleProperty
+            - quantifier : Quantifier
+            - summarizer : Summarizer
+
+            + calculateQualityMeasures()
+        }
+
+        class edu.tul.ksr2.Summary.SummaryGenerator {
+            {static} + generateFirstTypeSummarization()
+            {static} - computeQualityMeasures()
+        }
+      }
+
+
+  }
+
+  
+
+  edu.tul.ksr2.LinguisticVariable.Quantifier o-- edu.tul.ksr2.MembershipFunctions.MembershipFunction : membershipFunction
+  edu.tul.ksr2.LinguisticVariable.Summarizer o-- edu.tul.ksr2.MembershipFunctions.MembershipFunction : membershipFunction
+  edu.tul.ksr2.MembershipFunctions.trapmf .up.|> edu.tul.ksr2.MembershipFunctions.MembershipFunction
+  edu.tul.ksr2.MembershipFunctions.trimf .up.|> edu.tul.ksr2.MembershipFunctions.MembershipFunction
+  edu.tul.ksr2.Summary.FirstTypeSummarizationObject o-- edu.tul.ksr2.LinguisticVariable.Quantifier : quantifier
+  edu.tul.ksr2.Summary.FirstTypeSummarizationObject o-- edu.tul.ksr2.LinguisticVariable.Summarizer : summarizer
+  edu.tul.ksr2.application.PrimaryStageInitializer .up.|> org.springframework.context.ApplicationListener
+  edu.tul.ksr2.application.SpringbootJavaFxApplication -up-|> javafx.application.Application
+  edu.tul.ksr2.application.StageReadyEvent -up-|> org.springframework.context.ApplicationEvent
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

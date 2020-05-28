@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import org.controlsfx.control.CheckComboBox?>
 <VBox alignment="CENTER" minHeight="900.0" minWidth="800.0" prefHeight="900.0" prefWidth="800.0" spacing="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.tul.ksr2.controller.MainWindow">
     <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="SOMETIMES">
         <tabs>
@@ -21,19 +20,22 @@
                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                        </columnConstraints>
                        <rowConstraints>
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                          <RowConstraints minHeight="200.0" prefHeight="30.0" vgrow="ALWAYS" />
                        </rowConstraints>
                         <children>
-                                  <ComboBox fx:id="spinnerFirstVar" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                  <Button fx:id="buttonGenerateComparison" mnemonicParsing="false" onAction="#generateComparison" text="Perform summarization" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                  <ComboBox fx:id="spinnerFirstVar" onAction="#comboActionLV" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                  <Button fx:id="buttonGenerateComparison" mnemonicParsing="false" onAction="#generateComparison" text="Perform summarization" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                            <Label alignment="CENTER" text="Linguistic Variable" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                               <font>
                                  <Font size="15.0" />
                               </font>
                            </Label>
-                           <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
+                           <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
 <!--                             <columns>-->
 <!--                               <TableColumn prefWidth="600.0" text="Summarization" />-->
 <!--                               <TableColumn prefWidth="75.0" text="T1" />-->
@@ -43,11 +45,44 @@
                                  <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
                               </GridPane.margin>
                            </TableView>
-                           <Label alignment="CENTER" layoutX="48.0" layoutY="15.0" text="Summarizers" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <Label alignment="CENTER" layoutX="48.0" layoutY="15.0" text="Summarizers" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                               <font>
                                  <Font size="15.0" />
                               </font>
                            </Label>
+                           <ComboBox fx:id="summarizersComboBox" layoutX="33.0" layoutY="43.0" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                           <ComboBox fx:id="qualifiersComboBox" layoutX="33.0" layoutY="43.0" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="2" GridPane.valignment="CENTER" />
+                           <GridPane>
+                             <columnConstraints>
+                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                             </columnConstraints>
+                             <rowConstraints>
+                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                             </rowConstraints>
+                           </GridPane>
+                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                              <children>
+                                 <Button fx:id="addSummarizer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Add summarizer" />
+                              </children>
+                           </HBox>
+                           <Label alignment="CENTER" layoutX="31.0" layoutY="75.0" text="Summarizers" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                           </Label>
+                           <Label alignment="CENTER" layoutX="31.0" layoutY="75.0" text="Qualifiers" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                           </Label>
+                           <TableView fx:id="summarizerTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="4">
+                              <GridPane.margin>
+                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              </GridPane.margin>
+                           </TableView>
 <!--                           <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
 <!--                            <CheckComboBox fx:id="summarizersCheckComboBox" prefHeight="25.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
 

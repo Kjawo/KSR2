@@ -3,6 +3,7 @@ package edu.tul.ksr2.LinguisticVariable;
 import edu.tul.ksr2.GameEntity;
 import edu.tul.ksr2.MembershipFunctions.MembershipFunction;
 import edu.tul.ksr2.Sets.FuzzySet;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.util.ArrayList;
 
@@ -13,10 +14,14 @@ public class Summarizer {
     private MembershipFunction membershipFunction;
     private FuzzySet<GameEntity> fuzzySet;
 
+    private SimpleStringProperty tableValue;
+
     public Summarizer(String name, String entityFieldName, MembershipFunction membershipFunction) {
         this.name = name;
         this.entityFieldName = entityFieldName;
         this.membershipFunction = membershipFunction;
+
+        this.tableValue = new SimpleStringProperty(this.name + " " + this.entityFieldName);
     }
 
     public Summarizer(String name, MembershipFunction membershipFunction, FuzzySet<GameEntity> fuzzySet) {
@@ -64,5 +69,18 @@ public class Summarizer {
 
     public Double getSetSize() {
         return Double.valueOf(fuzzySet.set.size());
+    }
+
+    public String getTableValue() {
+        return tableValue.get();
+    }
+
+    public SimpleStringProperty tableValueProperty() {
+        return tableValue;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

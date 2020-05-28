@@ -6,11 +6,13 @@ import edu.tul.ksr2.LinguisticVariable.LinguisticVariable;
 import edu.tul.ksr2.LinguisticVariable.ParametersMapping;
 import edu.tul.ksr2.LinguisticVariable.Summarizer;
 import edu.tul.ksr2.LinguisticVariable.Quantifier;
+import edu.tul.ksr2.Parameters.TableView.QuantifierTableRow;
 import edu.tul.ksr2.Parameters.XMLReader;
 import edu.tul.ksr2.Summary.FirstTypeSummarizationObject;
 import edu.tul.ksr2.Summary.SummaryGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -40,6 +42,10 @@ public class MainWindow {
     public Button openDialogButton;
     public Button generateComparison;
     public ComboBox spinnerFirstVar;
+
+    public TableView<Summarizer> summarizerTableView;
+    public TableColumn<Summarizer, String> summarizerColumnValue = new TableColumn<>("Name");
+
     public TableView<FirstTypeSummarizationObject> tableView;
     public TableColumn<FirstTypeSummarizationObject, String> tableColumnText
             = new TableColumn<>("Summarization");
@@ -54,9 +60,12 @@ public class MainWindow {
     public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT9 = new TableColumn<>("T9");
     public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT10 = new TableColumn<>("T10");
     public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT11 = new TableColumn<>("T11");
+    public ComboBox summarizersComboBox;
+    public ComboBox qualifiersComboBox;
+    public Button addSummarizer;
     private ObservableList<FirstTypeSummarizationObject> summarizationsObservableList = FXCollections.observableArrayList();
     private HashMap<String, Summarizer> summarizers = new HashMap<>();
-
+    private ObservableList<Summarizer> summarizersObservableList = FXCollections.observableArrayList();;
 
 
     public MainWindow(FxControllerAndView<SomeDialog, VBox> someDialog) {
@@ -99,12 +108,14 @@ public class MainWindow {
             System.out.println(getQuantifiers().get(0).toString());
 
             linguisticVariables = XMLReader.readLinguisicVariables();
-//            for (LinguisticVariable l: linguisticVariables
-//                 ) {
-//                System.out.println(l.generateLatexSubsection());
-//            }
+
+            for (LinguisticVariable l: linguisticVariables
+                 ) {
+                System.out.println(l.generateLatexSubsection());
+            }
 
             prepareTable();
+            prepareSummarizersTable();
 
 //            generateSummarizationForAll();
 
@@ -117,8 +128,23 @@ public class MainWindow {
         openDialogButton.setOnAction(
                 actionEvent -> someDialog.getController().show()
         );
+
+        addSummarizer.setOnAction(
+                actionEvent -> {
+                    summarizersObservableList.addAll((Summarizer) summarizersComboBox.getSelectionModel().getSelectedItem());
+                }
+        );
     }
 
+    private void prepareSummarizersTable() {
+        summarizerTableView.setPlaceholder(new Label("No rows to display"));
+        summarizerColumnValue.setCellValueFactory(new PropertyValueFactory<>("tableValue"));
+
+        summarizerTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        summarizerTableView.getColumns().add(summarizerColumnValue);
+
+        summarizerTableView.setItems(summarizersObservableList);
+    }
 
 
     private void prepareTable() {
@@ -157,11 +183,14 @@ public class MainWindow {
     public void generateComparison(){
         summarizationsObservableList.clear();
 //        summarizationsObservableList.addAll(SummaryGenerat\or.summarizeAmmounts(spinnerFirstVar.getSelectionModel().getSelectedItem().toString(), quantifiers, gameEntities));
-        summarizationsObservableList.addAll(SummaryGenerator.generateFirstTypeSummarization(gameEntities, getQuantifiers(),
-                getSelectedLinguisticVariable().getSummarizers(
-                        spinnerFirstVar.getSelectionModel().getSelectedItem().toString()
-                )));
 
+//        summarizationsObservableList.addAll(SummaryGenerator.generateFirstTypeSummarization(gameEntities, getQuantifiers(),
+//                getSelectedLinguisticVariable().getSummarizers(
+//                        spinnerFirstVar.getSelectionModel().getSelectedItem().toString()
+//                )));
+
+        summarizationsObservableList.addAll(SummaryGenerator.generateFirstTypeSummarization(gameEntities, getQuantifiers(),
+               new ArrayList<>(summarizersObservableList)));
     }
 
 //    private void generateSummarizationForAll() {
@@ -191,5 +220,31 @@ public class MainWindow {
     private void prepareSpinner() {
         spinnerFirstVar.getItems().addAll(ParametersMapper.keySet());
         spinnerFirstVar.getSelectionModel().select(ParametersMapper.keySet().toArray()[0]);
+
+        summarizersComboBox.getItems().clear();
+        summarizersComboBox.getItems().addAll(getSelectedLinguisticVariable().getSummarizers(
+                spinnerFirstVar.getSelectionModel().getSelectedItem().toString()
+        ));
+        summarizersComboBox.getSelectionModel().select(0);
+
+        qualifiersComboBox.getItems().clear();
+        qualifiersComboBox.getItems().addAll(getSelectedLinguisticVariable().getSummarizers(
+                spinnerFirstVar.getSelectionModel().getSelectedItem().toString()
+        ));
+        qualifiersComboBox.getSelectionModel().select(0);
+    }
+
+    public void comboActionLV(ActionEvent actionEvent) {
+        summarizersComboBox.getItems().clear();
+        summarizersComboBox.getItems().addAll(getSelectedLinguisticVariable().getSummarizers(
+                spinnerFirstVar.getSelectionModel().getSelectedItem().toString()
+        ));
+        summarizersComboBox.getSelectionModel().select(0);
+
+        qualifiersComboBox.getItems().clear();
+        qualifiersComboBox.getItems().addAll(getSelectedLinguisticVariable().getSummarizers(
+                spinnerFirstVar.getSelectionModel().getSelectedItem().toString()
+        ));
+        qualifiersComboBox.getSelectionModel().select(0);
     }
 }

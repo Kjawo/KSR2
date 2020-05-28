@@ -61,4 +61,5 @@ public class LinguisticVariable {
 
         return result.toString();
     }
+
 }

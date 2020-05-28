@@ -33,13 +33,14 @@ public class Quantifier {
 
     public String generateLatexSubsection () {
         StringBuilder result = new StringBuilder();
-        result.append("\\subsubsection{").append(this.name).append("}");
+//        result.append("\\subsubsection{").append(this.name).append("}");
 
         result.append(membershipFunction.generateLatexEq(name));
 
 
         return result.toString();
     }
+
 
     public MembershipFunction getMembershipFunction() {
         return membershipFunction;

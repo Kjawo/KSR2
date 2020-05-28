@@ -44,6 +44,7 @@ public class trapmf implements MembershipFunction {
         }
     }
 
+
     @Override
     public String generateLatexEq(String name) {
 //   \begin{equation}
@@ -59,10 +60,10 @@ public class trapmf implements MembershipFunction {
 
         String result = "\\begin{equation}\n";
         result += "\\mu_{" + trimmedName + "}(x) = \\begin{cases}\n";
-        result += "\t" + "(x - " + String.valueOf(this.a) + ") / (" + String.valueOf(this.b) + " - " + String.valueOf(this.a) + ") & \\mbox{dla  } x \\in [" + String.valueOf(this.a) + ",\\, " + String.valueOf(this.b) + "], \\\\\n";
+        result += "\t" + "\\frac{(x - " + String.valueOf(this.a) + ")} {(" + String.valueOf(this.b) + " - " + String.valueOf(this.a) + ")} & \\mbox{dla  } x \\in [" + String.valueOf(this.a) + ",\\, " + String.valueOf(this.b) + "], \\\\\n";
         result += "\t" + " 1                 & \\mbox{dla  } x \\in [" + String.valueOf(this.b) + ",\\, " + String.valueOf(this.c) + "], \\\\\n";
-        result += "\t" + "(" + String.valueOf(this.d) + " - x) / (" + String.valueOf(this.d) + " - " + String.valueOf(this.c) + ") & \\mbox{dla  } x \\in [" + String.valueOf(this.c) + ",\\, " + String.valueOf(this.d) + "], \\\\\n";
-        result += "\t" + "0                 & \\mbox{dla  } x \\in (-\\infty, " + String.valueOf(this.a) + "] \\cup  [" + String.valueOf(this.d) + ",\\, +\\infty)\n";
+        result += "\t" + "\\frac{(" + String.valueOf(this.d) + " - x)} {(" + String.valueOf(this.d) + " - " + String.valueOf(this.c) + ")} & \\mbox{dla  } x \\in [" + String.valueOf(this.c) + ",\\, " + String.valueOf(this.d) + "], \\\\\n";
+//        result += "\t" + "0                 & \\mbox{dla  } x \\in (-\\infty, " + String.valueOf(this.a) + "] \\cup  [" + String.valueOf(this.d) + ",\\, +\\infty)\n";
         result += "\\end{cases}\n";
         result += "\\end{equation}\n";
         return result;

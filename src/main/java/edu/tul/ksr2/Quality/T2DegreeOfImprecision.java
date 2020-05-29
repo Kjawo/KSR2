@@ -17,4 +17,5 @@ public class T2DegreeOfImprecision {
         Double T2 = 1.0 - Math.pow(multiplication, 1.0 / summarizers.size());
         return T2;
     }
+
 }

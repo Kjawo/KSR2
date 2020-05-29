@@ -30,6 +30,7 @@ public class SummarizationObject {
     Summarizer qualifier;
     FuzzySet<GameEntity> summarizersComplexSet;
     Boolean isComplex;
+    Boolean useQualifier;
 
     public SummarizationObject(SimpleStringProperty  text, SimpleDoubleProperty t1) {
         this.text = text;
@@ -63,6 +64,7 @@ public class SummarizationObject {
 
 
         this.isComplex = true;
+        this.useQualifier = false;
 
         StringBuilder summarizersAND = new StringBuilder();
         for(int i = 0; i < summarizers.size(); i++) {
@@ -105,6 +107,7 @@ public class SummarizationObject {
 
 
         this.isComplex = true;
+        this.useQualifier = true;
 
         StringBuilder summarizersAND = new StringBuilder();
         for(int i = 0; i < summarizers.size(); i++) {
@@ -232,7 +235,11 @@ public class SummarizationObject {
     public void calculateQualityMeasuresSecondType(ArrayList<GameEntity> gameEntities) {
         this.T1 = new SimpleDoubleProperty(T1DegreeOfTruth.computeComplex(this.quantifier, this.summarizer, this.summarizersComplexSet, gameEntities));
         this.T2 = new SimpleDoubleProperty(T2DegreeOfImprecision.computeFirstType(this.quantifier, summarizers, gameEntities));
-        this.T3 = new SimpleDoubleProperty(T3DegreeOfCovering.computeComplex(this.quantifier, summarizers, this.summarizersComplexSet, gameEntities));
+        if(this.useQualifier) {
+            this.T3 = new SimpleDoubleProperty(T3DegreeOfCovering.computeComplex(this.quantifier, this.qualifier, summarizers, this.summarizersComplexSet, gameEntities));
+        } else {
+            this.T3 = new SimpleDoubleProperty(T3DegreeOfCovering.computeComplex(this.quantifier, summarizers, this.summarizersComplexSet, gameEntities));
+        }
         this.T4 = new SimpleDoubleProperty(T4DegreeOfAppropriateness.computeFirstType(this.quantifier, summarizers, gameEntities, this.T3.get()));
         this.T5 = new SimpleDoubleProperty(T5LengthOfASummary.computeFirstType(this.quantifier, summarizers, gameEntities));
         this.T6 = new SimpleDoubleProperty(0.0);

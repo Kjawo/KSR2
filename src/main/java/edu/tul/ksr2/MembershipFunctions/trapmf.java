@@ -106,7 +106,11 @@ public class trapmf implements MembershipFunction {
     }
 
     @Override
-    public double calculateCardinality() {
-        return (Math.abs(d - a) + Math.abs(c- b)) / 2;
+    public double calculateCardinality(double total) {
+        if(!isRelative){
+            return (Math.abs(d/total - a/total) + Math.abs(c/total - b/total)) / 2;
+        } else {
+            return (Math.abs(d - a) + Math.abs(c - b)) / 2;
+        }
     }
 }

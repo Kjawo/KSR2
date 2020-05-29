@@ -78,8 +78,8 @@
             <isRelative>false</isRelative>
             <A>100000</A>
             <B>100000</B>
-            <C>9999999</C>
-            <D>9999999</D>
+            <C>199925</C>
+            <D>199925</D>
         </Quantifier>
         <Quantifier>
             <Name>Over 150 000</Name>
@@ -87,8 +87,8 @@
             <isRelative>false</isRelative>
             <A>150000</A>
             <B>150000</B>
-            <C>9999999</C>
-            <D>9999999</D>
+            <C>199925</C>
+            <D>199925</D>
         </Quantifier>
         <Quantifier>
             <Name>Under 10 000</Name>

@@ -149,13 +149,14 @@ public class FirstTypeSummarizationObject {
         ArrayList<Summarizer> summarizers = new ArrayList<>();
         summarizers.add(summarizer);
 
-        this.T1 = new SimpleDoubleProperty(DegreeOfTruth.computeFirstType(this.quantifier, this.summarizer, gameEntities));
-        this.T2 = new SimpleDoubleProperty(DegreeOfImprecision.computeFirstType(this.quantifier, summarizers, gameEntities));
-        this.T3 = new SimpleDoubleProperty(DegreeOfCovering.computeFirstType(this.quantifier, summarizers, gameEntities));
-        this.T4 = new SimpleDoubleProperty(DegreeOfAppropriateness.computeFirstType(this.quantifier, summarizers, gameEntities, this.T3.get()));
-        this.T5 = new SimpleDoubleProperty(LengthOfASummary.computeFirstType(this.quantifier, summarizers, gameEntities));
-        this.T6 = new SimpleDoubleProperty(DegreeOfQuantifierImprecision.computeFirstType(this.quantifier, this.summarizer, gameEntities));
-        this.T7 = new SimpleDoubleProperty(DegreeOfQuantifierImprecision.computeFirstType(this.quantifier, this.summarizer, gameEntities));
+        this.T1 = new SimpleDoubleProperty(T1DegreeOfTruth.computeFirstType(this.quantifier, this.summarizer, gameEntities));
+        this.T2 = new SimpleDoubleProperty(T2DegreeOfImprecision.computeFirstType(this.quantifier, summarizers, gameEntities));
+        this.T3 = new SimpleDoubleProperty(T3DegreeOfCovering.computeFirstType(this.quantifier, summarizers, gameEntities));
+        this.T4 = new SimpleDoubleProperty(T4DegreeOfAppropriateness.computeFirstType(this.quantifier, summarizers, gameEntities, this.T3.get()));
+        this.T5 = new SimpleDoubleProperty(T5LengthOfASummary.computeFirstType(this.quantifier, summarizers, gameEntities));
+
+        this.T6 = new SimpleDoubleProperty(T6DegreeOfQuantifierImprecision.computeFirstType(this.quantifier, this.summarizer, gameEntities));
+        this.T7 = new SimpleDoubleProperty(T7DegreeOfQuantifierCardinality.computeFirstType(this.quantifier, this.summarizer, gameEntities));
         this.T8 = new SimpleDoubleProperty(0.0);
         this.T9 = new SimpleDoubleProperty(0.0);
         this.T10 = new SimpleDoubleProperty(0.0);

@@ -3,12 +3,10 @@ package edu.tul.ksr2.controller;
 import edu.tul.ksr2.Database.DatabaseHandler;
 import edu.tul.ksr2.GameEntity;
 import edu.tul.ksr2.LinguisticVariable.LinguisticVariable;
-import edu.tul.ksr2.LinguisticVariable.ParametersMapping;
 import edu.tul.ksr2.LinguisticVariable.Summarizer;
 import edu.tul.ksr2.LinguisticVariable.Quantifier;
-import edu.tul.ksr2.Parameters.TableView.QuantifierTableRow;
 import edu.tul.ksr2.Parameters.XMLReader;
-import edu.tul.ksr2.Summary.FirstTypeSummarizationObject;
+import edu.tul.ksr2.Summary.SummarizationObject;
 import edu.tul.ksr2.Summary.SummaryGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,8 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import net.rgielen.fxweaver.core.FxControllerAndView;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.controlsfx.control.CheckComboBox;
-import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -46,25 +42,25 @@ public class MainWindow {
     public TableView<Summarizer> summarizerTableView;
     public TableColumn<Summarizer, String> summarizerColumnValue = new TableColumn<>("Name");
 
-    public TableView<FirstTypeSummarizationObject> tableView;
-    public TableColumn<FirstTypeSummarizationObject, String> tableColumnText
+    public TableView<SummarizationObject> tableView;
+    public TableColumn<SummarizationObject, String> tableColumnText
             = new TableColumn<>("Summarization");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT1 = new TableColumn<>("T1");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT2 = new TableColumn<>("T2");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT3 = new TableColumn<>("T3");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT4 = new TableColumn<>("T4");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT5 = new TableColumn<>("T5");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT6 = new TableColumn<>("T6");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT7 = new TableColumn<>("T7");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT8 = new TableColumn<>("T8");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT9 = new TableColumn<>("T9");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT10 = new TableColumn<>("T10");
-    public TableColumn<FirstTypeSummarizationObject, Double> tableColumnT11 = new TableColumn<>("T11");
+    public TableColumn<SummarizationObject, Double> tableColumnT1 = new TableColumn<>("T1");
+    public TableColumn<SummarizationObject, Double> tableColumnT2 = new TableColumn<>("T2");
+    public TableColumn<SummarizationObject, Double> tableColumnT3 = new TableColumn<>("T3");
+    public TableColumn<SummarizationObject, Double> tableColumnT4 = new TableColumn<>("T4");
+    public TableColumn<SummarizationObject, Double> tableColumnT5 = new TableColumn<>("T5");
+    public TableColumn<SummarizationObject, Double> tableColumnT6 = new TableColumn<>("T6");
+    public TableColumn<SummarizationObject, Double> tableColumnT7 = new TableColumn<>("T7");
+    public TableColumn<SummarizationObject, Double> tableColumnT8 = new TableColumn<>("T8");
+    public TableColumn<SummarizationObject, Double> tableColumnT9 = new TableColumn<>("T9");
+    public TableColumn<SummarizationObject, Double> tableColumnT10 = new TableColumn<>("T10");
+    public TableColumn<SummarizationObject, Double> tableColumnT11 = new TableColumn<>("T11");
     public ComboBox summarizersComboBox;
     public ComboBox qualifiersComboBox;
     public Button addSummarizer;
     public Button removeSummarizer;
-    private ObservableList<FirstTypeSummarizationObject> summarizationsObservableList = FXCollections.observableArrayList();
+    private ObservableList<SummarizationObject> summarizationsObservableList = FXCollections.observableArrayList();
     private HashMap<String, Summarizer> summarizers = new HashMap<>();
     private ObservableList<Summarizer> summarizersObservableList = FXCollections.observableArrayList();;
 
@@ -188,28 +184,21 @@ public class MainWindow {
                 );
     }
 
-    public void generateComparison(){
+    public void generateSummarizationFirstType(){
         summarizationsObservableList.clear();
-//        summarizationsObservableList.addAll(SummaryGenerat\or.summarizeAmmounts(spinnerFirstVar.getSelectionModel().getSelectedItem().toString(), quantifiers, gameEntities));
-
-//        summarizationsObservableList.addAll(SummaryGenerator.generateFirstTypeSummarization(gameEntities, getQuantifiers(),
-//                getSelectedLinguisticVariable().getSummarizers(
-//                        spinnerFirstVar.getSelectionModel().getSelectedItem().toString()
-//                )));
-
         summarizationsObservableList.addAll(SummaryGenerator.generateFirstTypeSummarization(gameEntities, getQuantifiers(),
                new ArrayList<>(summarizersObservableList)));
     }
 
-//    private void generateSummarizationForAll() {
-//
-//        for(String p : ParametersMapper.keySet()) {
-//            Summarizer summarizer = new Summarizer(p);
-//            summarizer.loadData(gameEntities);
-//
-//        }
-//
-//    }
+    public void generateSummarizationSecondType(ActionEvent actionEvent) {
+        summarizationsObservableList.clear();
+        summarizationsObservableList.addAll(SummaryGenerator.generateSecondTypeSummarization(gameEntities, getQuantifiers(), getQualifier(),
+                new ArrayList<>(summarizersObservableList), false));
+    }
+
+    private Summarizer getQualifier() {
+        return (Summarizer) qualifiersComboBox.getSelectionModel().getSelectedItem();
+    }
 
     private LinguisticVariable getSelectedLinguisticVariable() {
         String LVname = spinnerFirstVar.getSelectionModel().getSelectedItem().toString();
@@ -255,4 +244,6 @@ public class MainWindow {
         ));
         qualifiersComboBox.getSelectionModel().select(0);
     }
+
+
 }

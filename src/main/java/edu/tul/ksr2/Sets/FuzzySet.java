@@ -46,4 +46,14 @@ public class FuzzySet<T> {
         return support().size() * 1.0 / set.size();
     }
 
+    public static <T> FuzzySet<T> intersect(FuzzySet<T> first, FuzzySet<T> second) {
+        FuzzySet<T> result = new FuzzySet<>();
+        for (Map.Entry<T, Double> entity : first.set.entrySet()) {
+            if (second.set.containsKey(entity.getKey()) && second.set.get(entity.getKey()) > 0.0) {
+                result.set.put(entity.getKey(), Double.min(entity.getValue(), second.set.get(entity.getKey())));
+            }
+        }
+        return result;
+    }
+
 }

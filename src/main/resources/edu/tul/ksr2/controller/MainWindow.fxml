@@ -29,18 +29,13 @@
                        </rowConstraints>
                         <children>
                                   <ComboBox fx:id="spinnerFirstVar" onAction="#comboActionLV" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                  <Button fx:id="buttonGenerateComparison" mnemonicParsing="false" onAction="#generateComparison" text="Perform summarization first type" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                  <Button fx:id="summarizationFirstType" mnemonicParsing="false" onAction="#generateSummarizationFirstType" text="Summarization first type" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                            <Label alignment="CENTER" text="Linguistic Variable" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                               <font>
                                  <Font size="15.0" />
                               </font>
                            </Label>
                            <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
-<!--                             <columns>-->
-<!--                               <TableColumn prefWidth="600.0" text="Summarization" />-->
-<!--                               <TableColumn prefWidth="75.0" text="T1" />-->
-<!--                                 <TableColumn prefWidth="75.0" text="T2" />-->
-<!--                             </columns>-->
                               <GridPane.margin>
                                  <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
                               </GridPane.margin>
@@ -65,7 +60,7 @@
                            </GridPane>
                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                               <children>
-                                 <Button fx:id="addSummarizer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Add summarizer" />
+                                 <Button fx:id="addSummarizer" onAction="#generateSummarizationSecondType" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Add summarizer" />
                               </children>
                            </HBox>
                            <Label alignment="CENTER" layoutX="31.0" layoutY="75.0" text="Summarizers" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -73,7 +68,7 @@
                                  <Font size="15.0" />
                               </font>
                            </Label>
-                           <Label alignment="CENTER" layoutX="31.0" layoutY="75.0" text="Qualifiers" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <Label alignment="CENTER" layoutX="31.0" layoutY="75.0" text="Qualifier" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                               <font>
                                  <Font size="15.0" />
                               </font>
@@ -84,9 +79,7 @@
                               </GridPane.margin>
                            </TableView>
                            <Button fx:id="removeSummarizer" mnemonicParsing="false" text="Remove summarizer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-<!--                           <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
-<!--                            <CheckComboBox fx:id="summarizersCheckComboBox" prefHeight="25.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
-
+                           <Button fx:id="summarizationSecondType" layoutX="598.0" layoutY="149.0" mnemonicParsing="false" onAction="#generateSummarizationSecondType" text="Summarization second type" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                         </children>
                      </GridPane>
                         </children>

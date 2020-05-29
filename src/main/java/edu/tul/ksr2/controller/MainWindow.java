@@ -60,6 +60,7 @@ public class MainWindow {
     public ComboBox qualifiersComboBox;
     public Button addSummarizer;
     public Button removeSummarizer;
+    public CheckBox useQualifierCheckBox;
     private ObservableList<SummarizationObject> summarizationsObservableList = FXCollections.observableArrayList();
     private HashMap<String, Summarizer> summarizers = new HashMap<>();
     private ObservableList<Summarizer> summarizersObservableList = FXCollections.observableArrayList();;
@@ -193,7 +194,7 @@ public class MainWindow {
     public void generateSummarizationSecondType(ActionEvent actionEvent) {
         summarizationsObservableList.clear();
         summarizationsObservableList.addAll(SummaryGenerator.generateSecondTypeSummarization(gameEntities, getQuantifiers(), getQualifier(),
-                new ArrayList<>(summarizersObservableList), false));
+                new ArrayList<>(summarizersObservableList), useQualifierCheckBox.isSelected()));
     }
 
     private Summarizer getQualifier() {

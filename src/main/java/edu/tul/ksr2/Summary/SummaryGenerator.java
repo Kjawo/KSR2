@@ -5,6 +5,7 @@ import edu.tul.ksr2.LinguisticVariable.Quantifier;
 import edu.tul.ksr2.LinguisticVariable.Summarizer;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class SummaryGenerator {
 
@@ -34,20 +35,33 @@ public class SummaryGenerator {
     public static ArrayList<SummarizationObject> generateSecondTypeSummarization(ArrayList<GameEntity> gameEntities, ArrayList<Quantifier> quantifiers, Summarizer qualifier, ArrayList<Summarizer> summarizers, boolean useQuantifier) {
         ArrayList<SummarizationObject> summarizationObjects = new ArrayList<>();
 
-        if(!useQuantifier) {
-            for(Summarizer summarizer : summarizers) {
-                summarizer.populateFuzzySet(gameEntities);
+        if(useQuantifier) {
+            ArrayList<GameEntity> newGameEntities = new ArrayList<>();
+            qualifier.populateFuzzySet(gameEntities);
+            for (Map.Entry<GameEntity, Double> entry : qualifier.getFuzzySet().support().entrySet()) {
+                if(entry.getValue() > 0.0)
+                {
+                    newGameEntities.add(entry.getKey());
+                }
             }
-
-            for(Quantifier quantifier : quantifiers) {
-                SummarizationObject summarizationObject = new SummarizationObject(quantifier, summarizers);
-                summarizationObject.calculateQualityMeasuresSecondType(gameEntities);
-                summarizationObjects.add(summarizationObject);
-            }
-        }else {
-
-
+            gameEntities = newGameEntities;
         }
+
+        for(Summarizer summarizer : summarizers) {
+            summarizer.populateFuzzySet(gameEntities);
+        }
+
+        for(Quantifier quantifier : quantifiers) {
+            SummarizationObject summarizationObject = new SummarizationObject(quantifier, summarizers);
+            if(useQuantifier) {
+                summarizationObject = new SummarizationObject(qualifier, quantifier, summarizers);
+            } else {
+                summarizationObject = new SummarizationObject(quantifier, summarizers);
+            }
+            summarizationObject.calculateQualityMeasuresSecondType(gameEntities);
+            summarizationObjects.add(summarizationObject);
+        }
+
 
 
         return summarizationObjects;

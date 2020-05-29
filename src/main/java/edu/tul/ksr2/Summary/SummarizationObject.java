@@ -86,6 +86,36 @@ public class SummarizationObject {
         T1 = new SimpleDoubleProperty(t1);
     }
 
+    public SummarizationObject(Summarizer qualifier, Quantifier quantifier, ArrayList<Summarizer> summarizers) {
+        this.qualifier = qualifier;
+        this.quantifier = quantifier;
+        this.summarizers = summarizers;
+
+        ArrayList<FuzzySet<GameEntity>> fuzzySets = new ArrayList<>();
+        for(Summarizer s : summarizers) {
+            fuzzySets.add(s.getFuzzySet());
+        }
+        FuzzySet<GameEntity> firstSet = fuzzySets.get(0);
+        if (firstSet.set.size() >= 2) {
+            for (int i = 1; i < fuzzySets.size(); i++) {
+                firstSet = FuzzySet.intersect(firstSet, fuzzySets.get(i));
+            }
+        }
+        summarizersComplexSet = firstSet;
+
+
+        this.isComplex = true;
+
+        StringBuilder summarizersAND = new StringBuilder();
+        for(int i = 0; i < summarizers.size(); i++) {
+            summarizersAND.append(summarizers.get(i).getTableValue());
+            if(i != summarizers.size() - 1) {
+                summarizersAND.append(" and ");
+            }
+        }
+        text = new SimpleStringProperty(quantifier.getName() + " games which are/have " + qualifier.getTableValue() + " are/have " + summarizersAND);
+    }
+
     public String getText() {
         return text.get();
     }

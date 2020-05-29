@@ -46,7 +46,7 @@
                               </font>
                            </Label>
                            <ComboBox fx:id="summarizersComboBox" layoutX="33.0" layoutY="43.0" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                           <ComboBox fx:id="qualifiersComboBox" layoutX="33.0" layoutY="43.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                           <ComboBox fx:id="qualifiersComboBox" layoutX="33.0" layoutY="43.0" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                            <GridPane>
                              <columnConstraints>
                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -60,7 +60,7 @@
                            </GridPane>
                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                               <children>
-                                 <Button fx:id="addSummarizer" onAction="#generateSummarizationSecondType" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Add summarizer" />
+                                 <Button fx:id="addSummarizer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#generateSummarizationSecondType" text="Add summarizer" />
                               </children>
                            </HBox>
                            <Label alignment="CENTER" layoutX="31.0" layoutY="75.0" text="Summarizers" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -68,7 +68,7 @@
                                  <Font size="15.0" />
                               </font>
                            </Label>
-                           <Label alignment="CENTER" layoutX="31.0" layoutY="75.0" text="Qualifier" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <Label alignment="CENTER" layoutX="31.0" layoutY="75.0" text="Qualifier" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                               <font>
                                  <Font size="15.0" />
                               </font>
@@ -80,6 +80,7 @@
                            </TableView>
                            <Button fx:id="removeSummarizer" mnemonicParsing="false" text="Remove summarizer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                            <Button fx:id="summarizationSecondType" layoutX="598.0" layoutY="149.0" mnemonicParsing="false" onAction="#generateSummarizationSecondType" text="Summarization second type" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                           <CheckBox fx:id="useQualifierCheckBox" mnemonicParsing="false" text="use qualifier" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                         </children>
                      </GridPane>
                         </children>

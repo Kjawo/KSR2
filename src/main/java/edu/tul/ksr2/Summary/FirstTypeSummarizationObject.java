@@ -157,7 +157,7 @@ public class FirstTypeSummarizationObject {
 
         this.T6 = new SimpleDoubleProperty(T6DegreeOfQuantifierImprecision.computeFirstType(this.quantifier, this.summarizer, gameEntities));
         this.T7 = new SimpleDoubleProperty(T7DegreeOfQuantifierCardinality.computeFirstType(this.quantifier, this.summarizer, gameEntities));
-        this.T8 = new SimpleDoubleProperty(0.0);
+        this.T8 = new SimpleDoubleProperty(T8DegreeOfSummarizerCardinality.computeFirstType(this.quantifier, summarizers, gameEntities));
         this.T9 = new SimpleDoubleProperty(0.0);
         this.T10 = new SimpleDoubleProperty(0.0);
         this.T11 = new SimpleDoubleProperty(0.0);

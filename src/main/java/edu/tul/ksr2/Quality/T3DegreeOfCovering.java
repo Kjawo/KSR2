@@ -28,8 +28,12 @@ public class T3DegreeOfCovering {
         double denominator = 0.0;
 
         for(GameEntity gameEntity : gameEntities) {
-            double qualifierMembership = qualifier.getFuzzySet().set.get(gameEntity);
-            double summarizerMembership = summarizersComplexSet.getSet().get(gameEntity);
+            double qualifierMembership = 0.0;
+            double summarizerMembership = 0.0;
+            if( qualifier.getFuzzySet().getSet().containsKey(gameEntity) )
+                qualifierMembership = qualifier.getFuzzySet().set.get(gameEntity);
+            if( summarizersComplexSet.getSet().containsKey(gameEntity) )
+                summarizerMembership = summarizersComplexSet.getSet().get(gameEntity);
 
             if (qualifierMembership > 0) {
                 denominator += 1.0;
@@ -38,13 +42,6 @@ public class T3DegreeOfCovering {
                 }
             }
         }
-//            for (Map.Entry<GameEntity, Double> entry : qualifier.getFuzzySet().support().entrySet()) {
-//                denominator += 1.0;
-//                if(summarizersComplexSet.support().containsKey(entry)) {
-//                    numerator += 1.0;
-//                }
-//            }
-
         return numerator / denominator;
 
 

@@ -216,7 +216,7 @@ title __KSR2's Class Diagram__\n
                          }
 
 namespace Summary {
-        class edu.tul.ksr2.Summary.FirstTypeSummarizationObject {
+        class edu.tul.ksr2.Summary.SummarizationObject {
             - T1 : SimpleDoubleProperty
             - T10 : SimpleDoubleProperty
             - T11 : SimpleDoubleProperty
@@ -243,7 +243,7 @@ namespace Summary {
 
   }
 
-  edu.tul.ksr2.Summary.FirstTypeSummarizationObject -> edu.tul.ksr2.Quality
+  edu.tul.ksr2.Summary.SummarizationObject -> edu.tul.ksr2.Quality
   edu.tul.ksr2.controller.MainWindow o-- edu.tul.ksr2.LinguisticVariable.LinguisticVariable
   edu.tul.ksr2.controller.MainWindow -> edu.tul.ksr2.Summary.SummaryGenerator
   edu.tul.ksr2.controller.MainWindow -> edu.tul.ksr2.LinguisticVariable.ParametersMapping
@@ -255,8 +255,8 @@ namespace Summary {
   edu.tul.ksr2.LinguisticVariable.Summarizer o-- edu.tul.ksr2.MembershipFunctions.MembershipFunction : membershipFunction
   edu.tul.ksr2.MembershipFunctions.trapmf .up.|> edu.tul.ksr2.MembershipFunctions.MembershipFunction
   edu.tul.ksr2.MembershipFunctions.trimf .up.|> edu.tul.ksr2.MembershipFunctions.MembershipFunction
-  edu.tul.ksr2.Summary.FirstTypeSummarizationObject o-- edu.tul.ksr2.LinguisticVariable.Quantifier : quantifier
-  edu.tul.ksr2.Summary.FirstTypeSummarizationObject o-- edu.tul.ksr2.LinguisticVariable.Summarizer : summarizer
+  edu.tul.ksr2.Summary.SummarizationObject o-- edu.tul.ksr2.LinguisticVariable.Quantifier : quantifier
+  edu.tul.ksr2.Summary.SummarizationObject o-- edu.tul.ksr2.LinguisticVariable.Summarizer : summarizer
 '  edu.tul.ksr2.application.PrimaryStageInitializer .up.|> org.springframework.context.ApplicationListener
 '  edu.tul.ksr2.application.SpringbootJavaFxApplication -up-|> javafx.application.Application
 '  edu.tul.ksr2.application.StageReadyEvent -up-|> org.springframework.context.ApplicationEvent

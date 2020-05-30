@@ -291,6 +291,18 @@ public class MainWindow {
                 new ArrayList<>(summarizersObservableList), useQualifierCheckBox.isSelected(), subjectP1, subjectP2));
     }
 
+    public void generateSummarizationMultiSubjectFourthType(ActionEvent actionEvent) {
+        String subjectP1 = (String) this.subjectP1.getSelectionModel().getSelectedItem();
+        String subjectP2 = (String) this.subjectP2.getSelectionModel().getSelectedItem();
+
+        ArrayList<GameEntity> gameEntitiesP1 = multiSubjectEntities.get(subjectP1);
+        ArrayList<GameEntity> gameEntitiesP2 = multiSubjectEntities.get(subjectP2);
+
+        summarizationsObservableList.clear();
+        summarizationsObservableList.addAll(SummaryGenerator.generateMultiSubjectSummarizationFourthType(gameEntitiesP1, gameEntitiesP2,
+                new ArrayList<>(summarizersObservableList), subjectP1, subjectP2));
+    }
+
     private Summarizer getQualifier() {
         return (Summarizer) qualifiersComboBox.getSelectionModel().getSelectedItem();
     }

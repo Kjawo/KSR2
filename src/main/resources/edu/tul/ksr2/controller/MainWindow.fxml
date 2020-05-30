@@ -136,6 +136,7 @@
                               </children>
                            </GridPane>
                            <Button fx:id="multiSubjectsummarizationThirdType" layoutX="610.0" layoutY="210.0" mnemonicParsing="false" onAction="#generateSummarizationMultiSubjectThirdType" text="Multi subject summarization 3rd type" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                           <Button fx:id="multiSubjectsummarizationFourthType" layoutX="595.0" layoutY="192.0" mnemonicParsing="false" onAction="#generateSummarizationMultiSubjectFourthType" text="Multi subject summarization 4th type" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
                         </children>
                     </GridPane>
 

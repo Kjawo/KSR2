@@ -202,4 +202,32 @@ public class SummaryGenerator {
 
         return summarizationObjects;
     }
+
+    public static ArrayList<SummarizationObject> generateMultiSubjectSummarizationFourthType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2, ArrayList<Summarizer> summarizers, String subjectP1, String subjectP2) {
+        ArrayList<SummarizationObject> summarizationObjects = new ArrayList<>();
+        ArrayList<SummarizationObject> summarizationObjectsP1 = new ArrayList<>();
+        ArrayList<SummarizationObject> summarizationObjectsP2 = new ArrayList<>();
+
+
+        ArrayList<Summarizer> summarizersP1 = summarizers;
+        ArrayList<Summarizer> summarizersP2 = summarizers;
+
+
+        for(Summarizer summarizer : summarizersP1) {
+            summarizer.populateFuzzySet(gameEntitiesP1);
+        }
+
+        for(Summarizer summarizer : summarizersP2) {
+            summarizer.populateFuzzySet(gameEntitiesP2);
+        }
+
+        SummarizationObject summarizationObject = new SummarizationObject(summarizersP1, summarizersP2, subjectP1, subjectP2);
+
+        summarizationObject.calculateQualityMeasuresMultiSubject(gameEntitiesP1, gameEntitiesP2);
+        summarizationObjects.add(summarizationObject);
+
+
+
+        return summarizationObjects;
+    }
 }

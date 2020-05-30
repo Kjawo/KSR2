@@ -267,6 +267,50 @@ public class SummarizationObject {
 
     }
 
+    public SummarizationObject(ArrayList<Summarizer> summarizersP1, ArrayList<Summarizer> summarizersP2, String subjectP1, String subjectP2) {
+        this.summarizersP1 = summarizersP1;
+        this.summarizersP2 = summarizersP2;
+
+
+        ArrayList<FuzzySet<GameEntity>> fuzzySetsP1 = new ArrayList<>();
+        for(Summarizer s : summarizersP1) {
+            fuzzySetsP1.add(s.getFuzzySet());
+        }
+        FuzzySet<GameEntity> firstSetP1 = fuzzySetsP1.get(0);
+        if (firstSetP1.set.size() >= 2) {
+            for (int i = 1; i < fuzzySetsP1.size(); i++) {
+                firstSetP1 = FuzzySet.intersect(firstSetP1, fuzzySetsP1.get(i));
+            }
+        }
+        summarizersComplexSetP1 = firstSetP1;
+
+        ArrayList<FuzzySet<GameEntity>> fuzzySetsP2 = new ArrayList<>();
+        for(Summarizer s : summarizersP2) {
+            fuzzySetsP2.add(s.getFuzzySet());
+        }
+        FuzzySet<GameEntity> firstSetP2 = fuzzySetsP2.get(0);
+        if (firstSetP2.set.size() >= 2) {
+            for (int i = 1; i < fuzzySetsP2.size(); i++) {
+                firstSetP2 = FuzzySet.intersect(firstSetP2, fuzzySetsP2.get(i));
+            }
+        }
+        summarizersComplexSetP2 = firstSetP2;
+
+        this.isComplex = true;
+        this.useQualifier = true;
+        this.isMultiSubject = true;
+
+        StringBuilder summarizersAND = new StringBuilder();
+        for(int i = 0; i < summarizersP1.size(); i++) {
+            summarizersAND.append(summarizersP1.get(i).getTableValue());
+            if(i != summarizersP1.size() - 1) {
+                summarizersAND.append(" and ");
+            }
+        }
+        text = new SimpleStringProperty("There are more games " + subjectP1 + " then games " + subjectP2 +  ", which are/have " + summarizersAND);
+
+    }
+
     public double getT() {
         return T.get();
     }

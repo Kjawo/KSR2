@@ -12,9 +12,9 @@ public class T4DegreeOfAppropriateness {
         double multiplication = 1.0;
 
         for(Summarizer summarizer : summarizers) {
-            multiplication *= summarizer.getFuzzySet().calculateDegreeOfFuzziness() / gameEntities.size();
+            multiplication *= (summarizer.getFuzzySet().calculateDegreeOfFuzziness()) - T3;
         }
 
-        return Math.abs(multiplication - T3);
+        return Math.abs(multiplication);
     }
 }

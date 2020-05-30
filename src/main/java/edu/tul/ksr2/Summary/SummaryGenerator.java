@@ -122,7 +122,7 @@ public class SummaryGenerator {
                 summarizationObjectP1 = new SummarizationObject(qualifierP1, quantifier, summarizersP1);
                 summarizationObjectP2 = new SummarizationObject(qualifierP2, quantifier, summarizersP2);
 
-//                summarizationObject = new SummarizationObject(quantifier, qualifierP1, summarizersP1, qualifierP2, summarizersP2);
+                summarizationObject = new SummarizationObject(quantifier, qualifierP1, summarizersP1, qualifierP2, summarizersP2, subjectP1, subjectP2);
             } else {
                 summarizationObjectP1 = new SummarizationObject(quantifier, summarizersP1);
                 summarizationObjectP2 = new SummarizationObject(quantifier, summarizersP2);

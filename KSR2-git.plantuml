@@ -140,6 +140,19 @@ title __KSR2's Class Diagram__\n
                       {abstract} + isRelative()
                   }
 
+                class edu.tul.ksr2.MembershipFunctions.gaussmf {
+                                                     + calculateCardinality()
+                                                     + compute()
+                                                     + compute()
+                                                     + generateLatexEq()
+                                                     + getA()
+                                                     + getB()
+                                                     + getC()
+                                                     + getD()
+                                                     + getName()
+                                                     + getSupp()
+                                                     + isRelative()
+                                                 }
 
                   class edu.tul.ksr2.MembershipFunctions.trapmf {
                       - a : double
@@ -245,6 +258,7 @@ namespace Summary {
 
   edu.tul.ksr2.Summary.SummarizationObject -> edu.tul.ksr2.Quality
   edu.tul.ksr2.controller.MainWindow o-- edu.tul.ksr2.LinguisticVariable.LinguisticVariable
+  edu.tul.ksr2.Summary.SummaryGenerator o-- edu.tul.ksr2.Summary.SummarizationObject
   edu.tul.ksr2.controller.MainWindow -> edu.tul.ksr2.Summary.SummaryGenerator
   edu.tul.ksr2.controller.MainWindow -> edu.tul.ksr2.LinguisticVariable.ParametersMapping
   edu.tul.ksr2.controller.MainWindow -> edu.tul.ksr2.Parameters.XMLReaders
@@ -255,6 +269,7 @@ namespace Summary {
   edu.tul.ksr2.LinguisticVariable.Summarizer o-- edu.tul.ksr2.MembershipFunctions.MembershipFunction : membershipFunction
   edu.tul.ksr2.MembershipFunctions.trapmf .up.|> edu.tul.ksr2.MembershipFunctions.MembershipFunction
   edu.tul.ksr2.MembershipFunctions.trimf .up.|> edu.tul.ksr2.MembershipFunctions.MembershipFunction
+  edu.tul.ksr2.MembershipFunctions.gaussmf .up.|> edu.tul.ksr2.MembershipFunctions.MembershipFunction
   edu.tul.ksr2.Summary.SummarizationObject o-- edu.tul.ksr2.LinguisticVariable.Quantifier : quantifier
   edu.tul.ksr2.Summary.SummarizationObject o-- edu.tul.ksr2.LinguisticVariable.Summarizer : summarizer
 '  edu.tul.ksr2.application.PrimaryStageInitializer .up.|> org.springframework.context.ApplicationListener
@@ -262,7 +277,7 @@ namespace Summary {
 '  edu.tul.ksr2.application.StageReadyEvent -up-|> org.springframework.context.ApplicationEvent
 
 'ComponentA -[hidden]-> ComponentC
-edu.tul.ksr2.LinguisticVariable -[hidden]-> edu.tul.ksr2.Quality
+edu.tul.ksr2.MembershipFunctions -[hidden]-> edu.tul.ksr2.Quality
 'edu.tul.ksr2.LinguisticVariable -[hidden]-> edu.tul.ksr2.Parameters
 'edu.tul.ksr2.Parameters -[hidden]-> edu.tul.ksr2.controller
 

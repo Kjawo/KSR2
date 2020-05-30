@@ -111,5 +111,14 @@ public class trimf implements MembershipFunction {
         }
     }
 
+    @Override
+    public double getSupp(double total) {
+        if(!isRelative){
+            return (c/total - a/total);
+        } else {
+            return c - a;
+        }
+    }
+
 
 }

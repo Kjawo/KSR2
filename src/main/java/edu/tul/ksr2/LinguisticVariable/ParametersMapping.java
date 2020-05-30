@@ -43,4 +43,26 @@ public class ParametersMapping {
         put("blueObjectDamageDealt", "ObjectDamageDealt");
         put("redObjectDamageDealt", "ObjectDamageDealt");
     }};
+
+
+    public static Map<String, Double> maxValueForParameter = new HashMap<>() {{
+//        put("gameId", "gameId");
+        put("Duration", 8000.0);
+        put("DragonKills", 9.0);
+        put("TowerKills", 11.0);
+        put("InhibitorKills", 13.0);
+        put("WardPlaced", 280.0);
+        put("WardKills", 180.0);
+        put("KillsAndDeaths", 140.0);
+        put("Assists", 265.0);
+        put("ChampionDamageDealt", 420000.0);
+        put("TotalGold", 160000.0);
+        put("TotalMinionKills", 1600.0);
+        put("TotalLevel", 170.0);
+        put("JungleMinionKills", 500.0);
+        put("KillingSpree", 36.0);
+        put("TotalHeal", 289000.0);
+        put("ObjectDamageDealt", 210000.0);
+        put("AmountOfGames", 199925.0);
+    }};
 }

@@ -242,10 +242,10 @@ public class SummarizationObject {
         }
         this.T4 = new SimpleDoubleProperty(T4DegreeOfAppropriateness.computeFirstType(this.quantifier, summarizers, gameEntities, this.T3.get()));
         this.T5 = new SimpleDoubleProperty(T5LengthOfASummary.computeFirstType(this.quantifier, summarizers, gameEntities));
-        this.T6 = new SimpleDoubleProperty(0.0);
-        this.T7 = new SimpleDoubleProperty(0.0);
-        this.T8 = new SimpleDoubleProperty(0.0);
-        this.T9 = new SimpleDoubleProperty(0.0);
+        this.T6 = new SimpleDoubleProperty(T6DegreeOfQuantifierImprecision.computeFirstType(this.quantifier, this.summarizer, gameEntities));
+        this.T7 = new SimpleDoubleProperty(T7DegreeOfQuantifierCardinality.computeFirstType(this.quantifier, this.summarizer, gameEntities));
+        this.T8 = new SimpleDoubleProperty(T8DegreeOfSummarizerCardinality.computeFirstType(this.quantifier, summarizers, gameEntities));
+        this.T9 = new SimpleDoubleProperty(T9DegreeOfQualifierImprecision.computeFirstType(this.quantifier, summarizers, gameEntities, this.qualifier));
         this.T10 = new SimpleDoubleProperty(0.0);
         this.T11 = new SimpleDoubleProperty(0.0);
     }

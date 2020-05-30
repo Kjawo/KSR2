@@ -51,7 +51,7 @@
             <Properties>
                 <PropertyTreeItem>
                     <Name>almost none</Name>
-                    <Membership>Trapezoidal</Membership>
+                    <Membership>Triangular</Membership>
                     <A>0</A>
                     <B>1</B>
                     <C>1</C>
@@ -59,7 +59,7 @@
                 </PropertyTreeItem>
                 <PropertyTreeItem>
                     <Name>few</Name>
-                    <Membership>Trapezoidal</Membership>
+                    <Membership>Triangular</Membership>
                     <A>1</A>
                     <B>2</B>
                     <C>3</C>
@@ -67,15 +67,15 @@
                 </PropertyTreeItem>
                 <PropertyTreeItem>
                     <Name>quite a lot</Name>
-                    <Membership>Trapezoidal</Membership>
+                    <Membership>Triangular</Membership>
                     <A>2</A>
                     <B>3</B>
                     <C>5</C>
                     <D>0</D>
                 </PropertyTreeItem>
                 <PropertyTreeItem>
-                    <Name>huge ammount</Name>
-                    <Membership>Trapezoidal</Membership>
+                    <Name>huge amount</Name>
+                    <Membership>Triangular</Membership>
                     <A>4</A>
                     <B>7</B>
                     <C>9</C>
@@ -394,7 +394,7 @@
                     <D>7200</D>
                 </PropertyTreeItem>
                 <PropertyTreeItem>
-                    <Name>little ammount</Name>
+                    <Name>little amount</Name>
                     <Membership>Trapezoidal</Membership>
                     <A>7000</A>
                     <B>7200</B>
@@ -402,7 +402,7 @@
                     <D>36000</D>
                 </PropertyTreeItem>
                 <PropertyTreeItem>
-                    <Name>substential</Name>
+                    <Name>substantial</Name>
                     <Membership>Trapezoidal</Membership>
                     <A>35500</A>
                     <B>37000</B>
@@ -439,7 +439,7 @@
                     <D>95</D>
                 </PropertyTreeItem>
                 <PropertyTreeItem>
-                    <Name>little ammount</Name>
+                    <Name>little amount</Name>
                     <Membership>Trapezoidal</Membership>
                     <A>90</A>
                     <B>100</B>

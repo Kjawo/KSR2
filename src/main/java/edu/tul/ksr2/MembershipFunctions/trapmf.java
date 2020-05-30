@@ -113,4 +113,13 @@ public class trapmf implements MembershipFunction {
             return (Math.abs(d - a) + Math.abs(c - b)) / 2;
         }
     }
+
+    @Override
+    public double getSupp(double total) {
+        if(!isRelative){
+            return (d/total - a/total);
+        } else {
+            return d - a;
+        }
+    }
 }

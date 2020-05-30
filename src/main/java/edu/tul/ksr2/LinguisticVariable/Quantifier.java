@@ -41,6 +41,10 @@ public class Quantifier {
         return result.toString();
     }
 
+    public double getSupp(double total){
+        return getMembershipFunction().getSupp(total);
+    }
+
 
     public MembershipFunction getMembershipFunction() {
         return membershipFunction;

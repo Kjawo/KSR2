@@ -32,6 +32,7 @@ public class MainWindow {
 
     private final FxControllerAndView<SomeDialog, VBox> someDialog;
     public ArrayList<GameEntity> gameEntities;
+    public HashMap<String, ArrayList<GameEntity>> multiSubjectEntities;
     private static ArrayList<Quantifier> quantifiers;
     private static ArrayList<LinguisticVariable> linguisticVariables;
 
@@ -63,6 +64,8 @@ public class MainWindow {
     public Button addSummarizer;
     public Button removeSummarizer;
     public CheckBox useQualifierCheckBox;
+    public ComboBox subjectP1;
+    public ComboBox subjectP2;
     private ObservableList<SummarizationObject> summarizationsObservableList = FXCollections.observableArrayList();
     private HashMap<String, Summarizer> summarizers = new HashMap<>();
     private ObservableList<Summarizer> summarizersObservableList = FXCollections.observableArrayList();;
@@ -96,6 +99,8 @@ public class MainWindow {
 
             DatabaseHandler.initialize();
             gameEntities = DatabaseHandler.loadAllFromDB();
+
+            prepareMultiSubjectData();
 
             prepareSpinner();
 
@@ -141,6 +146,48 @@ public class MainWindow {
                     summarizersObservableList.remove(selectedItem);
                 }
         );
+    }
+
+    private void prepareMultiSubjectData() {
+        multiSubjectEntities = new HashMap<>();
+
+        ArrayList<GameEntity> blueWon = new ArrayList<>();
+        ArrayList<GameEntity> blueLost = new ArrayList<>();
+        ArrayList<GameEntity> redWon = new ArrayList<>();
+        ArrayList<GameEntity> redLost = new ArrayList<>();
+        ArrayList<GameEntity> blueFirstBlood = new ArrayList<>();
+        ArrayList<GameEntity> redFirstBlood = new ArrayList<>();
+
+        for(GameEntity gameEntity : gameEntities) {
+            if (gameEntity.blueWins == 1.0) {
+                blueWon.add(gameEntity);
+                redLost.add(gameEntity);
+            } else {
+                blueLost.add(gameEntity);
+                redWon.add(gameEntity);
+            }
+
+            if (gameEntity.blueFirstBlood == 1.0) {
+                blueFirstBlood.add(gameEntity);
+            } else {
+                redFirstBlood.add(gameEntity);
+            }
+        }
+
+        multiSubjectEntities.put("won by blue", blueWon);
+        multiSubjectEntities.put("won by red", redWon);
+        multiSubjectEntities.put("lost by blue", blueLost);
+        multiSubjectEntities.put("lost by red", redLost);
+        multiSubjectEntities.put("with first blood blue", blueFirstBlood);
+        multiSubjectEntities.put("with first blood red", redFirstBlood);
+
+        subjectP1.getItems().clear();
+        subjectP1.getItems().addAll(multiSubjectEntities.keySet());
+        subjectP1.getSelectionModel().select("won by blue");
+
+        subjectP2.getItems().clear();
+        subjectP2.getItems().addAll(multiSubjectEntities.keySet());
+        subjectP2.getSelectionModel().select("with first blood blue");
     }
 
     private void prepareSummarizersTable() {
@@ -220,10 +267,11 @@ public class MainWindow {
     }
 
     public void generateSummarizationMultiSubject(ActionEvent actionEvent) {
-        ArrayList<GameEntity> gameEntitiesP1 = gameEntities;
-        ArrayList<GameEntity> gameEntitiesP2 = gameEntities;
-        String subjectP1 = "won by blue";
-        String subjectP2 = "lost by blue";
+        String subjectP1 = (String) this.subjectP1.getSelectionModel().getSelectedItem();
+        String subjectP2 = (String) this.subjectP2.getSelectionModel().getSelectedItem();
+
+        ArrayList<GameEntity> gameEntitiesP1 = multiSubjectEntities.get(subjectP1);
+        ArrayList<GameEntity> gameEntitiesP2 = multiSubjectEntities.get(subjectP2);
 
         summarizationsObservableList.clear();
         summarizationsObservableList.addAll(SummaryGenerator.generateMultiSubjectSummarization(gameEntitiesP1, gameEntitiesP2, getQuantifiers(), getQualifier(),
@@ -264,6 +312,9 @@ public class MainWindow {
                 spinnerFirstVar.getSelectionModel().getSelectedItem().toString()
         ));
         qualifiersComboBox.getSelectionModel().select(0);
+
+
+
     }
 
     public void comboActionLV(ActionEvent actionEvent) {

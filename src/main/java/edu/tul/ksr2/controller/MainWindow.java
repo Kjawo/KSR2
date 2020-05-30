@@ -219,6 +219,18 @@ public class MainWindow {
         tableView.getSortOrder().add(tableColumnT);
     }
 
+    public void generateSummarizationMultiSubject(ActionEvent actionEvent) {
+        ArrayList<GameEntity> gameEntitiesP1 = gameEntities;
+        ArrayList<GameEntity> gameEntitiesP2 = gameEntities;
+        String subjectP1 = "won by blue";
+        String subjectP2 = "lost by blue";
+
+        summarizationsObservableList.clear();
+        summarizationsObservableList.addAll(SummaryGenerator.generateMultiSubjectSummarization(gameEntitiesP1, gameEntitiesP2, getQuantifiers(), getQualifier(),
+                new ArrayList<>(summarizersObservableList), useQualifierCheckBox.isSelected(), subjectP1, subjectP2));
+//        tableView.getSortOrder().add(tableColumnT);
+    }
+
     private Summarizer getQualifier() {
         return (Summarizer) qualifiersComboBox.getSelectionModel().getSelectedItem();
     }
@@ -267,6 +279,7 @@ public class MainWindow {
         ));
         qualifiersComboBox.getSelectionModel().select(0);
     }
+
 
 
 }

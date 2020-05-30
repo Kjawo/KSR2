@@ -166,6 +166,5 @@
     </TabPane>
 
     <Button fx:id="openDialogButton" alignment="CENTER" prefHeight="35.0" prefWidth="237.0" text="Open Simple Dialog" />
-   <BorderPane prefHeight="200.0" prefWidth="200.0" />
 
 </VBox>

@@ -14,7 +14,7 @@ title __KSR2's Class Diagram__\n
         class edu.tul.ksr2.Quality.DegreeOfImprecision {
         }
 
-        class edu.tul.ksr2.Quality.DegreeOfQualifierCardinality {
+        class edu.tul.ksr2.Quality.T10DegreeOfQualifierCardinality {
         }
 
         class edu.tul.ksr2.Quality.DegreeOfQualifierImprecision {

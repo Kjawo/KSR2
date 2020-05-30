@@ -14,6 +14,7 @@ public class SummarizationObject {
     private Quantifier quantifier;
     private Summarizer summarizer;
     private SimpleStringProperty text;
+    private SimpleDoubleProperty T;
     private SimpleDoubleProperty T1;
     private SimpleDoubleProperty T2;
     private SimpleDoubleProperty T3;
@@ -42,6 +43,8 @@ public class SummarizationObject {
 
         this.quantifier = quantifier;
         this.summarizer = summarizer;
+
+        this.useQualifier = false;
 
         text = new SimpleStringProperty(quantifier.getName() + " games are/have " + summarizer.getName() + " " + summarizer.getEntityFieldName());
     }
@@ -93,6 +96,8 @@ public class SummarizationObject {
         this.quantifier = quantifier;
         this.summarizers = summarizers;
 
+        this.useQualifier = false;
+
         ArrayList<FuzzySet<GameEntity>> fuzzySets = new ArrayList<>();
         for(Summarizer s : summarizers) {
             fuzzySets.add(s.getFuzzySet());
@@ -117,6 +122,14 @@ public class SummarizationObject {
             }
         }
         text = new SimpleStringProperty(quantifier.getName() + " games which are/have " + qualifier.getTableValue() + " are/have " + summarizersAND);
+    }
+
+    public double getT() {
+        return T.get();
+    }
+
+    public SimpleDoubleProperty tProperty() {
+        return T;
     }
 
     public String getText() {
@@ -230,6 +243,8 @@ public class SummarizationObject {
         this.T9 = new SimpleDoubleProperty(0.0);
         this.T10 = new SimpleDoubleProperty(0.0);
         this.T11 = new SimpleDoubleProperty(0.0);
+
+        calcualteOptimalQualityMeasure();
     }
 
     public void calculateQualityMeasuresSecondType(ArrayList<GameEntity> gameEntities) {
@@ -248,5 +263,37 @@ public class SummarizationObject {
         this.T9 = new SimpleDoubleProperty(T9DegreeOfQualifierImprecision.computeFirstType(this.quantifier, summarizers, gameEntities, this.qualifier));
         this.T10 = new SimpleDoubleProperty(0.0);
         this.T11 = new SimpleDoubleProperty(0.0);
+
+        calcualteOptimalQualityMeasure();
+    }
+
+
+    private void calcualteOptimalQualityMeasure() {
+        ArrayList<Double> qualityMeasuresWeighted = new ArrayList<>();
+
+        if(this.useQualifier) {
+            qualityMeasuresWeighted.add(this.T1.getValue() * 0.75);
+            qualityMeasuresWeighted.add(this.T2.getValue() * 0.025);
+            qualityMeasuresWeighted.add(this.T3.getValue() * 0.025);
+            qualityMeasuresWeighted.add(this.T4.getValue() * 0.025);
+            qualityMeasuresWeighted.add(this.T5.getValue() * 0.025);
+            qualityMeasuresWeighted.add(this.T6.getValue() * 0.025);
+            qualityMeasuresWeighted.add(this.T7.getValue() * 0.025);
+            qualityMeasuresWeighted.add(this.T8.getValue() * 0.025);
+            qualityMeasuresWeighted.add(this.T9.getValue() * 0.025);
+            qualityMeasuresWeighted.add(this.T10.getValue() * 0.025);
+            qualityMeasuresWeighted.add(this.T11.getValue() * 0.025);
+        } else {
+            qualityMeasuresWeighted.add(this.T1.getValue() * 0.75);
+            qualityMeasuresWeighted.add(this.T2.getValue() * 0.25 / 7);
+            qualityMeasuresWeighted.add(this.T3.getValue() * 0.25 / 7);
+            qualityMeasuresWeighted.add(this.T4.getValue() * 0.25 / 7);
+            qualityMeasuresWeighted.add(this.T5.getValue() * 0.25 / 7);
+            qualityMeasuresWeighted.add(this.T6.getValue() * 0.25 / 7);
+            qualityMeasuresWeighted.add(this.T7.getValue() * 0.25 / 7);
+            qualityMeasuresWeighted.add(this.T8.getValue() * 0.25 / 7);
+        }
+
+        this.T = new SimpleDoubleProperty(qualityMeasuresWeighted.stream().mapToDouble(n -> n).sum());
     }
 }

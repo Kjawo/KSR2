@@ -46,6 +46,7 @@ public class MainWindow {
     public TableView<SummarizationObject> tableView;
     public TableColumn<SummarizationObject, String> tableColumnText
             = new TableColumn<>("Summarization");
+    public TableColumn<SummarizationObject, String> tableColumnT = new TableColumn<>("T");
     public TableColumn<SummarizationObject, String> tableColumnT1 = new TableColumn<>("T1");
     public TableColumn<SummarizationObject, String> tableColumnT2 = new TableColumn<>("T2");
     public TableColumn<SummarizationObject, String> tableColumnT3 = new TableColumn<>("T3");
@@ -156,6 +157,7 @@ public class MainWindow {
     private void prepareTable() {
         tableView.setPlaceholder(new Label("No rows to display"));
         tableColumnText.setCellValueFactory(new PropertyValueFactory<>("Text"));
+        tableColumnT.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT()));
         tableColumnT1.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT1()));
         tableColumnT2.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT2()));
         tableColumnT3.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT3()));
@@ -169,7 +171,8 @@ public class MainWindow {
         tableColumnT11.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT11()));
 
 //        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        tableColumnText.prefWidthProperty().bind(tableView.widthProperty().divide(1.0 / 0.55));
+        tableColumnText.prefWidthProperty().bind(tableView.widthProperty().divide(1.0 / 0.52));
+        tableColumnT.prefWidthProperty().bind(tableView.widthProperty().divide(25));
         tableColumnT1.prefWidthProperty().bind(tableView.widthProperty().divide(25));
         tableColumnT2.prefWidthProperty().bind(tableView.widthProperty().divide(25));
         tableColumnT3.prefWidthProperty().bind(tableView.widthProperty().divide(25));
@@ -184,6 +187,7 @@ public class MainWindow {
 
         tableView.setItems(summarizationsObservableList);
         tableView.getColumns().addAll(tableColumnText,
+                tableColumnT,
                 tableColumnT1,
                 tableColumnT2,
                 tableColumnT3,
@@ -197,22 +201,22 @@ public class MainWindow {
                 tableColumnT11
                 );
 
-        tableColumnT1.setComparator(tableColumnT1.getComparator().reversed());
-        tableView.getSortOrder().add(tableColumnT1);
+        tableColumnT.setComparator(tableColumnT.getComparator().reversed());
+        tableView.getSortOrder().add(tableColumnT);
     }
 
     public void generateSummarizationFirstType(){
         summarizationsObservableList.clear();
         summarizationsObservableList.addAll(SummaryGenerator.generateFirstTypeSummarization(gameEntities, getQuantifiers(),
                new ArrayList<>(summarizersObservableList)));
-        tableView.getSortOrder().add(tableColumnT1);
+        tableView.getSortOrder().add(tableColumnT);
     }
 
     public void generateSummarizationSecondType(ActionEvent actionEvent) {
         summarizationsObservableList.clear();
         summarizationsObservableList.addAll(SummaryGenerator.generateSecondTypeSummarization(gameEntities, getQuantifiers(), getQualifier(),
                 new ArrayList<>(summarizersObservableList), useQualifierCheckBox.isSelected()));
-        tableView.getSortOrder().add(tableColumnT1);
+        tableView.getSortOrder().add(tableColumnT);
     }
 
     private Summarizer getQualifier() {

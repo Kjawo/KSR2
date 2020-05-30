@@ -28,10 +28,16 @@ public class SummarizationObject {
     private SimpleDoubleProperty T11;
 
     ArrayList<Summarizer> summarizers;
+    ArrayList<Summarizer> summarizersP1;
+    ArrayList<Summarizer> summarizersP2;
     Summarizer qualifier;
     FuzzySet<GameEntity> summarizersComplexSet;
+    FuzzySet<GameEntity> summarizersComplexSetP1;
+    FuzzySet<GameEntity> summarizersComplexSetP2;
     Boolean isComplex;
     Boolean useQualifier;
+
+    Boolean isMultiSubject = false;
 
     public SummarizationObject(SimpleStringProperty  text, SimpleDoubleProperty t1) {
         this.text = text;
@@ -122,6 +128,49 @@ public class SummarizationObject {
             }
         }
         text = new SimpleStringProperty(quantifier.getName() + " games which are/have " + qualifier.getTableValue() + " are/have " + summarizersAND);
+    }
+
+    public SummarizationObject(Quantifier quantifier, ArrayList<Summarizer> summarizersP1, ArrayList<Summarizer> summarizersP2, String subjectP1, String subjectP2) {
+        this.quantifier = quantifier;
+        this.summarizersP1 = summarizersP1;
+        this.summarizersP2 = summarizersP2;
+
+        ArrayList<FuzzySet<GameEntity>> fuzzySetsP1 = new ArrayList<>();
+        for(Summarizer s : summarizersP1) {
+            fuzzySetsP1.add(s.getFuzzySet());
+        }
+        FuzzySet<GameEntity> firstSetP1 = fuzzySetsP1.get(0);
+        if (firstSetP1.set.size() >= 2) {
+            for (int i = 1; i < fuzzySetsP1.size(); i++) {
+                firstSetP1 = FuzzySet.intersect(firstSetP1, fuzzySetsP1.get(i));
+            }
+        }
+        summarizersComplexSetP1 = firstSetP1;
+
+        ArrayList<FuzzySet<GameEntity>> fuzzySetsP2 = new ArrayList<>();
+        for(Summarizer s : summarizersP2) {
+            fuzzySetsP2.add(s.getFuzzySet());
+        }
+        FuzzySet<GameEntity> firstSetP2 = fuzzySetsP2.get(0);
+        if (firstSetP2.set.size() >= 2) {
+            for (int i = 1; i < fuzzySetsP2.size(); i++) {
+                firstSetP2 = FuzzySet.intersect(firstSetP2, fuzzySetsP2.get(i));
+            }
+        }
+        summarizersComplexSetP2 = firstSetP2;
+
+        this.isComplex = true;
+        this.useQualifier = false;
+        this.isMultiSubject = true;
+
+        StringBuilder summarizersAND = new StringBuilder();
+        for(int i = 0; i < summarizersP1.size(); i++) {
+            summarizersAND.append(summarizersP1.get(i).getTableValue());
+            if(i != summarizersP1.size() - 1) {
+                summarizersAND.append(" and ");
+            }
+        }
+        text = new SimpleStringProperty(quantifier.getName() + " games " + subjectP1 + " compared to games " + subjectP2 + " are/have " + summarizersAND);
     }
 
     public double getT() {
@@ -245,6 +294,7 @@ public class SummarizationObject {
         this.T11 = new SimpleDoubleProperty(0.0);
 
         calcualteOptimalQualityMeasure();
+
     }
 
     public void calculateQualityMeasuresSecondType(ArrayList<GameEntity> gameEntities) {
@@ -267,6 +317,21 @@ public class SummarizationObject {
         calcualteOptimalQualityMeasure();
     }
 
+    public void calculateQualityMeasuresMultiSubject(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
+        this.T1 = new SimpleDoubleProperty(0.0);
+        this.T2 = new SimpleDoubleProperty(0.0);
+        this.T3 = new SimpleDoubleProperty(0.0);
+        this.T4 = new SimpleDoubleProperty(0.0);
+        this.T5 = new SimpleDoubleProperty(0.0);
+        this.T6 = new SimpleDoubleProperty(0.0);
+        this.T7 = new SimpleDoubleProperty(0.0);
+        this.T8 = new SimpleDoubleProperty(0.0);
+        this.T9 = new SimpleDoubleProperty(0.0);
+        this.T10 = new SimpleDoubleProperty(0.0);
+        this.T11 = new SimpleDoubleProperty(0.0);
+
+        this.T = new SimpleDoubleProperty(0.0);
+    }
 
     private void calcualteOptimalQualityMeasure() {
         ArrayList<Double> qualityMeasuresWeighted = new ArrayList<>();
@@ -296,4 +361,6 @@ public class SummarizationObject {
 
         this.T = new SimpleDoubleProperty(qualityMeasuresWeighted.stream().mapToDouble(n -> n).sum());
     }
+
+
 }

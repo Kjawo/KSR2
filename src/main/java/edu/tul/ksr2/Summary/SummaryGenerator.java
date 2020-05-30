@@ -66,4 +66,75 @@ public class SummaryGenerator {
 
         return summarizationObjects;
     }
+
+    public static ArrayList<SummarizationObject> generateMultiSubjectSummarization(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2, ArrayList<Quantifier> quantifiers, Summarizer qualifier, ArrayList<Summarizer> summarizers, boolean useQuantifier, String subjectP1, String subjectP2) {
+        ArrayList<SummarizationObject> summarizationObjects = new ArrayList<>();
+        ArrayList<SummarizationObject> summarizationObjectsP1 = new ArrayList<>();
+        ArrayList<SummarizationObject> summarizationObjectsP2 = new ArrayList<>();
+
+        Summarizer qualifierP1 = qualifier;
+        Summarizer qualifierP2 = qualifier;
+
+        ArrayList<Summarizer> summarizersP1 = summarizers;
+        ArrayList<Summarizer> summarizersP2 = summarizers;
+
+
+        if(useQuantifier) {
+            ArrayList<GameEntity> newGameEntitiesP1 = new ArrayList<>();
+            qualifierP1.populateFuzzySet(gameEntitiesP1);
+
+            ArrayList<GameEntity> newGameEntitiesP2 = new ArrayList<>();
+            qualifierP2.populateFuzzySet(gameEntitiesP2);
+
+            for (Map.Entry<GameEntity, Double> entry : qualifierP1.getFuzzySet().support().entrySet()) {
+                if(entry.getValue() > 0.0)
+                {
+                    newGameEntitiesP1.add(entry.getKey());
+                }
+            }
+            gameEntitiesP1 = newGameEntitiesP1;
+
+            for (Map.Entry<GameEntity, Double> entry : qualifierP2.getFuzzySet().support().entrySet()) {
+                if(entry.getValue() > 0.0)
+                {
+                    newGameEntitiesP2.add(entry.getKey());
+                }
+            }
+            gameEntitiesP2 = newGameEntitiesP2;
+        }
+
+        for(Summarizer summarizer : summarizersP1) {
+            summarizer.populateFuzzySet(gameEntitiesP1);
+        }
+
+        for(Summarizer summarizer : summarizersP2) {
+            summarizer.populateFuzzySet(gameEntitiesP2);
+        }
+
+
+        for(Quantifier quantifier : quantifiers) {
+            SummarizationObject summarizationObjectP1 = new SummarizationObject(quantifier, summarizersP1);
+            SummarizationObject summarizationObjectP2 = new SummarizationObject(quantifier, summarizersP2);
+
+            SummarizationObject summarizationObject = new SummarizationObject(quantifier, summarizersP2);
+
+            if(useQuantifier) {
+                summarizationObjectP1 = new SummarizationObject(qualifierP1, quantifier, summarizersP1);
+                summarizationObjectP2 = new SummarizationObject(qualifierP2, quantifier, summarizersP2);
+
+//                summarizationObject = new SummarizationObject(quantifier, qualifierP1, summarizersP1, qualifierP2, summarizersP2);
+            } else {
+                summarizationObjectP1 = new SummarizationObject(quantifier, summarizersP1);
+                summarizationObjectP2 = new SummarizationObject(quantifier, summarizersP2);
+
+                summarizationObject = new SummarizationObject(quantifier, summarizersP1, summarizersP2, subjectP1, subjectP2);
+            }
+            summarizationObject.calculateQualityMeasuresMultiSubject(gameEntitiesP1, gameEntitiesP2);
+            summarizationObjects.add(summarizationObject);
+        }
+
+
+
+        return summarizationObjects;
+    }
 }

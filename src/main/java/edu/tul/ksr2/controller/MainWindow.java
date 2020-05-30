@@ -8,6 +8,7 @@ import edu.tul.ksr2.LinguisticVariable.Quantifier;
 import edu.tul.ksr2.Parameters.XMLReader;
 import edu.tul.ksr2.Summary.SummarizationObject;
 import edu.tul.ksr2.Summary.SummaryGenerator;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,17 +46,17 @@ public class MainWindow {
     public TableView<SummarizationObject> tableView;
     public TableColumn<SummarizationObject, String> tableColumnText
             = new TableColumn<>("Summarization");
-    public TableColumn<SummarizationObject, Double> tableColumnT1 = new TableColumn<>("T1");
-    public TableColumn<SummarizationObject, Double> tableColumnT2 = new TableColumn<>("T2");
-    public TableColumn<SummarizationObject, Double> tableColumnT3 = new TableColumn<>("T3");
-    public TableColumn<SummarizationObject, Double> tableColumnT4 = new TableColumn<>("T4");
-    public TableColumn<SummarizationObject, Double> tableColumnT5 = new TableColumn<>("T5");
-    public TableColumn<SummarizationObject, Double> tableColumnT6 = new TableColumn<>("T6");
-    public TableColumn<SummarizationObject, Double> tableColumnT7 = new TableColumn<>("T7");
-    public TableColumn<SummarizationObject, Double> tableColumnT8 = new TableColumn<>("T8");
-    public TableColumn<SummarizationObject, Double> tableColumnT9 = new TableColumn<>("T9");
-    public TableColumn<SummarizationObject, Double> tableColumnT10 = new TableColumn<>("T10");
-    public TableColumn<SummarizationObject, Double> tableColumnT11 = new TableColumn<>("T11");
+    public TableColumn<SummarizationObject, String> tableColumnT1 = new TableColumn<>("T1");
+    public TableColumn<SummarizationObject, String> tableColumnT2 = new TableColumn<>("T2");
+    public TableColumn<SummarizationObject, String> tableColumnT3 = new TableColumn<>("T3");
+    public TableColumn<SummarizationObject, String> tableColumnT4 = new TableColumn<>("T4");
+    public TableColumn<SummarizationObject, String> tableColumnT5 = new TableColumn<>("T5");
+    public TableColumn<SummarizationObject, String> tableColumnT6 = new TableColumn<>("T6");
+    public TableColumn<SummarizationObject, String> tableColumnT7 = new TableColumn<>("T7");
+    public TableColumn<SummarizationObject, String> tableColumnT8 = new TableColumn<>("T8");
+    public TableColumn<SummarizationObject, String> tableColumnT9 = new TableColumn<>("T9");
+    public TableColumn<SummarizationObject, String> tableColumnT10 = new TableColumn<>("T10");
+    public TableColumn<SummarizationObject, String> tableColumnT11 = new TableColumn<>("T11");
     public ComboBox summarizersComboBox;
     public ComboBox qualifiersComboBox;
     public Button addSummarizer;
@@ -155,19 +156,31 @@ public class MainWindow {
     private void prepareTable() {
         tableView.setPlaceholder(new Label("No rows to display"));
         tableColumnText.setCellValueFactory(new PropertyValueFactory<>("Text"));
-        tableColumnT1.setCellValueFactory(new PropertyValueFactory<>("T1"));
-        tableColumnT2.setCellValueFactory(new PropertyValueFactory<>("T2"));
-        tableColumnT3.setCellValueFactory(new PropertyValueFactory<>("T3"));
-        tableColumnT4.setCellValueFactory(new PropertyValueFactory<>("T4"));
-        tableColumnT5.setCellValueFactory(new PropertyValueFactory<>("T5"));
-        tableColumnT6.setCellValueFactory(new PropertyValueFactory<>("T6"));
-        tableColumnT7.setCellValueFactory(new PropertyValueFactory<>("T7"));
-        tableColumnT8.setCellValueFactory(new PropertyValueFactory<>("T8"));
-        tableColumnT9.setCellValueFactory(new PropertyValueFactory<>("T9"));
-        tableColumnT10.setCellValueFactory(new PropertyValueFactory<>("T10"));
-        tableColumnT11.setCellValueFactory(new PropertyValueFactory<>("T11"));
+        tableColumnT1.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT1()));
+        tableColumnT2.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT2()));
+        tableColumnT3.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT3()));
+        tableColumnT4.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT4()));
+        tableColumnT5.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT5()));
+        tableColumnT6.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT6()));
+        tableColumnT7.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT7()));
+        tableColumnT8.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT8()));
+        tableColumnT9.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT9()));
+        tableColumnT10.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT10()));
+        tableColumnT11.setCellValueFactory(cellData -> Bindings.format("%.2f", cellData.getValue().getT11()));
 
-        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+//        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tableColumnText.prefWidthProperty().bind(tableView.widthProperty().divide(1.0 / 0.55));
+        tableColumnT1.prefWidthProperty().bind(tableView.widthProperty().divide(25));
+        tableColumnT2.prefWidthProperty().bind(tableView.widthProperty().divide(25));
+        tableColumnT3.prefWidthProperty().bind(tableView.widthProperty().divide(25));
+        tableColumnT4.prefWidthProperty().bind(tableView.widthProperty().divide(25));
+        tableColumnT5.prefWidthProperty().bind(tableView.widthProperty().divide(25));
+        tableColumnT6.prefWidthProperty().bind(tableView.widthProperty().divide(25));
+        tableColumnT7.prefWidthProperty().bind(tableView.widthProperty().divide(25));
+        tableColumnT8.prefWidthProperty().bind(tableView.widthProperty().divide(25));
+        tableColumnT9.prefWidthProperty().bind(tableView.widthProperty().divide(25));
+        tableColumnT10.prefWidthProperty().bind(tableView.widthProperty().divide(25));
+        tableColumnT11.prefWidthProperty().bind(tableView.widthProperty().divide(25));
 
         tableView.setItems(summarizationsObservableList);
         tableView.getColumns().addAll(tableColumnText,
@@ -183,18 +196,23 @@ public class MainWindow {
                 tableColumnT10,
                 tableColumnT11
                 );
+
+        tableColumnT1.setComparator(tableColumnT1.getComparator().reversed());
+        tableView.getSortOrder().add(tableColumnT1);
     }
 
     public void generateSummarizationFirstType(){
         summarizationsObservableList.clear();
         summarizationsObservableList.addAll(SummaryGenerator.generateFirstTypeSummarization(gameEntities, getQuantifiers(),
                new ArrayList<>(summarizersObservableList)));
+        tableView.getSortOrder().add(tableColumnT1);
     }
 
     public void generateSummarizationSecondType(ActionEvent actionEvent) {
         summarizationsObservableList.clear();
         summarizationsObservableList.addAll(SummaryGenerator.generateSecondTypeSummarization(gameEntities, getQuantifiers(), getQualifier(),
                 new ArrayList<>(summarizersObservableList), useQualifierCheckBox.isSelected()));
+        tableView.getSortOrder().add(tableColumnT1);
     }
 
     private Summarizer getQualifier() {

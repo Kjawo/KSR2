@@ -5,35 +5,37 @@ title __KSR2's Class Diagram__\n
     namespace edu.tul.ksr2 {
 
       namespace Quality {
-        class edu.tul.ksr2.Quality.DegreeOfAppropriateness {
-        }
-
-        class edu.tul.ksr2.Quality.DegreeOfCovering {
-        }
-
-        class edu.tul.ksr2.Quality.DegreeOfImprecision {
-        }
-
         class edu.tul.ksr2.Quality.T10DegreeOfQualifierCardinality {
-        }
+               }
 
-        class edu.tul.ksr2.Quality.DegreeOfQualifierImprecision {
-        }
+               class edu.tul.ksr2.Quality.T11LengthOfQualifier {
+               }
 
-        class edu.tul.ksr2.Quality.DegreeOfQuantifierCardinality {
-        }
+               class edu.tul.ksr2.Quality.T1DegreeOfTruth {
+               }
 
-        class edu.tul.ksr2.Quality.DegreeOfQuantifierImprecision {
-        }
+               class edu.tul.ksr2.Quality.T2DegreeOfImprecision {
+               }
 
-        class edu.tul.ksr2.Quality.DegreeOfSummarizerCardinality {
-        }
+               class edu.tul.ksr2.Quality.T3DegreeOfCovering {
+               }
 
-        class edu.tul.ksr2.Quality.DegreeOfTruth {
-        }
+               class edu.tul.ksr2.Quality.T4DegreeOfAppropriateness {
+               }
 
-        class edu.tul.ksr2.Quality.LengthOfASummary {
-        }
+               class edu.tul.ksr2.Quality.T5LengthOfASummary {
+               }
+               class edu.tul.ksr2.Quality.T6DegreeOfQuantifierImprecision {
+               }
+
+               class edu.tul.ksr2.Quality.T7DegreeOfQuantifierCardinality {
+               }
+
+               class edu.tul.ksr2.Quality.T8DegreeOfSummarizerCardinality {
+               }
+
+               class edu.tul.ksr2.Quality.T9DegreeOfQualifierImprecision {
+               }
       }
 
 
@@ -241,15 +243,23 @@ namespace Summary {
             - T7 : SimpleDoubleProperty
             - T8 : SimpleDoubleProperty
             - T9 : SimpleDoubleProperty
-            - quantifier : Quantifier
-            - summarizer : Summarizer
+            - quantifier : ArrayList<Summarizer>
+            - summarizer : ArrayList<Summarizer>
 
-            + calculateQualityMeasures()
+            + calculateQualityMeasuresFirstType()
+            + calculateQualityMeasuresMultiSubjectFirstType()
+            + calculateQualityMeasuresMultiSubjectFourthType()
+            + calculateQualityMeasuresMultiSubjectSecondType()
+            + calculateQualityMeasuresMultiSubjectThirdType()
+            + calculateQualityMeasuresSecondType()
         }
 
         class edu.tul.ksr2.Summary.SummaryGenerator {
             {static} + generateFirstTypeSummarization()
-            {static} - computeQualityMeasures()
+            {static} + generateMultiSubjectSummarization()
+            {static} + generateMultiSubjectSummarizationFourthType()
+            {static} + generateMultiSubjectSummarizationThirdType()
+            {static} + generateSecondTypeSummarization()
         }
       }
 

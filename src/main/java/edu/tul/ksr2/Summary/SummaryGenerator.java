@@ -123,13 +123,16 @@ public class SummaryGenerator {
                 summarizationObjectP2 = new SummarizationObject(qualifierP2, quantifier, summarizersP2);
 
                 summarizationObject = new SummarizationObject(quantifier, qualifierP1, summarizersP1, qualifierP2, summarizersP2, subjectP1, subjectP2);
+                summarizationObject.calculateQualityMeasuresMultiSubjectSecondType(gameEntitiesP1, gameEntitiesP2);
+
             } else {
                 summarizationObjectP1 = new SummarizationObject(quantifier, summarizersP1);
                 summarizationObjectP2 = new SummarizationObject(quantifier, summarizersP2);
 
                 summarizationObject = new SummarizationObject(quantifier, summarizersP1, summarizersP2, subjectP1, subjectP2);
+                summarizationObject.calculateQualityMeasuresMultiSubjectFirstType(gameEntitiesP1, gameEntitiesP2);
+
             }
-            summarizationObject.calculateQualityMeasuresMultiSubject(gameEntitiesP1, gameEntitiesP2);
             summarizationObjects.add(summarizationObject);
         }
 
@@ -194,7 +197,7 @@ public class SummaryGenerator {
 
             summarizationObject = new SummarizationObject(quantifier, qualifierP1, summarizersP1, summarizersP2, subjectP1, subjectP2);
 
-            summarizationObject.calculateQualityMeasuresMultiSubject(gameEntitiesP1, gameEntitiesP2);
+            summarizationObject.calculateQualityMeasuresMultiSubjectThirdType(gameEntitiesP1, gameEntitiesP2);
             summarizationObjects.add(summarizationObject);
         }
 
@@ -223,7 +226,7 @@ public class SummaryGenerator {
 
         SummarizationObject summarizationObject = new SummarizationObject(summarizersP1, summarizersP2, subjectP1, subjectP2);
 
-        summarizationObject.calculateQualityMeasuresMultiSubject(gameEntitiesP1, gameEntitiesP2);
+        summarizationObject.calculateQualityMeasuresMultiSubjectFourthType(gameEntitiesP1, gameEntitiesP2);
         summarizationObjects.add(summarizationObject);
 
 

@@ -19,7 +19,7 @@ public class T1DegreeOfTruth {
         return T1;
     }
 
-    public static Double computeMultiple(Quantifier quantifier, ArrayList<Summarizer> summarizer, ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
+    public static Double computeMultipleTypeOne(Quantifier quantifier, ArrayList<Summarizer> summarizer, ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
         summarizer.get(0).populateFuzzySet(gameEntitiesP1);
         Double M1SP1 = (double) summarizer.get(0).getFuzzySet().support().size()/gameEntitiesP1.size();
         summarizer.get(0).populateFuzzySet(gameEntitiesP2);

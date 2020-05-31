@@ -439,7 +439,7 @@ public class SummarizationObject {
         this.T1 = new SimpleDoubleProperty(T1DegreeOfTruth.computeComplex(this.quantifier, this.summarizer, this.summarizersComplexSet, gameEntities));
         this.T2 = new SimpleDoubleProperty(T2DegreeOfImprecision.computeFirstType(this.quantifier, summarizers, gameEntities));
         if(this.useQualifier) {
-            this.T3 = new SimpleDoubleProperty(T3DegreeOfCovering.computeComplex(this.quantifier, this.qualifier, summarizers, this.summarizersComplexSet, gameEntities));
+                this.T3 = new SimpleDoubleProperty(T3DegreeOfCovering.computeComplex(this.quantifier, this.qualifier, summarizers, this.summarizersComplexSet, gameEntities));
         } else {
             this.T3 = new SimpleDoubleProperty(T3DegreeOfCovering.computeComplex(this.quantifier, summarizers, this.summarizersComplexSet, gameEntities));
         }
@@ -455,8 +455,56 @@ public class SummarizationObject {
         calcualteOptimalQualityMeasure();
     }
 
-    public void calculateQualityMeasuresMultiSubject(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
-        this.T1 = new SimpleDoubleProperty(T1DegreeOfTruth.computeMultiple(this.quantifier, this.summarizersP1, gameEntitiesP1, gameEntitiesP2));
+    public void calculateQualityMeasuresMultiSubjectFirstType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
+        this.T1 = new SimpleDoubleProperty(T1DegreeOfTruth.computeMultipleTypeOne(this.quantifier, this.summarizersP1, gameEntitiesP1, gameEntitiesP2));
+        this.T2 = new SimpleDoubleProperty(0.0);
+        this.T3 = new SimpleDoubleProperty(0.0);
+        this.T4 = new SimpleDoubleProperty(0.0);
+        this.T5 = new SimpleDoubleProperty(0.0);
+        this.T6 = new SimpleDoubleProperty(0.0);
+        this.T7 = new SimpleDoubleProperty(0.0);
+        this.T8 = new SimpleDoubleProperty(0.0);
+        this.T9 = new SimpleDoubleProperty(0.0);
+        this.T10 = new SimpleDoubleProperty(0.0);
+        this.T11 = new SimpleDoubleProperty(0.0);
+
+        this.T = new SimpleDoubleProperty(0.0);
+    }
+
+    public void calculateQualityMeasuresMultiSubjectSecondType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
+        this.T1 = new SimpleDoubleProperty(0.0);
+        this.T2 = new SimpleDoubleProperty(0.0);
+        this.T3 = new SimpleDoubleProperty(0.0);
+        this.T4 = new SimpleDoubleProperty(0.0);
+        this.T5 = new SimpleDoubleProperty(0.0);
+        this.T6 = new SimpleDoubleProperty(0.0);
+        this.T7 = new SimpleDoubleProperty(0.0);
+        this.T8 = new SimpleDoubleProperty(0.0);
+        this.T9 = new SimpleDoubleProperty(0.0);
+        this.T10 = new SimpleDoubleProperty(0.0);
+        this.T11 = new SimpleDoubleProperty(0.0);
+
+        this.T = new SimpleDoubleProperty(0.0);
+    }
+
+    public void calculateQualityMeasuresMultiSubjectThirdType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
+        this.T1 = new SimpleDoubleProperty(0.0);
+        this.T2 = new SimpleDoubleProperty(0.0);
+        this.T3 = new SimpleDoubleProperty(0.0);
+        this.T4 = new SimpleDoubleProperty(0.0);
+        this.T5 = new SimpleDoubleProperty(0.0);
+        this.T6 = new SimpleDoubleProperty(0.0);
+        this.T7 = new SimpleDoubleProperty(0.0);
+        this.T8 = new SimpleDoubleProperty(0.0);
+        this.T9 = new SimpleDoubleProperty(0.0);
+        this.T10 = new SimpleDoubleProperty(0.0);
+        this.T11 = new SimpleDoubleProperty(0.0);
+
+        this.T = new SimpleDoubleProperty(0.0);
+    }
+
+    public void calculateQualityMeasuresMultiSubjectFourthType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
+        this.T1 = new SimpleDoubleProperty(0.0);
         this.T2 = new SimpleDoubleProperty(0.0);
         this.T3 = new SimpleDoubleProperty(0.0);
         this.T4 = new SimpleDoubleProperty(0.0);

@@ -427,14 +427,14 @@ public class SummarizationObject {
         this.T3 = new SimpleDoubleProperty(T3DegreeOfCovering.computeFirstType(this.quantifier, summarizers, gameEntities));
         this.T4 = new SimpleDoubleProperty(T4DegreeOfAppropriateness.computeFirstType(this.quantifier, summarizers, gameEntities, this.T3.get()));
         this.T5 = new SimpleDoubleProperty(T5LengthOfASummary.computeFirstType(this.quantifier, summarizers, gameEntities));
-        this.T6 = new SimpleDoubleProperty(T6DegreeOfQuantifierImprecision.computeFirstType(this.quantifier, this.summarizer, gameEntities));
-        this.T7 = new SimpleDoubleProperty(T7DegreeOfQuantifierCardinality.computeFirstType(this.quantifier, this.summarizer, gameEntities));
-        this.T8 = new SimpleDoubleProperty(T8DegreeOfSummarizerCardinality.computeFirstType(this.quantifier, summarizers, gameEntities));
-        this.T9 = new SimpleDoubleProperty(0.0);
-        this.T10 = new SimpleDoubleProperty(0.0);
-        this.T11 = new SimpleDoubleProperty(1.0);
+        this.T6 = new SimpleDoubleProperty(T6DegreeOfQuantifierImprecision.computeFirstType(this.quantifier));
+        this.T7 = new SimpleDoubleProperty(T7DegreeOfQuantifierCardinality.computeFirstType(this.quantifier));
+        this.T8 = new SimpleDoubleProperty(T8DegreeOfSummarizerCardinality.computeFirstType(summarizers));
+        this.T9 = new SimpleDoubleProperty(T9DegreeOfQualifierImprecision.computeFirstType(this.qualifier));
+        this.T10 = new SimpleDoubleProperty(T10DegreeOfQualifierCardinality.computeFirstType(this.qualifier));
+        this.T11 = new SimpleDoubleProperty(T11LengthOfQualifier.computeFirstType(this.qualifier));
 
-        calcualteOptimalQualityMeasure();
+        calculateOptimalQualityMeasure();
 
     }
 
@@ -448,14 +448,14 @@ public class SummarizationObject {
         }
         this.T4 = new SimpleDoubleProperty(T4DegreeOfAppropriateness.computeFirstType(this.quantifier, summarizers, gameEntities, this.T3.get()));
         this.T5 = new SimpleDoubleProperty(T5LengthOfASummary.computeFirstType(this.quantifier, summarizers, gameEntities));
-        this.T6 = new SimpleDoubleProperty(T6DegreeOfQuantifierImprecision.computeFirstType(this.quantifier, this.summarizer, gameEntities));
-        this.T7 = new SimpleDoubleProperty(T7DegreeOfQuantifierCardinality.computeFirstType(this.quantifier, this.summarizer, gameEntities));
-        this.T8 = new SimpleDoubleProperty(T8DegreeOfSummarizerCardinality.computeFirstType(this.quantifier, summarizers, gameEntities));
-        this.T9 = new SimpleDoubleProperty(T9DegreeOfQualifierImprecision.computeFirstType(this.quantifier, summarizers, gameEntities, this.qualifier));
-        this.T10 = new SimpleDoubleProperty(T10DegreeOfQualifierCardinality.computeFirstType(this.quantifier, summarizers, gameEntities, this.qualifier));
-        this.T11 = new SimpleDoubleProperty(T11LengthOfQualifier.computeFirstType(this.quantifier, summarizers, gameEntities, this.qualifier));
+        this.T6 = new SimpleDoubleProperty(T6DegreeOfQuantifierImprecision.computeFirstType(this.quantifier));
+        this.T7 = new SimpleDoubleProperty(T7DegreeOfQuantifierCardinality.computeFirstType(this.quantifier));
+        this.T8 = new SimpleDoubleProperty(T8DegreeOfSummarizerCardinality.computeFirstType(summarizers));
+        this.T9 = new SimpleDoubleProperty(T9DegreeOfQualifierImprecision.computeFirstType(this.qualifier));
+        this.T10 = new SimpleDoubleProperty(T10DegreeOfQualifierCardinality.computeFirstType(this.qualifier));
+        this.T11 = new SimpleDoubleProperty(T11LengthOfQualifier.computeFirstType(this.qualifier));
 
-        calcualteOptimalQualityMeasure();
+        calculateOptimalQualityMeasure();
     }
 
     public void calculateQualityMeasuresMultiSubjectFirstType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
@@ -464,12 +464,12 @@ public class SummarizationObject {
         this.T3 = new SimpleDoubleProperty(T3DegreeOfCovering.computeComplex(this.quantifier, this.summarizersP1, this.summarizersComplexSetP1, gameEntitiesP1));
         this.T4 = new SimpleDoubleProperty(T4DegreeOfAppropriateness.computeFirstType(this.quantifier, this.summarizersP1, gameEntitiesP1, this.T3.get()));
         this.T5 = new SimpleDoubleProperty(T5LengthOfASummary.computeFirstType(this.quantifier, this.summarizersP1, gameEntitiesP1));
-        this.T6 = new SimpleDoubleProperty(0.0);
-        this.T7 = new SimpleDoubleProperty(0.0);
-        this.T8 = new SimpleDoubleProperty(0.0);
-        this.T9 = new SimpleDoubleProperty(0.0);
-        this.T10 = new SimpleDoubleProperty(0.0);
-        this.T11 = new SimpleDoubleProperty(0.0);
+        this.T6 = new SimpleDoubleProperty(T6DegreeOfQuantifierImprecision.computeFirstType(this.quantifier));
+        this.T7 = new SimpleDoubleProperty(T7DegreeOfQuantifierCardinality.computeFirstType(this.quantifier));
+        this.T8 = new SimpleDoubleProperty(T8DegreeOfSummarizerCardinality.computeFirstType(this.summarizersP1));
+        this.T9 = new SimpleDoubleProperty(T9DegreeOfQualifierImprecision.computeFirstType(this.qualifier));
+        this.T10 = new SimpleDoubleProperty(T10DegreeOfQualifierCardinality.computeFirstType(this.qualifier));
+        this.T11 = new SimpleDoubleProperty(T11LengthOfQualifier.computeFirstType(this.qualifier));
 
         this.T = new SimpleDoubleProperty(0.0);
     }
@@ -480,12 +480,12 @@ public class SummarizationObject {
         this.T3 = new SimpleDoubleProperty(T3DegreeOfCovering.computeComplex(this.quantifier, this.summarizersP1, this.summarizersComplexSetP1, gameEntitiesP1));
         this.T4 = new SimpleDoubleProperty(T4DegreeOfAppropriateness.computeFirstType(this.quantifier, this.summarizersP1, gameEntitiesP1, this.T3.get()));
         this.T5 = new SimpleDoubleProperty(T5LengthOfASummary.computeFirstType(this.quantifier, this.summarizersP1, gameEntitiesP1));
-        this.T6 = new SimpleDoubleProperty(0.0);
-        this.T7 = new SimpleDoubleProperty(0.0);
-        this.T8 = new SimpleDoubleProperty(0.0);
-        this.T9 = new SimpleDoubleProperty(0.0);
-        this.T10 = new SimpleDoubleProperty(0.0);
-        this.T11 = new SimpleDoubleProperty(0.0);
+        this.T6 = new SimpleDoubleProperty(T6DegreeOfQuantifierImprecision.computeFirstType(this.quantifier));
+        this.T7 = new SimpleDoubleProperty(T7DegreeOfQuantifierCardinality.computeFirstType(this.quantifier));
+        this.T8 = new SimpleDoubleProperty(T8DegreeOfSummarizerCardinality.computeFirstType(this.summarizersP1));
+        this.T9 = new SimpleDoubleProperty(T9DegreeOfQualifierImprecision.computeFirstType(this.qualifier));
+        this.T10 = new SimpleDoubleProperty(T10DegreeOfQualifierCardinality.computeFirstType(this.qualifier));
+        this.T11 = new SimpleDoubleProperty(T11LengthOfQualifier.computeFirstType(this.qualifier));
 
         this.T = new SimpleDoubleProperty(0.0);
     }
@@ -496,12 +496,12 @@ public class SummarizationObject {
         this.T3 = new SimpleDoubleProperty(T3DegreeOfCovering.computeComplex(this.quantifier, this.qualifierP1, this.summarizersP1, this.summarizersComplexSetP1, gameEntitiesP1));
         this.T4 = new SimpleDoubleProperty(T4DegreeOfAppropriateness.computeFirstType(this.quantifier, this.summarizersP1, gameEntitiesP1, this.T3.get()));
         this.T5 = new SimpleDoubleProperty(T5LengthOfASummary.computeFirstType(this.quantifier, this.summarizersP1, gameEntitiesP1));
-        this.T6 = new SimpleDoubleProperty(0.0);
-        this.T7 = new SimpleDoubleProperty(0.0);
-        this.T8 = new SimpleDoubleProperty(0.0);
-        this.T9 = new SimpleDoubleProperty(0.0);
-        this.T10 = new SimpleDoubleProperty(0.0);
-        this.T11 = new SimpleDoubleProperty(0.0);
+        this.T6 = new SimpleDoubleProperty(T6DegreeOfQuantifierImprecision.computeFirstType(this.quantifier));
+        this.T7 = new SimpleDoubleProperty(T7DegreeOfQuantifierCardinality.computeFirstType(this.quantifier));
+        this.T8 = new SimpleDoubleProperty(T8DegreeOfSummarizerCardinality.computeFirstType(this.summarizersP1));
+        this.T9 = new SimpleDoubleProperty(T9DegreeOfQualifierImprecision.computeFirstType(this.qualifier));
+        this.T10 = new SimpleDoubleProperty(T10DegreeOfQualifierCardinality.computeFirstType(this.qualifier));
+        this.T11 = new SimpleDoubleProperty(T11LengthOfQualifier.computeFirstType(this.qualifier));
 
         this.T = new SimpleDoubleProperty(0.0);
     }
@@ -514,15 +514,15 @@ public class SummarizationObject {
         this.T5 = new SimpleDoubleProperty(T5LengthOfASummary.computeFirstType(this.quantifier, this.summarizersP1, gameEntitiesP1));
         this.T6 = new SimpleDoubleProperty(0.0);
         this.T7 = new SimpleDoubleProperty(0.0);
-        this.T8 = new SimpleDoubleProperty(0.0);
-        this.T9 = new SimpleDoubleProperty(0.0);
-        this.T10 = new SimpleDoubleProperty(0.0);
-        this.T11 = new SimpleDoubleProperty(0.0);
+        this.T8 = new SimpleDoubleProperty(T8DegreeOfSummarizerCardinality.computeFirstType(this.summarizersP1));
+        this.T9 = new SimpleDoubleProperty(T9DegreeOfQualifierImprecision.computeFirstType(this.qualifier));
+        this.T10 = new SimpleDoubleProperty(T10DegreeOfQualifierCardinality.computeFirstType(this.qualifier));
+        this.T11 = new SimpleDoubleProperty(T11LengthOfQualifier.computeFirstType(this.qualifier));
 
         this.T = new SimpleDoubleProperty(0.0);
-    }
+}
 
-    private void calcualteOptimalQualityMeasure() {
+    private void calculateOptimalQualityMeasure() {
         ArrayList<Double> qualityMeasuresWeighted = new ArrayList<>();
 
         if(this.useQualifier) {

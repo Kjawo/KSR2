@@ -73,8 +73,8 @@ public class SummaryGenerator {
         ArrayList<SummarizationObject> summarizationObjectsP1 = new ArrayList<>();
         ArrayList<SummarizationObject> summarizationObjectsP2 = new ArrayList<>();
 
-        Summarizer qualifierP1 = qualifier;
-        Summarizer qualifierP2 = qualifier;
+        Summarizer qualifierP1 = new Summarizer(qualifier);
+        Summarizer qualifierP2 = new Summarizer(qualifier);
 
         ArrayList<Summarizer> summarizersP1 = new ArrayList<>();
         ArrayList<Summarizer> summarizersP2 = new ArrayList<>();
@@ -156,8 +156,8 @@ public class SummaryGenerator {
         ArrayList<SummarizationObject> summarizationObjectsP1 = new ArrayList<>();
         ArrayList<SummarizationObject> summarizationObjectsP2 = new ArrayList<>();
 
-        Summarizer qualifierP1 = qualifier;
-        Summarizer qualifierP2 = qualifier;
+        Summarizer qualifierP1 = new Summarizer(qualifier);
+        Summarizer qualifierP2 = new Summarizer(qualifier);
 
         ArrayList<Summarizer> summarizersP1 = new ArrayList<>();
         ArrayList<Summarizer> summarizersP2 = new ArrayList<>();

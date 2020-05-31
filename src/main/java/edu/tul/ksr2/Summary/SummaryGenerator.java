@@ -168,29 +168,27 @@ public class SummaryGenerator {
         }
 
 
-        if(useQuantifier) {
-            ArrayList<GameEntity> newGameEntitiesP1 = new ArrayList<>();
-            qualifierP1.populateFuzzySet(gameEntitiesP1);
+        ArrayList<GameEntity> newGameEntitiesP1 = new ArrayList<>();
+        qualifierP1.populateFuzzySet(gameEntitiesP1);
 
-            ArrayList<GameEntity> newGameEntitiesP2 = new ArrayList<>();
-            qualifierP2.populateFuzzySet(gameEntitiesP2);
+        ArrayList<GameEntity> newGameEntitiesP2 = new ArrayList<>();
+        qualifierP2.populateFuzzySet(gameEntitiesP2);
 
-            for (Map.Entry<GameEntity, Double> entry : qualifierP1.getFuzzySet().support().entrySet()) {
-                if(entry.getValue() > 0.0)
-                {
-                    newGameEntitiesP1.add(entry.getKey());
-                }
+        for (Map.Entry<GameEntity, Double> entry : qualifierP1.getFuzzySet().support().entrySet()) {
+            if(entry.getValue() > 0.0)
+            {
+                newGameEntitiesP1.add(entry.getKey());
             }
-            gameEntitiesP1 = newGameEntitiesP1;
-
-            for (Map.Entry<GameEntity, Double> entry : qualifierP2.getFuzzySet().support().entrySet()) {
-                if(entry.getValue() > 0.0)
-                {
-                    newGameEntitiesP2.add(entry.getKey());
-                }
-            }
-            gameEntitiesP2 = newGameEntitiesP2;
         }
+        gameEntitiesP1 = newGameEntitiesP1;
+
+        for (Map.Entry<GameEntity, Double> entry : qualifierP2.getFuzzySet().support().entrySet()) {
+            if(entry.getValue() > 0.0)
+            {
+                newGameEntitiesP2.add(entry.getKey());
+            }
+        }
+        gameEntitiesP2 = newGameEntitiesP2;
 
         for(Summarizer summarizer : summarizersP1) {
             summarizer.populateFuzzySet(gameEntitiesP1);

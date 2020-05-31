@@ -195,7 +195,7 @@ public class SummaryGenerator {
             summarizationObjectP1 = new SummarizationObject(qualifierP1, quantifier, summarizersP1);
             summarizationObjectP2 = new SummarizationObject(qualifierP2, quantifier, summarizersP2);
 
-            summarizationObject = new SummarizationObject(quantifier, qualifierP1, summarizersP1, summarizersP2, subjectP1, subjectP2);
+            summarizationObject = new SummarizationObject(quantifier, qualifierP2, summarizersP1, summarizersP2, subjectP1, subjectP2);
 
             summarizationObject.calculateQualityMeasuresMultiSubjectThirdType(gameEntitiesP1, gameEntitiesP2);
             summarizationObjects.add(summarizationObject);

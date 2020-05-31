@@ -30,4 +30,28 @@ public class T1DegreeOfTruth {
             return quantifier.compute(res * ParametersMapping.maxValueForParameter.get("AmountOfGames"));
         }
     }
+
+    public static Double computeMultipleTypeTwo(Quantifier quantifier, Summarizer qualifierP2, ArrayList<Summarizer> summarizer, ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2, FuzzySet<GameEntity> summarizersComplexSetP1, FuzzySet<GameEntity> summarizersComplexSetP2) {
+
+        Double M1SP1 = (double) summarizersComplexSetP1.support().size()/gameEntitiesP1.size();
+        Double M2SP2 = (double) FuzzySet.intersect(summarizersComplexSetP2, qualifierP2.getFuzzySet()).support().size()/gameEntitiesP2.size();
+        double res = M1SP1/(M1SP1 + M2SP2);
+        if(quantifier.getMembershipFunction().isRelative()){
+            return quantifier.compute(res);
+        } else {
+            return quantifier.compute(res * ParametersMapping.maxValueForParameter.get("AmountOfGames"));
+        }
+    }
+
+    public static Double computeMultipleTypeThree(Quantifier quantifier, Summarizer qualifierP1, ArrayList<Summarizer> summarizer, ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2, FuzzySet<GameEntity> summarizersComplexSetP1, FuzzySet<GameEntity> summarizersComplexSetP2) {
+
+        Double M1SP1 = (double) FuzzySet.intersect(summarizersComplexSetP1, qualifierP1.getFuzzySet()).support().size()/gameEntitiesP1.size();
+        Double M2SP2 = (double) summarizersComplexSetP2.support().size()/gameEntitiesP2.size();
+        double res = M1SP1/(M1SP1 + M2SP2);
+        if(quantifier.getMembershipFunction().isRelative()){
+            return quantifier.compute(res);
+        } else {
+            return quantifier.compute(res * ParametersMapping.maxValueForParameter.get("AmountOfGames"));
+        }
+    }
 }

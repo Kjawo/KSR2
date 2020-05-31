@@ -177,6 +177,8 @@ public class SummarizationObject {
     }
 
     public SummarizationObject(Quantifier quantifier, Summarizer qualifierP1, ArrayList<Summarizer> summarizersP1, Summarizer qualifierP2, ArrayList<Summarizer> summarizersP2, String subjectP1, String subjectP2) {
+        //Multi subject second and third type
+
         this.quantifier = quantifier;
         this.summarizersP1 = summarizersP1;
         this.summarizersP2 = summarizersP2;
@@ -473,7 +475,7 @@ public class SummarizationObject {
     }
 
     public void calculateQualityMeasuresMultiSubjectSecondType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
-        this.T1 = new SimpleDoubleProperty(0.0);
+        this.T1 = new SimpleDoubleProperty(T1DegreeOfTruth.computeMultipleTypeTwo(this.quantifier, this.qualifierP2, this.summarizersP1, gameEntitiesP1, gameEntitiesP2, this.summarizersComplexSetP1, this.summarizersComplexSetP2));
         this.T2 = new SimpleDoubleProperty(0.0);
         this.T3 = new SimpleDoubleProperty(0.0);
         this.T4 = new SimpleDoubleProperty(0.0);
@@ -489,7 +491,7 @@ public class SummarizationObject {
     }
 
     public void calculateQualityMeasuresMultiSubjectThirdType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
-        this.T1 = new SimpleDoubleProperty(0.0);
+        this.T1 = new SimpleDoubleProperty(T1DegreeOfTruth.computeMultipleTypeThree(this.quantifier, this.qualifierP1, this.summarizersP1, gameEntitiesP1, gameEntitiesP2, this.summarizersComplexSetP1, this.summarizersComplexSetP2));
         this.T2 = new SimpleDoubleProperty(0.0);
         this.T3 = new SimpleDoubleProperty(0.0);
         this.T4 = new SimpleDoubleProperty(0.0);

@@ -133,6 +133,7 @@ public class SummarizationObject {
     }
 
     public SummarizationObject(Quantifier quantifier, ArrayList<Summarizer> summarizersP1, ArrayList<Summarizer> summarizersP2, String subjectP1, String subjectP2) {
+        //Multi subject First type
         this.quantifier = quantifier;
         this.summarizersP1 = summarizersP1;
         this.summarizersP2 = summarizersP2;
@@ -456,7 +457,7 @@ public class SummarizationObject {
     }
 
     public void calculateQualityMeasuresMultiSubjectFirstType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
-        this.T1 = new SimpleDoubleProperty(T1DegreeOfTruth.computeMultipleTypeOne(this.quantifier, this.summarizersP1, gameEntitiesP1, gameEntitiesP2));
+        this.T1 = new SimpleDoubleProperty(T1DegreeOfTruth.computeMultipleTypeOne(this.quantifier, this.summarizersP1, gameEntitiesP1, gameEntitiesP2, this.summarizersComplexSetP1, this.summarizersComplexSetP2));
         this.T2 = new SimpleDoubleProperty(0.0);
         this.T3 = new SimpleDoubleProperty(0.0);
         this.T4 = new SimpleDoubleProperty(0.0);

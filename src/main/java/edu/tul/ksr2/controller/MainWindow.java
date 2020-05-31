@@ -276,7 +276,7 @@ public class MainWindow {
         summarizationsObservableList.clear();
         summarizationsObservableList.addAll(SummaryGenerator.generateMultiSubjectSummarization(gameEntitiesP1, gameEntitiesP2, getQuantifiers(), getQualifier(),
                 new ArrayList<>(summarizersObservableList), useQualifierCheckBox.isSelected(), subjectP1, subjectP2));
-//        tableView.getSortOrder().add(tableColumnT);
+        tableView.getSortOrder().add(tableColumnT);
     }
 
     public void generateSummarizationMultiSubjectThirdType(ActionEvent actionEvent) {
@@ -289,6 +289,8 @@ public class MainWindow {
         summarizationsObservableList.clear();
         summarizationsObservableList.addAll(SummaryGenerator.generateMultiSubjectSummarizationThirdType(gameEntitiesP1, gameEntitiesP2, getQuantifiers(), getQualifier(),
                 new ArrayList<>(summarizersObservableList), useQualifierCheckBox.isSelected(), subjectP1, subjectP2));
+
+        tableView.getSortOrder().add(tableColumnT);
     }
 
     public void generateSummarizationMultiSubjectFourthType(ActionEvent actionEvent) {
@@ -301,6 +303,8 @@ public class MainWindow {
         summarizationsObservableList.clear();
         summarizationsObservableList.addAll(SummaryGenerator.generateMultiSubjectSummarizationFourthType(gameEntitiesP1, gameEntitiesP2,
                 new ArrayList<>(summarizersObservableList), subjectP1, subjectP2));
+
+        tableView.getSortOrder().add(tableColumnT);
     }
 
     private Summarizer getQualifier() {

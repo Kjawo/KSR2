@@ -471,7 +471,8 @@ public class SummarizationObject {
         this.T10 = new SimpleDoubleProperty(T10DegreeOfQualifierCardinality.computeFirstType(this.qualifier));
         this.T11 = new SimpleDoubleProperty(T11LengthOfQualifier.computeFirstType(this.qualifier));
 
-        this.T = new SimpleDoubleProperty(0.0);
+        this.useQualifier = false;
+        calculateOptimalQualityMeasure();
     }
 
     public void calculateQualityMeasuresMultiSubjectSecondType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
@@ -487,7 +488,8 @@ public class SummarizationObject {
         this.T10 = new SimpleDoubleProperty(T10DegreeOfQualifierCardinality.computeFirstType(this.qualifier));
         this.T11 = new SimpleDoubleProperty(T11LengthOfQualifier.computeFirstType(this.qualifier));
 
-        this.T = new SimpleDoubleProperty(0.0);
+        this.useQualifier = false;
+        calculateOptimalQualityMeasure();
     }
 
     public void calculateQualityMeasuresMultiSubjectThirdType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
@@ -503,7 +505,8 @@ public class SummarizationObject {
         this.T10 = new SimpleDoubleProperty(T10DegreeOfQualifierCardinality.computeFirstType(this.qualifier));
         this.T11 = new SimpleDoubleProperty(T11LengthOfQualifier.computeFirstType(this.qualifier));
 
-        this.T = new SimpleDoubleProperty(0.0);
+        this.useQualifier = true;
+        calculateOptimalQualityMeasure();
     }
 
     public void calculateQualityMeasuresMultiSubjectFourthType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
@@ -519,7 +522,8 @@ public class SummarizationObject {
         this.T10 = new SimpleDoubleProperty(T10DegreeOfQualifierCardinality.computeFirstType(this.qualifier));
         this.T11 = new SimpleDoubleProperty(T11LengthOfQualifier.computeFirstType(this.qualifier));
 
-        this.T = new SimpleDoubleProperty(0.0);
+        this.useQualifier = false;
+        calculateOptimalQualityMeasure();
 }
 
     private void calculateOptimalQualityMeasure() {

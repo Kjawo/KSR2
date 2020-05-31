@@ -3,6 +3,7 @@ package edu.tul.ksr2.Summary;
 import edu.tul.ksr2.GameEntity;
 import edu.tul.ksr2.LinguisticVariable.Quantifier;
 import edu.tul.ksr2.LinguisticVariable.Summarizer;
+import edu.tul.ksr2.Sets.FuzzySet;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -75,8 +76,14 @@ public class SummaryGenerator {
         Summarizer qualifierP1 = qualifier;
         Summarizer qualifierP2 = qualifier;
 
-        ArrayList<Summarizer> summarizersP1 = summarizers;
-        ArrayList<Summarizer> summarizersP2 = summarizers;
+        ArrayList<Summarizer> summarizersP1 = new ArrayList<>();
+        ArrayList<Summarizer> summarizersP2 = new ArrayList<>();
+
+        for(Summarizer summarizer : summarizers) {
+            summarizersP1.add(new Summarizer(summarizer));
+            summarizersP2.add(new Summarizer(summarizer));
+        }
+
 
 
         if(useQuantifier) {
@@ -110,6 +117,9 @@ public class SummaryGenerator {
         for(Summarizer summarizer : summarizersP2) {
             summarizer.populateFuzzySet(gameEntitiesP2);
         }
+
+        var lol1 = summarizersP1.get(0).getFuzzySet().support();
+        var lol2 = summarizersP2.get(0).getFuzzySet().support();
 
 
         for(Quantifier quantifier : quantifiers) {
@@ -149,8 +159,13 @@ public class SummaryGenerator {
         Summarizer qualifierP1 = qualifier;
         Summarizer qualifierP2 = qualifier;
 
-        ArrayList<Summarizer> summarizersP1 = summarizers;
-        ArrayList<Summarizer> summarizersP2 = summarizers;
+        ArrayList<Summarizer> summarizersP1 = new ArrayList<>();
+        ArrayList<Summarizer> summarizersP2 = new ArrayList<>();
+
+        for(Summarizer summarizer : summarizers) {
+            summarizersP1.add(new Summarizer(summarizer));
+            summarizersP2.add(new Summarizer(summarizer));
+        }
 
 
         if(useQuantifier) {
@@ -212,8 +227,13 @@ public class SummaryGenerator {
         ArrayList<SummarizationObject> summarizationObjectsP2 = new ArrayList<>();
 
 
-        ArrayList<Summarizer> summarizersP1 = summarizers;
-        ArrayList<Summarizer> summarizersP2 = summarizers;
+        ArrayList<Summarizer> summarizersP1 = new ArrayList<>();
+        ArrayList<Summarizer> summarizersP2 = new ArrayList<>();
+
+        for(Summarizer summarizer : summarizers) {
+            summarizersP1.add(new Summarizer(summarizer));
+            summarizersP2.add(new Summarizer(summarizer));
+        }
 
 
         for(Summarizer summarizer : summarizersP1) {

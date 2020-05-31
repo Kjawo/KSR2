@@ -16,6 +16,14 @@ public class Summarizer {
 
     private SimpleStringProperty tableValue;
 
+    public Summarizer(Summarizer summarizer) {
+        this.name = summarizer.getName();
+        this.entityFieldName = summarizer.getEntityFieldName();
+        this.membershipFunction = summarizer.getMembershipFunction();
+        this.fuzzySet = summarizer.getFuzzySet();
+        this.tableValue = new SimpleStringProperty(summarizer.getTableValue());
+    }
+
     public Summarizer(String name, String entityFieldName, MembershipFunction membershipFunction) {
         this.name = name;
         this.entityFieldName = entityFieldName;
@@ -49,6 +57,13 @@ public class Summarizer {
         }
 
         this.fuzzySet = newFuzzySet;
+
+        var lolll = this.fuzzySet.support();
+        lolll = this.fuzzySet.support();
+    }
+
+    public void setFuzzySet(FuzzySet<GameEntity> fuzzySet) {
+        this.fuzzySet = fuzzySet;
     }
 
     public String getName() {
@@ -64,11 +79,11 @@ public class Summarizer {
     }
 
     public FuzzySet<GameEntity> getFuzzySet() {
-        return fuzzySet;
+        return this.fuzzySet;
     }
 
     public Double getSetSize() {
-        return Double.valueOf(fuzzySet.set.size());
+        return Double.valueOf(this.fuzzySet.set.size());
     }
 
     public String getTableValue() {

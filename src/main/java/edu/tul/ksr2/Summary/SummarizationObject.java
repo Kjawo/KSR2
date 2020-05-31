@@ -507,7 +507,7 @@ public class SummarizationObject {
     }
 
     public void calculateQualityMeasuresMultiSubjectFourthType(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
-        this.T1 = new SimpleDoubleProperty(0.0);
+        this.T1 = new SimpleDoubleProperty(T1DegreeOfTruth.computeMultipleTypeFour(this.summarizersComplexSetP1, this.summarizersComplexSetP2));
         this.T2 = new SimpleDoubleProperty(T2DegreeOfImprecision.computeFirstType(this.quantifier, this.summarizersP1, gameEntitiesP1));
         this.T3 = new SimpleDoubleProperty(T3DegreeOfCovering.computeComplex(this.quantifier, this.summarizersP1, this.summarizersComplexSetP1, gameEntitiesP1));
         this.T4 = new SimpleDoubleProperty(T4DegreeOfAppropriateness.computeFirstType(this.quantifier, this.summarizersP1, gameEntitiesP1, this.T3.get()));

@@ -10,12 +10,12 @@ import java.util.ArrayList;
 public class T10DegreeOfQualifierCardinality {
     public static Double computeFirstType(Quantifier quantifier, ArrayList<Summarizer> summarizers, ArrayList<GameEntity> gameEntities, Summarizer qualifier) {
 
-        Double T9 = 1.0;
+        Double T10 = 1.0;
         if(qualifier != null) {
             double maxValue = ParametersMapping.maxValueForParameter.get(ParametersMapping.ParametersMapper.get(qualifier.getEntityFieldName()));
-            T9 *= qualifier.getMembershipFunction().calculateCardinality(maxValue);
-            T9 = 1.0 - Math.pow(T9, 1.0);
+            T10 *= qualifier.getMembershipFunction().calculateCardinality(maxValue);
+            T10 = 1.0 - Math.pow(T10, 1.0);
         }
-        return T9;
+        return T10;
     }
 }

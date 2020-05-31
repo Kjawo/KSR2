@@ -54,4 +54,10 @@ public class T1DegreeOfTruth {
             return quantifier.compute(res * ParametersMapping.maxValueForParameter.get("AmountOfGames"));
         }
     }
+
+    public static Double computeMultipleTypeFour(FuzzySet<GameEntity> summarizersComplexSetP1, FuzzySet<GameEntity> summarizersComplexSetP2) {
+        Double M1SP1 = (double) summarizersComplexSetP1.support().size();
+        Double M2SP2 = (double) summarizersComplexSetP2.support().size();
+        return M1SP1/(M1SP1 + M2SP2);
+    }
 }

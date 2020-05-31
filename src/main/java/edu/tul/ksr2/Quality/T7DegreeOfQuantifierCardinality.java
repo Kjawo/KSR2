@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class T7DegreeOfQuantifierCardinality {
     public static Double computeFirstType(Quantifier quantifier, Summarizer summarizers, ArrayList<GameEntity> gameEntities) {
-
         return 1 - quantifier.getMembershipFunction().calculateCardinality(ParametersMapping.maxValueForParameter.get("AmountOfGames"));
     }
 }

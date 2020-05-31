@@ -456,7 +456,7 @@ public class SummarizationObject {
     }
 
     public void calculateQualityMeasuresMultiSubject(ArrayList<GameEntity> gameEntitiesP1, ArrayList<GameEntity> gameEntitiesP2) {
-        this.T1 = new SimpleDoubleProperty(0.0);
+        this.T1 = new SimpleDoubleProperty(T1DegreeOfTruth.computeMultiple(this.quantifier, this.summarizersP1, gameEntitiesP1, gameEntitiesP2));
         this.T2 = new SimpleDoubleProperty(0.0);
         this.T3 = new SimpleDoubleProperty(0.0);
         this.T4 = new SimpleDoubleProperty(0.0);

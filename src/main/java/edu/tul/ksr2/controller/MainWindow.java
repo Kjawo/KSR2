@@ -275,7 +275,21 @@ public class MainWindow {
 
         summarizationsObservableList.clear();
         summarizationsObservableList.addAll(SummaryGenerator.generateMultiSubjectSummarization(gameEntitiesP1, gameEntitiesP2, getQuantifiers(), getQualifier(),
-                new ArrayList<>(summarizersObservableList), useQualifierCheckBox.isSelected(), subjectP1, subjectP2));
+                new ArrayList<>(summarizersObservableList), false, subjectP1, subjectP2));
+        tableView.getSortOrder().add(tableColumnT);
+    }
+
+
+    public void generateSummarizationMultiSubjectSecondType(ActionEvent actionEvent) {
+        String subjectP1 = (String) this.subjectP1.getSelectionModel().getSelectedItem();
+        String subjectP2 = (String) this.subjectP2.getSelectionModel().getSelectedItem();
+
+        ArrayList<GameEntity> gameEntitiesP1 = multiSubjectEntities.get(subjectP1);
+        ArrayList<GameEntity> gameEntitiesP2 = multiSubjectEntities.get(subjectP2);
+
+        summarizationsObservableList.clear();
+        summarizationsObservableList.addAll(SummaryGenerator.generateMultiSubjectSummarization(gameEntitiesP1, gameEntitiesP2, getQuantifiers(), getQualifier(),
+                new ArrayList<>(summarizersObservableList), true, subjectP1, subjectP2));
         tableView.getSortOrder().add(tableColumnT);
     }
 
@@ -358,7 +372,6 @@ public class MainWindow {
         ));
         qualifiersComboBox.getSelectionModel().select(0);
     }
-
 
 
 }

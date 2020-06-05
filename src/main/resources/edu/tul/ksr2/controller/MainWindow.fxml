@@ -149,7 +149,7 @@
                               <font>
                                  <Font size="15.0" />
                               </font></Label>
-                           <Button fx:id="multiSubjectsummarization1" layoutX="595.0" layoutY="170.0" mnemonicParsing="false" onAction="#generateSummarizationMultiSubject" text="Multi subject summarization 2nd type" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
+                           <Button fx:id="multiSubjectsummarizationSecondType" layoutX="595.0" layoutY="170.0" mnemonicParsing="false" onAction="#generateSummarizationMultiSubjectSecondType" text="Multi subject summarization 2nd type" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM" />
                         </children>
                     </GridPane>
 

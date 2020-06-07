@@ -52,7 +52,8 @@ public class LVEditor {
     public ComboBox comboBox;
     ObservableList<String> membershipOptions = FXCollections.observableArrayList(
             "Trapezoidal",
-            "Triangular"
+            "Triangular",
+            "Gauss"
     );
     private ObservableList<LVTableRow> LVtableRowObservaleList = FXCollections.observableArrayList();
     private ArrayList<LinguisticVariable> linguisticVariables;

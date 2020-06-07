@@ -529,7 +529,7 @@ public class SummarizationObject {
     private void calculateOptimalQualityMeasure() {
         ArrayList<Double> qualityMeasuresWeighted = new ArrayList<>();
 
-        if(this.useQualifier) {
+//        if(this.useQualifier) {
             qualityMeasuresWeighted.add(this.T1.getValue() * 0.75);
             qualityMeasuresWeighted.add(this.T2.getValue() * 0.025);
             qualityMeasuresWeighted.add(this.T3.getValue() * 0.025);
@@ -541,16 +541,16 @@ public class SummarizationObject {
             qualityMeasuresWeighted.add(this.T9.getValue() * 0.025);
             qualityMeasuresWeighted.add(this.T10.getValue() * 0.025);
             qualityMeasuresWeighted.add(this.T11.getValue() * 0.025);
-        } else {
-            qualityMeasuresWeighted.add(this.T1.getValue() * 0.75);
-            qualityMeasuresWeighted.add(this.T2.getValue() * 0.25 / 7);
-            qualityMeasuresWeighted.add(this.T3.getValue() * 0.25 / 7);
-            qualityMeasuresWeighted.add(this.T4.getValue() * 0.25 / 7);
-            qualityMeasuresWeighted.add(this.T5.getValue() * 0.25 / 7);
-            qualityMeasuresWeighted.add(this.T6.getValue() * 0.25 / 7);
-            qualityMeasuresWeighted.add(this.T7.getValue() * 0.25 / 7);
-            qualityMeasuresWeighted.add(this.T8.getValue() * 0.25 / 7);
-        }
+//        } else {
+//            qualityMeasuresWeighted.add(this.T1.getValue() * 0.75);
+//            qualityMeasuresWeighted.add(this.T2.getValue() * 0.25 / 7);
+//            qualityMeasuresWeighted.add(this.T3.getValue() * 0.25 / 7);
+//            qualityMeasuresWeighted.add(this.T4.getValue() * 0.25 / 7);
+//            qualityMeasuresWeighted.add(this.T5.getValue() * 0.25 / 7);
+//            qualityMeasuresWeighted.add(this.T6.getValue() * 0.25 / 7);
+//            qualityMeasuresWeighted.add(this.T7.getValue() * 0.25 / 7);
+//            qualityMeasuresWeighted.add(this.T8.getValue() * 0.25 / 7);
+//        }
 
         this.T = new SimpleDoubleProperty(qualityMeasuresWeighted.stream().mapToDouble(n -> n).sum());
     }

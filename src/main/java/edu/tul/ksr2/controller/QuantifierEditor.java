@@ -50,7 +50,8 @@ public class QuantifierEditor {
     public Button plotFunction;
     ObservableList<String> membershipOptions = FXCollections.observableArrayList(
             "Trapezoidal",
-            "Triangular"
+            "Triangular",
+            "Gauss"
     );
     private ObservableList<QuantifierTableRow> quantifiersTableRowObservableList = FXCollections.observableArrayList();
     @FXML
@@ -115,16 +116,28 @@ public class QuantifierEditor {
         double min = Collections.min(parameters);
         double max = Collections.max(parameters);
 
-        plotLine(membershipFunction, max - min, min, max);
+        if(!membershipFunction.getName().equals("Gauss")) {
+            plotLine(membershipFunction, max - min, min, max, false);
+        } else {
+            plotLine(membershipFunction, max - min, min, max, true);
+
+        }
 
 
     }
 
-    public void plotLine(final MembershipFunction function, double range, double min, double max) {
+    public void plotLine(final MembershipFunction function, double range, double min, double max, boolean isGauss) {
         series.getData().clear();
-        for (double x = min - 0.1 * range; x <= max + 0.1 * range; x = x + range / 100) {
-            plotPoint(x, function.compute(x), series);
+        if(!isGauss) {
+            for (double x = min - 0.1 * range; x <= max + 0.1 * range; x = x + range / 100) {
+                plotPoint(x, function.compute(x), series);
+            }
+        } else {
+            for (double x = min - 0.1 * range; x <= function.getB() * 2; x = x + function.getB() * 2 / 100) {
+                plotPoint(x, function.compute(x), series);
+            }
         }
+
     }
 
     private void plotPoint(final double x, final double y,

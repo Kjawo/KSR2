@@ -1,6 +1,7 @@
 package edu.tul.ksr2.Parameters;
 
 import edu.tul.ksr2.MembershipFunctions.MembershipFunction;
+import edu.tul.ksr2.MembershipFunctions.gaussmf;
 import edu.tul.ksr2.MembershipFunctions.trapmf;
 import edu.tul.ksr2.MembershipFunctions.trimf;
 import edu.tul.ksr2.Parameters.TableView.QuantifierTableRow;
@@ -60,6 +61,8 @@ public class QuantifierSerialized {
                 return new trapmf(this.a, this.b, this.c, this.d, this.isRelative);
             case "Triangular":
                 return new trimf(this.a, this.b, this.c, this.isRelative);
+            case "Gauss":
+                return new gaussmf(this.a, this.b, this.isRelative);
             default:
                 return null;
         }

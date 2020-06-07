@@ -2,6 +2,7 @@ package edu.tul.ksr2.Parameters.TableView;
 
 import edu.tul.ksr2.LinguisticVariable.Quantifier;
 import edu.tul.ksr2.MembershipFunctions.MembershipFunction;
+import edu.tul.ksr2.MembershipFunctions.gaussmf;
 import edu.tul.ksr2.MembershipFunctions.trapmf;
 import edu.tul.ksr2.MembershipFunctions.trimf;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -88,6 +89,8 @@ public class QuantifierTableRow {
                     return new trapmf(this.a.get(), this.b.get(), this.c.get(), this.d.get(), this.isRelative.get());
                 case "Triangular":
                     return new trimf(this.a.get(), this.b.get(), this.c.get(), this.isRelative.get());
+                case "Gauss":
+                    return new gaussmf(this.a.get(), this.b.get(), this.isRelative.get());
                 default:
                     return null;
             }

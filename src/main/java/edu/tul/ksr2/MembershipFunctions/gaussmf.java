@@ -68,11 +68,7 @@ public class gaussmf implements MembershipFunction{
             if(this.isRelative){
                 for (double x = 0; x < 1; x += 0.01)
                 {
-                    if(isRelative) {
-                        integral += this.compute(x) * 0.01;
-                    } else {
-                        integral += this.compute(x, total) * 0.01;
-                    }
+                    integral += this.compute(x) * 0.01;
                 }
             } else {
                 for (double x = 0; x < 1; x += 0.01)

@@ -1,14 +1,30 @@
 package edu.tul.ksr2.MembershipFunctions;
 
 public class gaussmf implements MembershipFunction{
+
+    private double a, b;
+    private boolean isRelative = false;
+
+    public gaussmf(double a, double b, boolean isRelative) {
+        this.a = a;
+        this.b = b;
+        this.isRelative = isRelative;
+    }
+
+    public gaussmf(double a, double b) {
+        this.a = a;
+        this.b = b;
+    }
+
     @Override
     public double compute(double x) {
-        return 0;
+        return Math.exp(-1 * Math.pow(x - b, 2) / Math.pow(2 * a, 2));
     }
 
     @Override
     public double compute(double x, double total) {
-        return 0;
+        double temp = x/total;
+        return Math.exp(-1 * Math.pow(temp - b, 2) / Math.pow(2 * a, 2));
     }
 
     @Override
@@ -18,12 +34,12 @@ public class gaussmf implements MembershipFunction{
 
     @Override
     public double getA() {
-        return 0;
+        return a;
     }
 
     @Override
     public double getB() {
-        return 0;
+        return b;
     }
 
     @Override
@@ -38,21 +54,41 @@ public class gaussmf implements MembershipFunction{
 
     @Override
     public boolean isRelative() {
-        return false;
+        return isRelative;
     }
 
     @Override
     public String getName() {
-        return null;
+        return "Gaussian";
     }
 
     @Override
     public double calculateCardinality(double total) {
-        return 0;
+            double integral = 0;
+            if(this.isRelative){
+                for (double x = 0; x < 1; x += 0.01)
+                {
+                    if(isRelative) {
+                        integral += this.compute(x) * 0.01;
+                    } else {
+                        integral += this.compute(x, total) * 0.01;
+                    }
+                }
+            } else {
+                for (double x = 0; x < 1; x += 0.01)
+                {
+                    integral += this.compute(x, total) * 0.01;
+                }
+            }
+            return integral;
     }
 
     @Override
     public double getSupp(double total) {
-        return 0;
+        if(!isRelative){
+            return (a + b)/total - (b - a)/total;
+        } else {
+            return (a + b) - (b - a);
+        }
     }
 }
